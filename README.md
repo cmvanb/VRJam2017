@@ -1,6 +1,6 @@
 # VRJam2017
 
-## Practical info:
+## Useful links:
 
 * Trello: https://trello.com/b/x2lICgT7/vr-jam-2017  
 * Slack: https://vrjam2017.slack.com  
