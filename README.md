@@ -7,6 +7,6 @@
 
 ## Help with Git:
 
-* Install git for windows: https://git-for-windows.github.io/i  
+* Install git for windows: https://git-for-windows.github.io/  
 * Useful guide for beginners: https://backlogtool.com/git-tutorial/en/intro/intro1_1.html  
 
