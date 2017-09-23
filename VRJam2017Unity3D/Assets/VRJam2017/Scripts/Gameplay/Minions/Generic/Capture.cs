@@ -24,7 +24,7 @@ public class Capture : MonoBehaviour
 
         bool capturable = gameObject.GetComponent<Faction>().IsCapturable(visibleObject);
 
-        if(capturable)
+        if(capturable && queue.IsCurrentInteruptable())
         {
             currentlyCapturing = visibleObject;
 

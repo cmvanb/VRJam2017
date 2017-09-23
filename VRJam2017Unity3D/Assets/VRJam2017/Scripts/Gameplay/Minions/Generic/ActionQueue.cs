@@ -135,4 +135,22 @@ public class ActionQueue : MonoBehaviour
 
         GetComponent<NavMeshAgent>().enabled = true;
     }
+
+    public bool IsCurrentInteruptable()
+    {
+        if(current is SummonAction)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public void CancelSummon()
+    {
+        if(current is SummonAction)
+        {
+            StopCurrent();
+        }
+    }
 }
