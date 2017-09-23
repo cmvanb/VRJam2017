@@ -17,4 +17,9 @@ public class Faction : MonoBehaviour
         return other.GetComponent<Faction>().CurrentFaction == CurrentFaction;
     }
 
+    void Convert(FactionType newFaction)
+    {
+        CurrentFaction = newFaction;
+    }
+
 }
