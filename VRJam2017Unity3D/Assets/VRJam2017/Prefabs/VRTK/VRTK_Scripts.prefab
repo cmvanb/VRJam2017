@@ -102,7 +102,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4633921343987918}
-  - component: {fileID: 114684297570111048}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -124,6 +123,7 @@ GameObject:
   - component: {fileID: 114899014328507176}
   - component: {fileID: 114253295187114142}
   - component: {fileID: 114307910850166352}
+  - component: {fileID: 114005910242726910}
   m_Layer: 0
   m_Name: LeftController
   m_TagString: Untagged
@@ -384,7 +384,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4767034476729240}
-  - component: {fileID: 114488096158580586}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -438,6 +437,7 @@ GameObject:
   - component: {fileID: 114781533121071194}
   - component: {fileID: 114310252735561674}
   - component: {fileID: 114248787711471144}
+  - component: {fileID: 114865897679545780}
   m_Layer: 0
   m_Name: RightController
   m_TagString: Untagged
@@ -1306,6 +1306,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08, y: 0.08, z: 0.16}
   m_Center: {x: 0, y: 0.005, z: -0.015}
+--- !u!114 &114005910242726910
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254941248741224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2217af6e47935342b1e51c6cba76920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: 1
 --- !u!114 &114078404029826824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1327,7 +1339,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1254941248741224}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64e104da36bd3b04b90c6ae969ac66dc, type: 3}
   m_Name: 
@@ -1339,7 +1351,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1950493123534152}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd904f4ca6767424eaf8e050bc174741, type: 3}
   m_Name: 
@@ -1442,7 +1454,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1950493123534152}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ec704cceb26f6f49b6c900fc83d8d18, type: 3}
   m_Name: 
@@ -1517,7 +1529,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1950493123534152}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64e104da36bd3b04b90c6ae969ac66dc, type: 3}
   m_Name: 
@@ -1529,7 +1541,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1254941248741224}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 947b27445602ed640b885db7e667dfc1, type: 3}
   m_Name: 
@@ -1541,37 +1553,13 @@ MonoBehaviour:
   controllerAttachPoint: {fileID: 54001502313451208}
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
---- !u!114 &114488096158580586
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1856553328390650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28529963443591c45a62d3a088571b1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hand: 0
---- !u!114 &114684297570111048
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1242192960558320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28529963443591c45a62d3a088571b1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hand: 1
 --- !u!114 &114781533121071194
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1950493123534152}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65eb64f0f2fd6d64faddbcf5d7d3bdbb, type: 3}
   m_Name: 
@@ -1586,7 +1574,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1950493123534152}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 947b27445602ed640b885db7e667dfc1, type: 3}
   m_Name: 
@@ -1598,13 +1586,25 @@ MonoBehaviour:
   controllerAttachPoint: {fileID: 54024277713456442}
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
+--- !u!114 &114865897679545780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1950493123534152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2217af6e47935342b1e51c6cba76920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: 0
 --- !u!114 &114899014328507176
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1254941248741224}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65eb64f0f2fd6d64faddbcf5d7d3bdbb, type: 3}
   m_Name: 

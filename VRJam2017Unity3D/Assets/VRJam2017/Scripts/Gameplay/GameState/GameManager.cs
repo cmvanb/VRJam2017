@@ -6,7 +6,10 @@ using VRTK;
 public class GameManager : MonoSingleton<GameManager>
 {
     public Vector3 SpawnPosition;
+
+    [HideInInspector]
     public Transform PlayArea;
+    [HideInInspector]
     public Transform Headset;
 
     public void Start()

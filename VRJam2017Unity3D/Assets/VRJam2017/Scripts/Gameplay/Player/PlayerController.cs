@@ -1,15 +1,38 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AltSrc.UnityCommon.Patterns;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoSingleton<PlayerController>
 {
     public float SummonInterval = 0.5f;
 
+    public enum FlightStates
+    {
+        GROUNDED,
+        FLYING
+    };
+    [HideInInspector]
+    public FlightStates FlightState = FlightStates.GROUNDED;
+
+    public enum CommandModes
+    {
+        MOVE,
+        GUARD
+    };
+    [HideInInspector]
+    public CommandModes CommandMode = CommandModes.MOVE;
+
+    [HideInInspector]
     public List<GameObject> SummonedMinions = new List<GameObject>();
-    
-    private float summonTimer;
-    private bool isSummoning = false;
+    [HideInInspector]
+    public bool IsSummoning = false;
+
+    [HideInInspector]
+    public bool IsAttacking = false;
+
+    private float summonTimer = 0f;
 
     public void Start()
     {
@@ -18,25 +41,45 @@ public class PlayerController : MonoBehaviour
 
     public void Summon()
     {
-        isSummoning = true;
+        Debug.LogWarning("SUMMON");
+        IsSummoning = true;
 
-        summonTimer += Time.deltaTime;
+        // summonTimer += Time.deltaTime;
 
-        if (summonTimer > SummonInterval)
+        // if (summonTimer > SummonInterval)
+        // {
+        //     SummonOneMinion();
+        //     summonTimer = 0f;
+        // }
+
+        StartCoroutine(DelayedSummon());
+    }
+
+    private IEnumerator DelayedSummon()
+    {
+        while (IsSummoning)
         {
+            yield return new WaitForSeconds(SummonInterval);
+
             SummonOneMinion();
-            summonTimer = 0f;
         }
+
+        yield return null;
     }
 
     public void StopSummon()
     {
-        isSummoning = false;
+        StopAllCoroutines();
+
+        Debug.LogWarning("STOP SUMMON");
+
+        IsSummoning = false;
         summonTimer = 0f;
     }
 
     private void SummonOneMinion()
     {
+        Debug.Log("summon minion " + Time.time);
         // TODO: implement
         //GameObject minion = MinionManager.Summon(transform);
 
@@ -78,12 +121,16 @@ public class PlayerController : MonoBehaviour
 
     public void Attack()
     {
-        throw new NotImplementedException();
+        Debug.LogWarning("ATTACK");
+
+        IsAttacking = true;
     }
 
     public void StopAttack()
     {
-        throw new NotImplementedException();
+        Debug.LogWarning("STOP ATTACK");
+
+        IsAttacking = false;
     }
 
     public void PaintDig()
