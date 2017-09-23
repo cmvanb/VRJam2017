@@ -27,7 +27,7 @@
             GetComponentInParent<VRTK_InteractUse>().UseButtonPressed += DoUseOn;
             GetComponentInParent<VRTK_InteractUse>().UseButtonReleased += DoUseOff;
 
-            var handContainer = "ModelPieces";
+            var handContainer = "Model";
             pointerFinger = transform.Find(handContainer + "/PointerFingerContainer");
             gripFingers = transform.Find(handContainer + "/GripFingerContainer");
 
