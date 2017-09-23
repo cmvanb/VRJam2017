@@ -160,8 +160,6 @@ public class LevelModel
         float radius = (float)size / 2f;
         int halfSize = Mathf.CeilToInt(radius);
 
-        List<LevelTile> tilesToCheck = new List<LevelTile>();
-
         for (int z = (int)origin.y - halfSize; z < (int)origin.y + halfSize; ++z)
         {
             for (int x = (int)origin.x - halfSize; x < (int)origin.x + halfSize; ++x)
