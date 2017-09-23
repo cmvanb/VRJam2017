@@ -27,7 +27,7 @@ public class Healer : MonoBehaviour
 
         bool sameFaction = gameObject.GetComponent<Faction>().IsSameFaction(visibleObject);
 
-        if(sameFaction)
+        if(sameFaction && queue.IsCurrentInteruptable())
         {
             currentlyHealing = visibleObject;
 
