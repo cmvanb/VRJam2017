@@ -223,6 +223,22 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74d5070bc93604b67a3bbedfb969307b, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &157114436 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1013783193485856, guid: 74d5070bc93604b67a3bbedfb969307b,
+    type: 2}
+  m_PrefabInternal: {fileID: 157114435}
+--- !u!114 &157114437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 157114436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03a74a64ed7442a78f6dadfd9e9cebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &275271383
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,6 +502,7 @@ GameObject:
   - component: {fileID: 1109130617}
   - component: {fileID: 1109130618}
   - component: {fileID: 1109130619}
+  - component: {fileID: 1109130620}
   m_Layer: 0
   m_Name: Minion 2
   m_TagString: Untagged
@@ -731,6 +748,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 185f409d893404416a582c4639877555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1109130620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1109130603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03a74a64ed7442a78f6dadfd9e9cebd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1142847357

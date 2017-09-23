@@ -23,6 +23,8 @@ public class GameObjectMovementAction : MovementAction
             yield return 0;
         }
 
+        Stop();
+
         Owner.SendMessage("ActionComplete");
     }
 

@@ -22,6 +22,8 @@ public class AttackAction : GameObjectMovementAction
 
                 Attack attack = Owner.GetComponent<Attack>();
 
+                Owner.SendMessage("Attack");
+
                 Target.SendMessage("WantsToDamage", attack.AttackPower);
 
                 yield return new WaitForSeconds(attack.FireRate);

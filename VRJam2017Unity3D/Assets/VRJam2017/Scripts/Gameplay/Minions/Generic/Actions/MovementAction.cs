@@ -32,8 +32,19 @@ public class MovementAction : UnitAction
     protected void setDestination(Vector3 destination)
     {
         findAgent();
+
+        Vector3 XZDifference = agent.destination - destination;
+
+        XZDifference.y = 0;
         
-        agent.SetDestination(destination);
+        float epsilon = 0.01f;
+
+        if(XZDifference.sqrMagnitude > epsilon)
+        {
+            Owner.SendMessage("StartMoving");
+    
+            agent.SetDestination(destination);
+        }
     }
 
     protected bool hasReachedTarget()
@@ -52,9 +63,14 @@ public class MovementAction : UnitAction
 
     public override void Stop()
     {
-        agent.Stop();
+        if(!agent.isStopped)
+        {
+            agent.Stop();
 
-        agent.ResetPath();
+            agent.ResetPath();
+
+            Owner.SendMessage("StopMoving");
+        }
     }
 
     void findAgent()
