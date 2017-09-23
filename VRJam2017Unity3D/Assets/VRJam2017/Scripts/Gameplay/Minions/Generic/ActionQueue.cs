@@ -11,7 +11,7 @@ public class ActionQueue : MonoBehaviour
 
     private IEnumerator currentRoutine = null;
 
-    private bool captured = false;
+    private bool incapacitated = false;
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class ActionQueue : MonoBehaviour
 
     public void Add(UnitAction action)
     {
-        if(captured)
+        if(incapacitated)
         {
             return;
         }
@@ -29,7 +29,7 @@ public class ActionQueue : MonoBehaviour
 
     public void Insert(UnitAction action)
     {
-        if(captured)
+        if(incapacitated)
         {
             return;
         }
@@ -124,14 +124,14 @@ public class ActionQueue : MonoBehaviour
 
         queue.Clear();
 
-        captured = true;
+        incapacitated = true;
 
         GetComponent<NavMeshAgent>().enabled = false;
     }
 
     void Release()
     {
-        captured = false;
+        incapacitated = false;
 
         GetComponent<NavMeshAgent>().enabled = true;
     }
@@ -152,5 +152,12 @@ public class ActionQueue : MonoBehaviour
         {
             StopCurrent();
         }
+    }
+
+    void WantsToDie()
+    {
+        incapacitated = true;
+
+        StopCurrent();
     }
 }
