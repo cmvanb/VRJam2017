@@ -25,8 +25,7 @@ public class Healer : MonoBehaviour
 
         ActionQueue queue = GetComponent<ActionQueue>();
 
-
-        bool sameFaction = gameObject.GetComponent<Faction>().CurrentFaction == visibleObject.GetComponent<Faction>().CurrentFaction;
+        bool sameFaction = gameObject.GetComponent<Faction>().IsSameFaction(visibleObject);
 
         if(sameFaction)
         {
