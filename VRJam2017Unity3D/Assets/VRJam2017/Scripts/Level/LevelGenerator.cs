@@ -5,7 +5,6 @@ using CatlikeCoding.SimplexNoise;
 
 public class LevelGenerator : MonoSingleton<LevelGenerator>
 {
-
     public Terrain Terrain;
 
     public LevelModel Model;
@@ -19,6 +18,8 @@ public class LevelGenerator : MonoSingleton<LevelGenerator>
     public GameObject CornerBottomLeftPrefab;
     public GameObject CornerBottomRightPrefab;
     public GameObject FloorPrefab;
+
+    public GameObject LevelObject;
 
     public void Start()
     {
@@ -34,6 +35,8 @@ public class LevelGenerator : MonoSingleton<LevelGenerator>
 
         Model = new LevelModel(width, length);
 
+        LevelObject = new GameObject("Level");
+
         for (int z = 0; z < length; ++z)
         {
             for (int x = 0; x < width; ++x)
@@ -42,13 +45,16 @@ public class LevelGenerator : MonoSingleton<LevelGenerator>
 
                 if (tile.Opened)
                 {
-                    CreateFloor(tile);
+                    // DONT GENERATE FLOORS, USING TERRAIN AS FLOOR
+                    //CreateFloor(tile);
                     continue;
                 }
 
                 GenerateWalls(tile);
             }
         }
+
+        Terrain.transform.parent = LevelObject.transform;
 
         Debug.Log("generated level");
     }
@@ -122,6 +128,7 @@ public class LevelGenerator : MonoSingleton<LevelGenerator>
     {
         GameObject wall = GameObject.Instantiate(prefab);
         wall.transform.position = LevelHelpers.WorldPosFromTilePos(tile.X, tile.Z);
+        wall.transform.parent = LevelObject.transform;
 
         return wall;
     }
@@ -131,6 +138,7 @@ public class LevelGenerator : MonoSingleton<LevelGenerator>
         GameObject floor = GameObject.Instantiate(FloorPrefab);
         floor.transform.position = LevelHelpers.WorldPosFromTilePos(tile.X, tile.Z);
         floor.name = tile.ToString() + " Floor";
+        floor.transform.parent = LevelObject.transform;
 
         return floor;
     }
