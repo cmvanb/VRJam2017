@@ -5,9 +5,20 @@ using UnityEngine;
 
 public class MinionManager : MonoSingleton<MinionManager>
 {
+    public GameObject MinionPrefab;
+
 	public Faction.FactionType FactionType = Faction.FactionType.Hell;
 
-	List<GameObject> minions = new List<GameObject>();
+	private List<GameObject> minions = new List<GameObject>();
+
+    public GameObject SpawnMinion(Vector3 position)
+    {
+        GameObject minion = GameObject.Instantiate(MinionPrefab);
+
+        minion.transform.position = position;
+
+        return minion;
+    }
 
 	public void Register(GameObject minion)
 	{

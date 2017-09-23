@@ -80,10 +80,12 @@ public class PlayerController : MonoSingleton<PlayerController>
     private void SummonOneMinion()
     {
         Debug.Log("summon minion " + Time.time);
-        // TODO: implement
-        //GameObject minion = MinionManager.Summon(transform);
 
-        //SummonedMinions.Add(minion);
+        GameObject minion = MinionManager.Instance.SummonOne(gameObject);
+        SummonedMinions.Add(minion);
+
+        //minion.GetComponent<ActionQueue>().IsCurrentInteruptable();
+        //minion.GetComponent<ActionQueue>().CancelSummon();
     }
 
     public void MoveCommand(Vector3 target)

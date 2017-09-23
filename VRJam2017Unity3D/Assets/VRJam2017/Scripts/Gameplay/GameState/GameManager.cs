@@ -46,15 +46,17 @@ public class GameManager : MonoSingleton<GameManager>
         for (int i = 0; i < num; ++i)
         {
             float deg = interval * i;
+            float distance = 10f;
 
-            float x = Mathf.Cos(deg);
-            float z = Mathf.Sin(deg);
+            float x = distance * Mathf.Cos(deg);
+            float z = distance * Mathf.Sin(deg);
             float y = LevelHelpers.GetTerrainHeightAtWorldPos(new Vector3(x, 0f, z));
 
-            Vector3 position = new Vector3(x, y, z);
+            Vector3 position = new Vector3(x, y, z) + SpawnPosition;
 
-            // TODO: implement once minionmanager is pushed
-            //MinionManager.SpawnMinion(position);
+            MinionManager.Instance.SpawnMinion(position);
+
+            Debug.LogWarning(position);
         }
     }
 }
