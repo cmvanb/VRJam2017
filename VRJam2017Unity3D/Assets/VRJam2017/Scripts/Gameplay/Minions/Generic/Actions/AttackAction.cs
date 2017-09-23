@@ -22,7 +22,7 @@ public class AttackAction : GameObjectMovementAction
 
                 Attack attack = Owner.GetComponent<Attack>();
 
-                Owner.SendMessage("Attack");
+                Owner.SendMessage("Attack", SendMessageOptions.DontRequireReceiver);
 
                 Target.SendMessage("WantsToDamage", attack.AttackPower);
 

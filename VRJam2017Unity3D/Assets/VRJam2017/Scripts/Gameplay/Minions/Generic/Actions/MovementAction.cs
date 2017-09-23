@@ -41,7 +41,7 @@ public class MovementAction : UnitAction
 
         if(XZDifference.sqrMagnitude > epsilon)
         {
-            Owner.SendMessage("StartMoving");
+            Owner.SendMessage("StartMoving", SendMessageOptions.DontRequireReceiver);
     
             agent.SetDestination(destination);
         }
@@ -69,7 +69,7 @@ public class MovementAction : UnitAction
 
             agent.ResetPath();
 
-            Owner.SendMessage("StopMoving");
+            Owner.SendMessage("StopMoving", SendMessageOptions.DontRequireReceiver);
         }
     }
 
