@@ -101,6 +101,7 @@ MonoBehaviour:
     type: 2}
   FloorPrefab: {fileID: 1050465714698460, guid: e7fadc4d0403acc46b988f243fb3a5f9,
     type: 2}
+  LevelObject: {fileID: 0}
 --- !u!154 &154951432308707182
 TerrainCollider:
   m_ObjectHideFlags: 1
