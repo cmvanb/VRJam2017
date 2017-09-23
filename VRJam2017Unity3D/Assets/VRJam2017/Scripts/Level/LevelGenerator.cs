@@ -5,6 +5,21 @@ using CatlikeCoding.SimplexNoise;
 
 public class LevelGenerator : MonoSingleton<LevelGenerator>
 {
+
+    public Terrain Terrain;
+
+    public LevelModel Model;
+
+    public GameObject WallTopPrefab;
+    public GameObject WallRightPrefab;
+    public GameObject WallBottomPrefab;
+    public GameObject WallLeftPrefab;
+    public GameObject CornerTopLeftPrefab;
+    public GameObject CornerTopRightPrefab;
+    public GameObject CornerBottomLeftPrefab;
+    public GameObject CornerBottomRightPrefab;
+    public GameObject FloorPrefab;
+
     public void Start()
     {
         Generate();
@@ -12,11 +27,112 @@ public class LevelGenerator : MonoSingleton<LevelGenerator>
 
     public void Generate()
     {
+        TerrainData terrainData = Terrain.terrainData;
 
-        // DOESN'T WORK NICELY, THANKS UNITY
-        //GenerateTerrain();
+        int width = (int)terrainData.size.x;
+        int length = (int)terrainData.size.z;
+
+        Model = new LevelModel(width, length);
+
+        for (int z = 0; z < length; ++z)
+        {
+            for (int x = 0; x < width; ++x)
+            {
+                LevelTile tile = Model.Tiles[x, z];
+
+                if (tile.Opened)
+                {
+                    CreateFloor(tile);
+                    continue;
+                }
+
+                GenerateWalls(tile);
+            }
+        }
 
         Debug.Log("generated level");
+    }
+
+    private void GenerateWalls(LevelTile tile)
+    {
+        List<GameObject> walls = new List<GameObject>();
+
+        if (tile.WallTop)
+        {
+            if (tile.WallLeft)
+            {
+                GameObject w = CreateWall(tile, CornerTopLeftPrefab);
+                w.name = tile.ToString() + " Corner Top Left";
+                walls.Add(w);
+            }
+            else if (tile.WallRight)
+            {
+                GameObject w = CreateWall(tile, CornerTopRightPrefab);
+                w.name = tile.ToString() + " Corner Top Right";
+                walls.Add(w);
+            }
+            else
+            {
+                GameObject w = CreateWall(tile, WallTopPrefab);
+                w.name = tile.ToString() + " Wall Top";
+                walls.Add(w);
+            }
+        }
+
+        if (tile.WallBottom)
+        {
+            if (tile.WallLeft)
+            {
+                GameObject w = CreateWall(tile, CornerBottomLeftPrefab);
+                w.name = tile.ToString() + " Corner Bottom Left";
+                walls.Add(w);
+            }
+            else if (tile.WallRight)
+            {
+                GameObject w = CreateWall(tile, CornerBottomRightPrefab);
+                w.name = tile.ToString() + " Corner Bottom Right";
+                walls.Add(w);
+            }
+            else
+            {
+                GameObject w = CreateWall(tile, WallBottomPrefab);
+                w.name = tile.ToString() + " Wall Bottom";
+                walls.Add(w);
+            }
+        }
+
+        if (tile.WallRight && !tile.WallTop && !tile.WallBottom)
+        {
+            GameObject w = CreateWall(tile, WallRightPrefab);
+            w.name = tile.ToString() + " Wall Right";
+            walls.Add(w);
+        }
+
+        if (tile.WallLeft && !tile.WallTop && !tile.WallBottom)
+        {
+            GameObject w = CreateWall(tile, WallLeftPrefab);
+            w.name = tile.ToString() + " Wall Left";
+            walls.Add(w);
+        }
+
+        tile.Walls = walls;
+    }
+
+    private GameObject CreateWall(LevelTile tile, GameObject prefab)
+    {
+        GameObject wall = GameObject.Instantiate(prefab);
+        wall.transform.position = LevelHelpers.WorldPosFromTilePos(tile.X, tile.Z);
+
+        return wall;
+    }
+
+    private GameObject CreateFloor(LevelTile tile)
+    {
+        GameObject floor = GameObject.Instantiate(FloorPrefab);
+        floor.transform.position = LevelHelpers.WorldPosFromTilePos(tile.X, tile.Z);
+        floor.name = tile.ToString() + " Floor";
+
+        return floor;
     }
 
 /*     public void GenerateTerrain()
