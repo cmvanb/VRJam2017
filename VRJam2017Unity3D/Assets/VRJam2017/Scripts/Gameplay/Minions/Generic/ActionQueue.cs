@@ -100,8 +100,8 @@ public class ActionQueue : MonoBehaviour
         Insert(newAction);
     }
 
-    public int Length
+    public bool HasActions()
     {
-        get { return queue.Count; }
+        return queue.Count > 0 || current != null;
     }
 }

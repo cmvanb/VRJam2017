@@ -43,10 +43,10 @@ public class Attack : MonoBehaviour
             switch(AttackType)
             {
                 case Type.Chase:
-                    if(queue.Length == 0)
+                    if(!queue.HasActions())
                     {
                         queue.Add(new AttackAction(gameObject, currentlyAttacking));
-                        queue.Add(new MovementAction(gameObject, transform.position));    
+                        queue.Add(new MovementAction(gameObject, transform.position));
                     }
                     else
                     {

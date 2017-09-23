@@ -29,14 +29,14 @@ GameObject:
   - component: {fileID: 114942302452142102}
   - component: {fileID: 114276033611499206}
   - component: {fileID: 114003888084120176}
-  - component: {fileID: 114664124918490826}
   - component: {fileID: 114120539716722946}
   - component: {fileID: 114404116935766644}
   - component: {fileID: 114537054711701774}
   - component: {fileID: 114120161113219638}
-  - component: {fileID: 114757052559988702}
+  - component: {fileID: 114708879371998548}
+  - component: {fileID: 114950693636783410}
   m_Layer: 0
-  m_Name: Minion
+  m_Name: Healer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0089fed11aaa92e478754a737acf3b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
+  health: 10
+  maxHealth: 10
 --- !u!114 &114120161113219638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,10 +129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86e3147a14e0a28498f19c123c59ac7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackType: 0
-  AttackRange: 2
-  AttackPower: 15
-  FireRate: 0.3
+  AttackType: 1
+  AttackRange: 0
+  AttackPower: 0
+  FireRate: 0
 --- !u!114 &114161624351431970
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5ee3704b2316d4cb37a4dcb23349ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentFaction: 0
+  CurrentFaction: 1
 --- !u!114 &114537054711701774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,18 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dead: 0
---- !u!114 &114664124918490826
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1013783193485856}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59e1bc58a11024d8db0dc68b75ae28f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114757052559988702
+--- !u!114 &114708879371998548
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -213,9 +202,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1013783193485856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f03a74a64ed7442a78f6dadfd9e9cebd, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c7efd205a462984aaad3b63dcd33d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealRange: 7
+  HealPower: 5
+  HealRate: 1
 --- !u!114 &114901802646275582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -238,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308b35a0b66784cae99453736c813431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Minion
+  Name: Healer
   CostMinerals: 0
   CostGas: 0
   CostSupplies: 0
@@ -247,6 +239,17 @@ MonoBehaviour:
   Icon: {fileID: 0}
   Placement: 0
   Prerequisites: []
+--- !u!114 &114950693636783410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1013783193485856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b317509157949d4b2781fc4a56f0c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114984984771134266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -268,7 +271,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

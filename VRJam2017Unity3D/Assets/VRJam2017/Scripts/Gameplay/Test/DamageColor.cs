@@ -4,18 +4,30 @@ using UnityEngine;
 
 public class DamageColor : MonoBehaviour {
 
-	// Use this for initialization
-	void Damage(float amount)
+	[SerializeField]
+	Color defaultColor;
+
+	void Start()
 	{
-		StartCoroutine(this.changeColor());
+		GetComponentInChildren<Renderer>().material.color = defaultColor;
 	}
 
-	IEnumerator changeColor()
+	void Damage(float amount)
 	{
-		GetComponentInChildren<Renderer>().material.color = Color.red;
+		StartCoroutine(this.changeColor(Color.white));
+	}
 
-		yield return new WaitForSeconds(0.1f);
+	void Heal(float amount)
+	{
+		StartCoroutine(this.changeColor(Color.green));
+	}
 
-		GetComponentInChildren<Renderer>().material.color = Color.white;
+	IEnumerator changeColor(Color color)
+	{
+		GetComponentInChildren<Renderer>().material.color = color;
+
+		yield return new WaitForSeconds(0.01f);
+
+		GetComponentInChildren<Renderer>().material.color = defaultColor;
 	}
 }

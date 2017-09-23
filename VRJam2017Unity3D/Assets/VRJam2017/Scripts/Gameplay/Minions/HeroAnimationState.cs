@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MinionAnimationState : MonoBehaviour
+public class HeroAnimationState : MonoBehaviour
 {
     void StartMoving()
     {
