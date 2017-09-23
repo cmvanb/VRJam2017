@@ -30,4 +30,9 @@ public static class LevelHelpers
     {
         return x >=0 && x < NumTiles && z >=0 && z < NumTiles;
     }
+
+    public static float GetTerrainHeightAtWorldPos(Vector3 worldPosition)
+    {
+        return LevelGenerator.Instance.Terrain.SampleHeight(worldPosition);
+    }
 }
