@@ -11,27 +11,32 @@ ModelImporter:
     100006: //RootNode
     100008: head
     100010: ref_box
+    100012: hat
     400000: body
     400002: eyeLeft
     400004: eyeRight
     400006: //RootNode
     400008: head
     400010: ref_box
+    400012: hat
     2300000: body
     2300002: eyeLeft
     2300004: eyeRight
     2300006: head
     2300008: ref_box
+    2300010: hat
     3300000: body
     3300002: eyeLeft
     3300004: eyeRight
     3300006: head
     3300008: ref_box
+    3300010: hat
     4300000: head
     4300002: eyeRight
     4300004: body
     4300006: eyeLeft
     4300008: ref_box
+    4300010: hat
     9500000: //RootNode
   materials:
     importMaterials: 1
