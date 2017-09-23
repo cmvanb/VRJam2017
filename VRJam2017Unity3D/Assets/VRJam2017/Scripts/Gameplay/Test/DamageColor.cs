@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamageColor : MonoBehaviour {
 
 	[SerializeField]
-	Color defaultColor;
+	Color defaultColor = Color.white;
 
 	void Start()
 	{
