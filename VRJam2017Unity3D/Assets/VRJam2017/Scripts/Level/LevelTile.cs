@@ -12,7 +12,7 @@ public class LevelTile
     public bool WallBottom = false;
     public bool WallLeft = false;
 
-    public List<GameObject> Walls;
+    public List<GameObject> Walls = new List<GameObject>();
 
     public override string ToString()
     {
