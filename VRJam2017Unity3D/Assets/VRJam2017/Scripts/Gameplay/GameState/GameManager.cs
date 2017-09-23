@@ -7,6 +7,9 @@ public class GameManager : MonoSingleton<GameManager>
 {
     public Vector3 SpawnPosition;
 
+    public float MinionSpawnDistance = 10f;
+    public int StartingMinions = 10;
+
     [HideInInspector]
     public Transform PlayArea;
     [HideInInspector]
@@ -24,7 +27,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         SetPlayerPosition(SpawnPosition);
 
-        SpawnStartingMinions(4);
+        SpawnStartingMinions(StartingMinions);
     }
 
     public void SetPlayerPosition(Vector3 position)
@@ -46,10 +49,9 @@ public class GameManager : MonoSingleton<GameManager>
         for (int i = 0; i < num; ++i)
         {
             float angle = interval * i;
-            float distance = 2f;
 
-            float x = distance * Mathf.Cos(angle);
-            float z = distance * Mathf.Sin(angle);
+            float x = MinionSpawnDistance * Mathf.Cos(angle);
+            float z = MinionSpawnDistance * Mathf.Sin(angle);
             float y = LevelHelpers.GetTerrainHeightAtWorldPos(new Vector3(x, 0f, z));
 
             Vector3 position = (new Vector3(x, y, z));

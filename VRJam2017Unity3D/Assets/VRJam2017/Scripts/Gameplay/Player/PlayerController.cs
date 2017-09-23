@@ -81,7 +81,8 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         Debug.Log("summon minion " + Time.time);
 
-        GameObject minion = MinionManager.Instance.SummonOne(gameObject);
+        GameObject minion = MinionManager.Instance.SummonOne(GameManager.Instance.Headset.gameObject);
+
         SummonedMinions.Add(minion);
 
         //minion.GetComponent<ActionQueue>().IsCurrentInteruptable();
