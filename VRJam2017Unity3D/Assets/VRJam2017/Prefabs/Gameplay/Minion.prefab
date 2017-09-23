@@ -35,6 +35,7 @@ GameObject:
   - component: {fileID: 114757052559988702}
   - component: {fileID: 114502739251708064}
   - component: {fileID: 114726058839212892}
+  - component: {fileID: 114834133602584352}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Untagged
@@ -617,7 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f791633ff583c4cc982d9f216ea0451e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CaptureRange: 3
+  CaptureRange: 2
 --- !u!114 &114757052559988702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -629,6 +630,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03a74a64ed7442a78f6dadfd9e9cebd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114834133602584352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1013783193485856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6995e45e3fd4696b96a9571e55c853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 50
 --- !u!114 &114901802646275582
 MonoBehaviour:
   m_ObjectHideFlags: 1
