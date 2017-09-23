@@ -43,6 +43,8 @@ public class MovementAction : UnitAction
         {
             Owner.SendMessage("StartMoving", SendMessageOptions.DontRequireReceiver);
     
+            agent.isStopped = false;
+            
             agent.SetDestination(destination);
         }
     }
@@ -65,9 +67,9 @@ public class MovementAction : UnitAction
     {
         if(agent.isOnNavMesh && !agent.isStopped)
         {
-            agent.Stop();
-
             agent.ResetPath();
+
+            agent.isStopped = true;
 
             Owner.SendMessage("StopMoving", SendMessageOptions.DontRequireReceiver);
         }

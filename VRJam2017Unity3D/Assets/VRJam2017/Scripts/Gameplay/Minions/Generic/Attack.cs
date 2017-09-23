@@ -41,7 +41,7 @@ public class Attack : MonoBehaviour
 
         bool isEnemy = gameObject.GetComponent<Faction>().IsEnemy(visibleObject);
 
-        if(isEnemy)
+        if(isEnemy && queue.IsCurrentInteruptable())
         {
             currentlyAttacking = visibleObject;
 

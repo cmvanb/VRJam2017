@@ -34,7 +34,23 @@ public class Faction : MonoBehaviour
 
     void Convert(FactionType newFaction)
     {
+        if(newFaction == CurrentFaction)
+        {
+            return;
+        }
+
+        if(GetComponent<MinionRegister>() != null)
+        {
+            if(newFaction == MinionManager.Instance.FactionType)
+            {
+                MinionManager.Instance.Register(gameObject);
+            }
+            else if(CurrentFaction == MinionManager.Instance.FactionType)
+            {
+                MinionManager.Instance.Deregister(gameObject);
+            }
+        }
+
         CurrentFaction = newFaction;
     }
-
 }

@@ -17,8 +17,6 @@ public class AttackAction : GameObjectMovementAction
 
         while(!isDead(Target))
         {
-            updatePosition();
-
             if(isInRange(Target))
             {
                 Stop();
@@ -33,6 +31,8 @@ public class AttackAction : GameObjectMovementAction
             }
             else
             {
+                updatePosition();
+                
                 yield return 0;
             }
         }
