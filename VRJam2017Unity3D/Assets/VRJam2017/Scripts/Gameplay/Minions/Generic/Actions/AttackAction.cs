@@ -10,7 +10,10 @@ public class AttackAction : GameObjectMovementAction
 
     public override IEnumerator Perform()
     {
-        setDestination(Target.transform.position);
+        if(!isDead(Target))
+        {
+            setDestination(Target.transform.position);
+        }
 
         while(!isDead(Target))
         {

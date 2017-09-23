@@ -49,7 +49,7 @@ public class MovementAction : UnitAction
 
     protected bool hasReachedTarget()
     {
-        if(agent.pathPending)
+        if(agent.pathPending || !agent.isOnNavMesh)
         {
             return false;
         }
