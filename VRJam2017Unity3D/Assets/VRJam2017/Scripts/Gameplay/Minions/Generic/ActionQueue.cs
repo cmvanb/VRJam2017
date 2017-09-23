@@ -42,7 +42,7 @@ public class ActionQueue : MonoBehaviour
 
             queue.RemoveAt(0);
 
-            SendMessage("Action", current);
+            SendMessage("Action", current, SendMessageOptions.DontRequireReceiver);
 
             currentRoutine = current.Perform();
 

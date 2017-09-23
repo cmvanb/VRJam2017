@@ -17,9 +17,13 @@ public class Sight : MonoBehaviour
 
         foreach(Visibility visibilityObject in objects)
         {
+            if(visibilityObject == GetComponent<Visibility>())
+            {
+                continue;                
+            }
             if(visibilityObject.CurrentState == Visibility.State.Visible && isInRange(visibilityObject))
             {
-                SendMessage("VisibleObjectSpotted", visibilityObject.gameObject);
+                SendMessage("VisibleObjectSpotted", visibilityObject.gameObject, SendMessageOptions.DontRequireReceiver);
             }
         }
     }
