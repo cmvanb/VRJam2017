@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4384415645148762}
-  - component: {fileID: 114223232854363372}
+  - component: {fileID: 114807717406375928}
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: Untagged
@@ -71,7 +71,7 @@ Transform:
   m_Father: {fileID: 4384415645148762}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114223232854363372
+--- !u!114 &114807717406375928
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1508197311072142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b91fcaf73a652114abc62f2c471437cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f26fdbbdea4ddf4d91ccbd01d7009e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Terrain: {fileID: 218685809727320016}

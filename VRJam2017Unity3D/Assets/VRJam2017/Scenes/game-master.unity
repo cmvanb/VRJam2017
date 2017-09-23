@@ -151,12 +151,12 @@ Prefab:
         type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 935345224}
+      objectReference: {fileID: 852835418}
     - target: {fileID: 23460335864526136, guid: 808d62bd650f6d6488b596366ea38224,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1875419716}
+      objectReference: {fileID: 1851260861}
     - target: {fileID: 114546712861941344, guid: 808d62bd650f6d6488b596366ea38224,
         type: 2}
       propertyPath: modelAliasLeftController
@@ -234,7 +234,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1090255023}
   m_Script: {fileID: 11500000, guid: 3d7b32d2866a5194e95e1a525bd0d06f, type: 3}
---- !u!43 &935345224
+--- !u!43 &852835418
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -400,6 +400,10 @@ Prefab:
     - target: {fileID: 4384415645148762, guid: c836fc01ad236204e8075f4b2300d057, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508197311072142, guid: c836fc01ad236204e8075f4b2300d057, type: 2}
+      propertyPath: m_Name
+      value: LevelController
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c836fc01ad236204e8075f4b2300d057, type: 2}
@@ -568,7 +572,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1856553328390650, guid: e4df29bcc7df16c42918021205a0def2,
     type: 2}
   m_PrefabInternal: {fileID: 1090255023}
---- !u!21 &1875419716
+--- !u!21 &1851260861
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0

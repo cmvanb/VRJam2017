@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public static class LevelHelpers
 {
@@ -33,6 +34,26 @@ public static class LevelHelpers
 
     public static float GetTerrainHeightAtWorldPos(Vector3 worldPosition)
     {
-        return LevelGenerator.Instance.Terrain.SampleHeight(worldPosition);
+        return LevelController.Instance.Terrain.SampleHeight(worldPosition);
+    }
+
+    public static List<LevelTile> GetSurroundingTiles(LevelModel model, int xPosition, int zPosition)
+    {
+        List<LevelTile> tiles = new List<LevelTile>();
+
+        for (int z = (int)zPosition - 1; z < (int)zPosition + 1; ++z)
+        {
+            for (int x = (int)xPosition - 1; x < (int)xPosition + 1; ++x)
+            {
+                if (!LevelHelpers.TileIsInBounds(x, z))
+                {
+                    continue;
+                }
+
+                tiles.Add(model.Tiles[x, z]);
+            }
+        }
+
+        return tiles;
     }
 }
