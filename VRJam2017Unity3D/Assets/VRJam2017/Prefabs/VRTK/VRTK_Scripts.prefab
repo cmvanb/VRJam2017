@@ -1538,7 +1538,7 @@ MonoBehaviour:
   grabPrecognition: 0
   throwMultiplier: 1
   createRigidBodyWhenNotTouching: 0
-  controllerAttachPoint: {fileID: 0}
+  controllerAttachPoint: {fileID: 54001502313451208}
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
 --- !u!114 &114488096158580586
@@ -1595,7 +1595,7 @@ MonoBehaviour:
   grabPrecognition: 0
   throwMultiplier: 1
   createRigidBodyWhenNotTouching: 0
-  controllerAttachPoint: {fileID: 0}
+  controllerAttachPoint: {fileID: 54024277713456442}
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
 --- !u!114 &114899014328507176
