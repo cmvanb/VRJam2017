@@ -10,17 +10,29 @@ public class ActionQueue : MonoBehaviour
 
     private IEnumerator currentRoutine = null;
 
+    private bool captured = false;
+
     void Start()
     {
     }
 
     public void Add(UnitAction action)
     {
+        if(captured)
+        {
+            return;
+        }
+        
         queue.Add(action);
     }
 
     public void Insert(UnitAction action)
     {
+        if(captured)
+        {
+            return;
+        }
+
         queue.Insert(0, action);
     }
 
@@ -103,5 +115,19 @@ public class ActionQueue : MonoBehaviour
     public bool HasActions()
     {
         return queue.Count > 0 || current != null;
+    }
+
+    void Capture()
+    {
+        StopCurrent();
+
+        queue.Clear();
+
+        captured = true;
+    }
+
+    void Release()
+    {
+        captured = false;
     }
 }

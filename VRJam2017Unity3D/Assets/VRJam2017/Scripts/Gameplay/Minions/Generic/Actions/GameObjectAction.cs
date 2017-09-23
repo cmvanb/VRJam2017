@@ -20,13 +20,13 @@ public class GameObjectAction : UnitAction
             {
                 bool sameOwner = GameObject.GetComponent<Owner>().CurrentOwner == Owner.GetComponent<Owner>().CurrentOwner;
 
-                bool sameFaction = GameObject.GetComponent<Faction>().CurrentFaction == Owner.GetComponent<Faction>().CurrentFaction;
+                bool isEnemy = GameObject.GetComponent<Faction>().IsEnemy(GameObject);
 
-                if(sameOwner || sameFaction)
+                if(sameOwner || !isEnemy)
                 {
                     Owner.GetComponent<ActionQueue>().Insert(new GameObjectMovementAction(Owner, GameObject));
                 }
-                else if(!sameFaction)
+                else if(isEnemy)
                 {
                     Owner.GetComponent<ActionQueue>().Insert(new AttackAction(Owner, GameObject));
                 }
