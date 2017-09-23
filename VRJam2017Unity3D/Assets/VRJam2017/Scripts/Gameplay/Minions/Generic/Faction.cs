@@ -4,9 +4,9 @@ public class Faction : MonoBehaviour
 {
     public enum FactionType
     {
-        Square,
-        Triangle,
-        Circle
+        Hell,
+        Heaven,
+        Neutral
     }
 
     public FactionType CurrentFaction;
@@ -20,6 +20,16 @@ public class Faction : MonoBehaviour
     void Convert(FactionType newFaction)
     {
         CurrentFaction = newFaction;
+
+        switch(newFaction)
+        {
+            case FactionType.Heaven:
+                break;
+            case FactionType.Hell:
+                break;
+            case FactionType.Neutral:
+                break;
+        }
     }
 
 }
