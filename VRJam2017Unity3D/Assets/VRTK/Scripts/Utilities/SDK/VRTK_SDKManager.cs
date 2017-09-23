@@ -182,7 +182,11 @@ namespace VRTK
         {
             get
             {
-                if (_loadedSetup == null && setups.Length == 1 && setups[0].isValid && setups[0].isActiveAndEnabled)
+                if (_loadedSetup == null 
+                    && setups.Length == 1 
+                    && setups[0] != null 
+                    && setups[0].isValid 
+                    && setups[0].isActiveAndEnabled)
                 {
                     _loadedSetup = setups[0];
                 }
