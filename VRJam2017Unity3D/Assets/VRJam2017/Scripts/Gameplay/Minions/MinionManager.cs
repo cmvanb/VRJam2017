@@ -13,9 +13,9 @@ public class MinionManager : MonoSingleton<MinionManager>
 
     public GameObject SpawnMinion(Vector3 position)
     {
-        GameObject minion = GameObject.Instantiate(MinionPrefab);
+        GameObject minion = GameObject.Instantiate(MinionPrefab, position, Quaternion.identity);
 
-        minion.transform.position = position;
+        //minion.transform.position = position;
 
         return minion;
     }

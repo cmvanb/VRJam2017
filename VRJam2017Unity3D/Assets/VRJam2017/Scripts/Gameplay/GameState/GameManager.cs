@@ -41,22 +41,23 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void SpawnStartingMinions(int num)
     {
-        float interval = 360f / num;
+        float interval = (2 * Mathf.PI) / num;
 
         for (int i = 0; i < num; ++i)
         {
-            float deg = interval * i;
-            float distance = 10f;
+            float angle = interval * i;
+            float distance = 2f;
 
-            float x = distance * Mathf.Cos(deg);
-            float z = distance * Mathf.Sin(deg);
+            float x = distance * Mathf.Cos(angle);
+            float z = distance * Mathf.Sin(angle);
             float y = LevelHelpers.GetTerrainHeightAtWorldPos(new Vector3(x, 0f, z));
 
-            Vector3 position = new Vector3(x, y, z) + SpawnPosition;
-
-            MinionManager.Instance.SpawnMinion(position);
+            Vector3 position = (new Vector3(x, y, z));
 
             Debug.LogWarning(position);
+            Debug.LogWarning(position + SpawnPosition);
+
+            MinionManager.Instance.SpawnMinion(position + SpawnPosition);
         }
     }
 }
