@@ -13,6 +13,6 @@ public class Death : MonoBehaviour
     {
         Dead = true;
 
-        Destroy(gameObject);
+        Destroy(gameObject, 2);
     }
 }
