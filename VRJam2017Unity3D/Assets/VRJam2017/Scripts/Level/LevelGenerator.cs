@@ -1,16 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using AltSrc.UnityCommon.Patterns;
 
-public class LevelGenerator : MonoBehaviour {
+public class LevelGenerator : MonoSingleton<LevelGenerator>
+{
+    public Terrain terrain;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void Start()
+    {
+        Generate();
+    }
+
+    public void Generate()
+    {
+        Debug.Log("generated level");
+    }
 }
