@@ -114,22 +114,18 @@ public class LevelModel
 
         if (CheckTables(openedTable, WallT))
         {
-            // generate wall top
             tile.WallTop = true;
         }
         if (CheckTables(openedTable, WallR))
         {
-            // generate wall right
             tile.WallRight = true;
         }
         if (CheckTables(openedTable, WallB))
         {
-            // generate wall bottom
             tile.WallBottom = true;
         }
         if (CheckTables(openedTable, WallL))
         {
-            // generate wall left
             tile.WallLeft = true;
         }
     }
@@ -159,7 +155,6 @@ public class LevelModel
         return atLeastOneMatch;
     }
 
-    // NAIVE EASY METHOD
     public void PunchHole(Vector2 origin, int size)
     {
         float radius = (float)size / 2f;
