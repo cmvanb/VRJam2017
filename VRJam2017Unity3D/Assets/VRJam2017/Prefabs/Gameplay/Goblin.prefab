@@ -32,6 +32,7 @@ GameObject:
   - component: {fileID: 114120161113219638}
   - component: {fileID: 114757052559988702}
   - component: {fileID: 114983207668977380}
+  - component: {fileID: 114184813366971232}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -246,7 +247,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1013783193485856}
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 3.0719244, y: 2, z: 0.088075764}
+  m_LocalPosition: {x: 3.07, y: 2, z: 7.69}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4198558780965530}
@@ -504,7 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185f409d893404416a582c4639877555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 0.7205882, g: 0.015895385, b: 0.015895385, a: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114161624351431970
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -516,6 +517,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d6c395c4a09d149aacbaefeefb619c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114184813366971232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1013783193485856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e3147a14e0a28498f19c123c59ac7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackType: 0
+  AttackRange: 2
+  AttackPower: 10
+  FireRate: 1
 --- !u!114 &114276033611499206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -539,7 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5ee3704b2316d4cb37a4dcb23349ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentFaction: 1
+  CurrentFaction: 0
 --- !u!114 &114537054711701774
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -17,19 +17,23 @@ public class Faction : MonoBehaviour
         return other.GetComponent<Faction>().CurrentFaction == CurrentFaction;
     }
 
+    public bool IsEnemy(GameObject other)
+    {
+        return !IsSameFaction(other) && other.GetComponent<Faction>().CurrentFaction != FactionType.Neutral;
+    }
+
+    public bool IsScary(GameObject other)
+    {
+        return !IsSameFaction(other) && CurrentFaction == FactionType.Neutral;
+    }
+
     void Convert(FactionType newFaction)
     {
         CurrentFaction = newFaction;
 
-        switch(newFaction)
-        {
-            case FactionType.Heaven:
-                break;
-            case FactionType.Hell:
-                break;
-            case FactionType.Neutral:
-                break;
-        }
+        GetComponent<Attack>().enabled = newFaction != FactionType.Neutral;
+
+        GetComponent<Flee>().enabled = newFaction == FactionType.Neutral;
     }
 
 }

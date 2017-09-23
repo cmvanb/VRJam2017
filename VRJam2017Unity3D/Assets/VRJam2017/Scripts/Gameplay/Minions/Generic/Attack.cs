@@ -22,6 +22,11 @@ public class Attack : MonoBehaviour
     
     void VisibleObjectSpotted(GameObject visibleObject)
     {
+        if(gameObject.GetComponent<Faction>().CurrentFaction == Faction.FactionType.Neutral)
+        {
+            return;
+        }
+
         if(currentlyAttacking == visibleObject)
         {
             return;
@@ -34,9 +39,9 @@ public class Attack : MonoBehaviour
 
         ActionQueue queue = GetComponent<ActionQueue>();
 
-        bool sameFaction = gameObject.GetComponent<Faction>().CurrentFaction == visibleObject.GetComponent<Faction>().CurrentFaction;
+        bool isEnemy = gameObject.GetComponent<Faction>().IsEnemy(visibleObject);
 
-        if(!sameFaction)
+        if(isEnemy)
         {
             currentlyAttacking = visibleObject;
 

@@ -8,6 +8,11 @@ public class Flee : MonoBehaviour
     
     void VisibleObjectSpotted(GameObject visibleObject)
     {
+        if(gameObject.GetComponent<Faction>().CurrentFaction != Faction.FactionType.Neutral)
+        {
+            return;
+        }
+
         if(currentlyFleeing == visibleObject)
         {
             return;
@@ -20,9 +25,9 @@ public class Flee : MonoBehaviour
 
         ActionQueue queue = GetComponent<ActionQueue>();
 
-        bool sameFaction = gameObject.GetComponent<Faction>().CurrentFaction == visibleObject.GetComponent<Faction>().CurrentFaction;
+        bool isScary = gameObject.GetComponent<Faction>().IsScary(visibleObject);
 
-        if(!sameFaction)
+        if(isScary)
         {
             currentlyFleeing = visibleObject;
             
