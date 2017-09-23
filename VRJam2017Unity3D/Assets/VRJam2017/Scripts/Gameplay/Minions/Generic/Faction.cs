@@ -27,13 +27,14 @@ public class Faction : MonoBehaviour
         return !IsSameFaction(other) && CurrentFaction == FactionType.Neutral;
     }
 
+    public bool IsCapturable(GameObject other)
+    {
+        return other.GetComponent<Faction>().CurrentFaction == FactionType.Neutral;
+    }
+
     void Convert(FactionType newFaction)
     {
         CurrentFaction = newFaction;
-
-        GetComponent<Attack>().enabled = newFaction != FactionType.Neutral;
-
-        GetComponent<Flee>().enabled = newFaction == FactionType.Neutral;
     }
 
 }

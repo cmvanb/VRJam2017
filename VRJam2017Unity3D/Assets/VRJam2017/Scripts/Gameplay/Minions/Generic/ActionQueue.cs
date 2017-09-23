@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 
 public class ActionQueue : MonoBehaviour
 {   
@@ -124,10 +125,14 @@ public class ActionQueue : MonoBehaviour
         queue.Clear();
 
         captured = true;
+
+        GetComponent<NavMeshAgent>().enabled = false;
     }
 
     void Release()
     {
         captured = false;
+
+        GetComponent<NavMeshAgent>().enabled = true;
     }
 }
