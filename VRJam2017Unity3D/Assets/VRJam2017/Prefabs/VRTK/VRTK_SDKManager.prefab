@@ -58,5 +58,4 @@ MonoBehaviour:
   scriptAliasRightController: {fileID: 0}
   autoManageVRSettings: 1
   autoLoadSetup: 1
-  setups:
-  - {fileID: 0}
+  setups: []
