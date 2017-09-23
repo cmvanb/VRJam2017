@@ -39,7 +39,7 @@ public class MovementAction : UnitAction
         
         float epsilon = 0.01f;
 
-        if(XZDifference.sqrMagnitude > epsilon)
+        if(XZDifference.sqrMagnitude > epsilon && agent.isOnNavMesh)
         {
             Owner.SendMessage("StartMoving", SendMessageOptions.DontRequireReceiver);
     
@@ -49,7 +49,7 @@ public class MovementAction : UnitAction
 
     protected bool hasReachedTarget()
     {
-        if(agent.pathPending)
+        if(agent.pathPending || !agent.isOnNavMesh)
         {
             return false;
         }
@@ -63,7 +63,7 @@ public class MovementAction : UnitAction
 
     public override void Stop()
     {
-        if(!agent.isStopped)
+        if(agent.isOnNavMesh && !agent.isStopped)
         {
             agent.Stop();
 
