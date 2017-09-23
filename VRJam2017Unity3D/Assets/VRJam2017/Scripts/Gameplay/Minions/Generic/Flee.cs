@@ -27,7 +27,7 @@ public class Flee : MonoBehaviour
 
         bool isScary = gameObject.GetComponent<Faction>().IsScary(visibleObject);
 
-        if(isScary)
+        if(isScary && queue.IsCurrentInteruptable())
         {
             currentlyFleeing = visibleObject;
             
