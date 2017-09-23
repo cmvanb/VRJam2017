@@ -99,4 +99,9 @@ public class ActionQueue : MonoBehaviour
         
         Insert(newAction);
     }
+
+    public int Length
+    {
+        get { return queue.Count; }
+    }
 }

@@ -223,22 +223,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74d5070bc93604b67a3bbedfb969307b, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &157114436 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1013783193485856, guid: 74d5070bc93604b67a3bbedfb969307b,
-    type: 2}
-  m_PrefabInternal: {fileID: 157114435}
---- !u!114 &157114437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 157114436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f03a74a64ed7442a78f6dadfd9e9cebd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &275271383
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,8 +506,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86e3147a14e0a28498f19c123c59ac7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackType: 1
-  AttackRange: 5
+  AttackType: 0
+  AttackRange: 2
   AttackPower: 10
   FireRate: 1
 --- !u!114 &1109130605
@@ -803,7 +787,7 @@ Prefab:
     - target: {fileID: 114211855506029286, guid: 8973765fe6763477eacd7480e8343a3e,
         type: 2}
       propertyPath: AttackRange
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114211855506029286, guid: 8973765fe6763477eacd7480e8343a3e,
         type: 2}
@@ -814,6 +798,11 @@ Prefab:
         type: 2}
       propertyPath: Name
       value: Minion
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211855506029286, guid: 8973765fe6763477eacd7480e8343a3e,
+        type: 2}
+      propertyPath: AttackType
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8973765fe6763477eacd7480e8343a3e, type: 2}

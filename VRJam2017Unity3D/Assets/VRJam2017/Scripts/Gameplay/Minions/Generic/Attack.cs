@@ -43,7 +43,16 @@ public class Attack : MonoBehaviour
             switch(AttackType)
             {
                 case Type.Chase:
-                    queue.InsertBeforeCurrent(new AttackAction(gameObject, currentlyAttacking));
+                    if(queue.Length == 0)
+                    {
+                        queue.Add(new AttackAction(gameObject, currentlyAttacking));
+                        queue.Add(new MovementAction(gameObject, transform.position));    
+                    }
+                    else
+                    {
+                        queue.InsertBeforeCurrent(new AttackAction(gameObject, currentlyAttacking));
+                    }
+                    
                     break;
                 case Type.Static:
                     queue.InsertBeforeCurrent(new StaticAttackAction(gameObject, currentlyAttacking));
