@@ -8,7 +8,7 @@ public class LevelModel
     public LevelTile[,] Tiles;
 
     public int MinHoleSize = 3;
-    public int MaxHoleSize = 11;
+    public int MaxHoleSize = 9;
     public float HoleProbability = 0.01f;
 
     public LevelModel(int width, int length)

@@ -20,6 +20,8 @@ public class GameManager : MonoSingleton<GameManager>
     public void SpawnPlayer()
     {
         SetPlayerPosition(SpawnPosition);
+
+        SpawnStartingMinions(4);
     }
 
     public void SetPlayerPosition(Vector3 position)
@@ -32,5 +34,24 @@ public class GameManager : MonoSingleton<GameManager>
         float terrainHeight = LevelHelpers.GetTerrainHeightAtWorldPos(SpawnPosition);
 
         PlayArea.position = new Vector3(position.x, terrainHeight + playerHeightOffset, position.z);
+    }
+
+    public void SpawnStartingMinions(int num)
+    {
+        float interval = 360f / num;
+
+        for (int i = 0; i < num; ++i)
+        {
+            float deg = interval * i;
+
+            float x = Mathf.Cos(deg);
+            float z = Mathf.Sin(deg);
+            float y = LevelHelpers.GetTerrainHeightAtWorldPos(new Vector3(x, 0f, z));
+
+            Vector3 position = new Vector3(x, y, z);
+
+            // TODO: implement once minionmanager is pushed
+            //MinionManager.SpawnMinion(position);
+        }
     }
 }
