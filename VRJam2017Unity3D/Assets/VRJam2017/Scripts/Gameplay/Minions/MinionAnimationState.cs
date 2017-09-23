@@ -8,26 +8,37 @@ public class MinionAnimationState : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         
-        animator.Play(GetIdle());
+        Play(GetIdle());
     }
 
     void StartMoving()
     {
-        animator.Play("walk");
+        Play("walk");
     }
 
     void StopMoving()
     {
-        animator.Play(GetIdle());
+        Play(GetIdle());
     }
 
     void Attack()
     {
-        //Debug.Log("Attack");
+        Play("digging");
     }
 
     string GetIdle()
     {
         return Random.value > 0.5 ? "idle" : "idle2";
+    }
+
+    void Play(string name)
+    {
+        AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
+
+        if(!info.IsName(name))
+        {
+            animator.Play(name);
+        }
+        
     }
 }
