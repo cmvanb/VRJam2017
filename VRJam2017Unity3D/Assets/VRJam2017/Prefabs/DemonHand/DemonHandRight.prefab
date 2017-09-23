@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4891941938799966}
   m_Layer: 0
-  m_Name: DemonHandLeft
+  m_Name: DemonHandRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 1898931814561232}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0.0012324828, y: 0, z: 0.00035656738}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4891941938799966}
   m_RootOrder: 1
@@ -127,7 +127,7 @@ Transform:
   m_GameObject: {fileID: 1564061820223156}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0.0012324828, y: 0, z: 0.00035656738}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4891941938799966}
   m_RootOrder: 0
@@ -140,7 +140,7 @@ Transform:
   m_GameObject: {fileID: 1869530365303552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 4165455649747950}
   m_Father: {fileID: 4891941938799966}
