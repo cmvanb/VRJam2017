@@ -33,6 +33,9 @@ GameObject:
   - component: {fileID: 114537054711701774}
   - component: {fileID: 114120161113219638}
   - component: {fileID: 114757052559988702}
+  - component: {fileID: 114502739251708064}
+  - component: {fileID: 114726058839212892}
+  - component: {fileID: 114834133602584352}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Untagged
@@ -505,7 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185f409d893404416a582c4639877555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 0.7205882, g: 0.015895385, b: 0.015895385, a: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114120539716722946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -556,6 +559,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentFaction: 0
+--- !u!114 &114502739251708064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1013783193485856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26e2a0eb321e4db8b8c7c2da3a4e917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114537054711701774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -593,6 +607,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e1bc58a11024d8db0dc68b75ae28f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114726058839212892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1013783193485856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f791633ff583c4cc982d9f216ea0451e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CaptureRange: 2
 --- !u!114 &114757052559988702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -604,6 +630,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03a74a64ed7442a78f6dadfd9e9cebd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114834133602584352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1013783193485856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6995e45e3fd4696b96a9571e55c853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 50
 --- !u!114 &114901802646275582
 MonoBehaviour:
   m_ObjectHideFlags: 1
