@@ -16,6 +16,7 @@ public class HandController : MonoBehaviour
     private VRTK_BasePointerRenderer pointerRenderer;
     private PlayerAttacker attacker;
     private PlayerCommander commander;
+    private PlayerDigger digger;
     private PlayerFlyer flyer;
     private PlayerMover mover;
     private PlayerSummoner summoner;
@@ -28,6 +29,7 @@ public class HandController : MonoBehaviour
         pointerRenderer = GetComponent<VRTK_BasePointerRenderer>();
         attacker = PlayerController.GetComponent<PlayerAttacker>();
         commander = PlayerController.GetComponent<PlayerCommander>();
+        digger = PlayerController.GetComponent<PlayerDigger>();
         flyer = PlayerController.GetComponent<PlayerFlyer>();
         mover = PlayerController.GetComponent<PlayerMover>();
         summoner = PlayerController.GetComponent<PlayerSummoner>();
@@ -62,7 +64,10 @@ public class HandController : MonoBehaviour
             else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
             {
                 // TODO: implement
-                //player.PaintDig();
+                // if pointing at unhighlighted tile, use digger.CancelDigCommand();
+                // otherwise, dig
+
+                digger.DigCommand();
             }
         }
         else if (hand == Hands.Right)
@@ -76,9 +81,9 @@ public class HandController : MonoBehaviour
                 summoner.Summon();
             }
             // TODO: Consider enabling this.
-            // else if (player.FlightState == PlayerFlyer.FlightStates.FLYING)
+            // else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
             // {
-            //     player.PaintDig();
+            //     digger.DigCommand();
             // }
         }
     }

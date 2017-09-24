@@ -10,10 +10,4 @@ public class PlayerController : MonoBehaviour
     {
         Debug.LogWarning("PICKUP MINION");
     }
-
-    // DIGGING
-    public void PaintDig()
-    {
-        Debug.LogWarning("PAINT DIG");
-    }
 }
