@@ -118,56 +118,56 @@ public class LevelController : MonoSingleton<LevelController>
     {
         if (tile.WallTop)
         {
-            if (tile.WallLeft)
-            {
-                GameObject w = CreateObjectOnTile(tile, CornerTopLeftPrefab);
-                w.name = tile.ToString() + " Corner Top Left";
-                tile.Walls.Add(w);
-            }
-            else if (tile.WallRight)
-            {
-                GameObject w = CreateObjectOnTile(tile, CornerTopRightPrefab);
-                w.name = tile.ToString() + " Corner Top Right";
-                tile.Walls.Add(w);
-            }
-            else
-            {
+            // if (tile.WallLeft)
+            // {
+            //     GameObject w = CreateObjectOnTile(tile, CornerTopLeftPrefab);
+            //     w.name = tile.ToString() + " Corner Top Left";
+            //     tile.Walls.Add(w);
+            // }
+            // else if (tile.WallRight)
+            // {
+            //     GameObject w = CreateObjectOnTile(tile, CornerTopRightPrefab);
+            //     w.name = tile.ToString() + " Corner Top Right";
+            //     tile.Walls.Add(w);
+            // }
+            // else
+            // {
                 GameObject w = CreateObjectOnTile(tile, WallTopPrefab);
                 w.name = tile.ToString() + " Wall Top";
                 tile.Walls.Add(w);
-            }
+            // }
         }
 
         if (tile.WallBottom)
         {
-            if (tile.WallLeft)
-            {
-                GameObject w = CreateObjectOnTile(tile, CornerBottomLeftPrefab);
-                w.name = tile.ToString() + " Corner Bottom Left";
-                tile.Walls.Add(w);
-            }
-            else if (tile.WallRight)
-            {
-                GameObject w = CreateObjectOnTile(tile, CornerBottomRightPrefab);
-                w.name = tile.ToString() + " Corner Bottom Right";
-                tile.Walls.Add(w);
-            }
-            else
-            {
+            // if (tile.WallLeft)
+            // {
+            //     GameObject w = CreateObjectOnTile(tile, CornerBottomLeftPrefab);
+            //     w.name = tile.ToString() + " Corner Bottom Left";
+            //     tile.Walls.Add(w);
+            // }
+            // else if (tile.WallRight)
+            // {
+            //     GameObject w = CreateObjectOnTile(tile, CornerBottomRightPrefab);
+            //     w.name = tile.ToString() + " Corner Bottom Right";
+            //     tile.Walls.Add(w);
+            // }
+            // else
+            // {
                 GameObject w = CreateObjectOnTile(tile, WallBottomPrefab);
                 w.name = tile.ToString() + " Wall Bottom";
                 tile.Walls.Add(w);
-            }
+            // }
         }
 
-        if (tile.WallRight && !tile.WallTop && !tile.WallBottom)
+        if (tile.WallRight)// && !tile.WallTop && !tile.WallBottom)
         {
             GameObject w = CreateObjectOnTile(tile, WallRightPrefab);
             w.name = tile.ToString() + " Wall Right";
             tile.Walls.Add(w);
         }
 
-        if (tile.WallLeft && !tile.WallTop && !tile.WallBottom)
+        if (tile.WallLeft)// && !tile.WallTop && !tile.WallBottom)
         {
             GameObject w = CreateObjectOnTile(tile, WallLeftPrefab);
             w.name = tile.ToString() + " Wall Left";

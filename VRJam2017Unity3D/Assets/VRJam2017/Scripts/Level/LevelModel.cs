@@ -147,29 +147,29 @@ public class LevelModel
         
     }
 
-    private int[] WallT = new int[9] {
-        2, 1, 2,
-        2, 0, 2,
-        2, 2, 2
-    };
+    // private int[] WallT = new int[9] {
+    //     2, 1, 2,
+    //     2, 0, 2,
+    //     2, 2, 2
+    // };
 
-    private int[] WallR = new int[9] {
-        2, 2, 2,
-        2, 0, 1,
-        2, 2, 2
-    };
+    // private int[] WallR = new int[9] {
+    //     2, 2, 2,
+    //     2, 0, 1,
+    //     2, 2, 2
+    // };
 
-    private int[] WallB = new int[9] {
-        2, 2, 2,
-        2, 0, 2,
-        2, 1, 2
-    };
+    // private int[] WallB = new int[9] {
+    //     2, 2, 2,
+    //     2, 0, 2,
+    //     2, 1, 2
+    // };
 
-    private int[] WallL = new int[9] {
-        2, 2, 2,
-        1, 0, 2,
-        2, 2, 2
-    };
+    // private int[] WallL = new int[9] {
+    //     2, 2, 2,
+    //     1, 0, 2,
+    //     2, 2, 2
+    // };
 
     // private int[] CorTL = new int[9] {
     //     1, 0, 2,
@@ -189,37 +189,54 @@ public class LevelModel
 
         // If the tile position is out of bounds, value is 2 (ignore tile).
         // If tile is inside bounds, opened = 1, closed = 0
-        int tileTL = (x > 0 && z > 0)                  ? (Tiles[x - 1, z - 1].Opened ? 1 : 0) : 2;
+        //int tileTL = (x > 0 && z > 0)                  ? (Tiles[x - 1, z - 1].Opened ? 1 : 0) : 2;
         int tileTT = z > 0                             ? (Tiles[x, z - 1].Opened     ? 1 : 0) : 2;
-        int tileTR = (x < Width - 1 && z > 0)          ? (Tiles[x + 1, z - 1].Opened ? 1 : 0) : 2;
+        // int tileTR = (x < Width - 1 && z > 0)          ? (Tiles[x + 1, z - 1].Opened ? 1 : 0) : 2;
         int tileRR = x < Width - 1                     ? (Tiles[x + 1, z].Opened     ? 1 : 0) : 2;
-        int tileBR = (x < Width - 1 && z < Length - 1) ? (Tiles[x + 1, z + 1].Opened ? 1 : 0) : 2;
+        // int tileBR = (x < Width - 1 && z < Length - 1) ? (Tiles[x + 1, z + 1].Opened ? 1 : 0) : 2;
         int tileBB = z < Length - 1                    ? (Tiles[x, z + 1].Opened     ? 1 : 0) : 2;
-        int tileBL = (x > 0 && z < Length - 1)         ? (Tiles[x - 1, z + 1].Opened ? 1 : 0) : 2;
+        // int tileBL = (x > 0 && z < Length - 1)         ? (Tiles[x - 1, z + 1].Opened ? 1 : 0) : 2;
         int tileLL = x > 0                             ? (Tiles[x - 1, z].Opened     ? 1 : 0) : 2;
 
-        int[] openedTable = new int[9] { 
-            tileTL, tileTT, tileTR,
-            tileLL, 0, tileRR,
-            tileBL, tileBB, tileBR
-        };
-
-        if (CheckTables(openedTable, WallT))
+        if (tileTT == 1)
         {
             tile.WallTop = true;
         }
-        if (CheckTables(openedTable, WallR))
+        if (tileRR == 1)
         {
             tile.WallRight = true;
         }
-        if (CheckTables(openedTable, WallB))
+        if (tileBB == 1)
         {
             tile.WallBottom = true;
         }
-        if (CheckTables(openedTable, WallL))
+        if (tileLL == 1)
         {
             tile.WallLeft = true;
         }
+
+        // int[] openedTable = new int[9] { 
+        //     tileTL, tileTT, tileTR,
+        //     tileLL, 0, tileRR,
+        //     tileBL, tileBB, tileBR
+        // };
+
+        // if (CheckTables(openedTable, WallT))
+        // {
+        //     tile.WallTop = true;
+        // }
+        // if (CheckTables(openedTable, WallR))
+        // {
+        //     tile.WallRight = true;
+        // }
+        // if (CheckTables(openedTable, WallB))
+        // {
+        //     tile.WallBottom = true;
+        // }
+        // if (CheckTables(openedTable, WallL))
+        // {
+        //     tile.WallLeft = true;
+        // }
     }
 
     private bool CheckTables(int[] openedTable, int[] evaluationTable)
@@ -261,9 +278,7 @@ public class LevelModel
                     continue;
                 }
 
-                Vector2 point = new Vector2(x, z);
-
-                if (Vector2.Distance(origin, point) < radius)
+                if (Vector2.Distance(origin, new Vector2(x, z)) < radius)
                 {
                     Tiles[x, z].Opened = true;
                 }
