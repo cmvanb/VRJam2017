@@ -22,14 +22,15 @@ public class PlayerDigger : MonoBehaviour
         Vector3 target = new Vector3(args.destinationPosition.x, DigMarkerWorldPositionY, args.destinationPosition.z);
 
         Debug.LogWarning("START DIG");
+
+        IsDigging = true;
+
         LevelTile tile = LevelHelpers.GetTileAtWorldPos(LevelController.Instance.Model, target);
+
+        paintMode = tile.MarkedForDigging ? PaintModes.ERASE : PaintModes.PAINT;
 
         if (TileIsDiggable(tile))
         {
-            paintMode = tile.MarkedForDigging ? PaintModes.ERASE : PaintModes.PAINT;
-
-            IsDigging = true;
-
             PaintDig(args);
         }
     }
