@@ -11,11 +11,16 @@ public class MinionManager : MonoSingleton<MinionManager>
 
 	private List<GameObject> minions = new List<GameObject>();
 
+	private List<LevelTile> digList = new List<LevelTile>();
+
+	void Start()
+	{
+		StartCoroutine(ProcessDigList());
+	}
+
     public GameObject SpawnMinion(Vector3 position)
     {
         GameObject minion = GameObject.Instantiate(MinionPrefab, position, Quaternion.identity);
-
-        //minion.transform.position = position;
 
         return minion;
     }
@@ -42,6 +47,84 @@ public class MinionManager : MonoSingleton<MinionManager>
 		}
 
 		return nearest;
+	}
+
+	public void AddDigTile(LevelTile tile)
+	{
+		digList.Add(tile);
+	}
+
+	void Update()
+	{
+		if(Input.GetMouseButtonDown(1))
+		{
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hit;
+			if (Physics.Raycast(ray, out hit))
+			{
+				Vector2 tilePos = LevelHelpers.TilePosFromWorldPos(hit.point);
+
+				LevelTile tile = LevelController.Instance.Model.Tiles[(int)tilePos.x, (int)tilePos.y];
+
+				if(tile != null)
+				{
+					AddDigTile(tile);
+				}
+			}
+		}
+	}
+
+	IEnumerator ProcessDigList()
+	{
+		while(true)
+		{
+			digList.RemoveAll(tile => tile.Opened);
+
+			digList.ForEach(tile => {
+				// Do we have surrounding tiles in Hell?
+				List<LevelTile> surrounding = LevelHelpers.GetSurroundingTiles(LevelController.Instance.Model, tile.X, tile.Z);
+				LevelTile found = surrounding.Find(obj => (obj.Opened && LevelController.Instance.IsTileInHell(obj.X, obj.Z)));
+
+				// If so, dig them with some minions
+				if(found != null)
+				{
+					for(int i=0; i<5; i++)
+					{
+						GameObject minion = GetNearestNonBusyMinion(tile);
+
+						minion.GetComponent<ActionQueue>().InsertBeforeCurrent(new DigAction(minion, new Vector2(tile.X, tile.Z)));
+					}
+				}
+			});
+
+			yield return new WaitForSeconds(1);
+		}
+	}
+
+	public GameObject GetNearestNonBusyMinion(LevelTile tile)
+	{
+		float closestDist = Mathf.Infinity;
+		GameObject closest = null;
+
+		foreach(GameObject minion in minions)
+		{
+			if(minion.GetComponent<ActionQueue>().IsBusy())
+			{
+				continue;
+			}
+
+			Vector3 pos = LevelHelpers.WorldPosFromTilePos(tile.X, tile.Z);
+
+			float dist = (minion.transform.position - pos).sqrMagnitude;
+			if(dist < closestDist)
+			{
+				closestDist = dist;
+				
+				closest = minion;
+			}
+		}
+
+		return closest;
 	}
 
 	public GameObject GetNearestMinion(GameObject source)
