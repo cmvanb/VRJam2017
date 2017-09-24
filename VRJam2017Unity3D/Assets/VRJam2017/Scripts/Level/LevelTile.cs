@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class LevelTile
 {
     public bool Opened = false;
+    public bool MarkedForDigging = false;
     public int X;
     public int Z;
 
@@ -13,6 +14,7 @@ public class LevelTile
     public bool WallLeft = false;
 
     public List<GameObject> Walls = new List<GameObject>();
+    public GameObject DigMarker = null;
 
     public override string ToString()
     {

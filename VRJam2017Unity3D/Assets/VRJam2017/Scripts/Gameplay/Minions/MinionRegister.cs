@@ -13,6 +13,9 @@ public class MinionRegister : MonoBehaviour
 
     void OnDestroy()
     {
-        MinionManager.Instance.Deregister(gameObject);
+        if (MinionManager.Instance)
+        {
+            MinionManager.Instance.Deregister(gameObject);
+        }
     }
 }
