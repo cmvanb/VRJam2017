@@ -20,12 +20,29 @@ public class LevelController : MonoSingleton<LevelController>
 
     public GameObject HeroSpawn;
 
+    public GameObject[] HellStartingBuildings;
+
     public void Start()
     {
         Generate();
 
         Vector3 spawnPosition = LevelHelpers.WorldPosFromTilePos((int)Model.HellSpawn.x, (int)Model.HellSpawn.y);
 
+        CreateObjectOnTile(Model.HeavenSpawnTile, HeroSpawn);
+
+        float buildingSpawnDist = 4;
+        foreach(GameObject prefab in HellStartingBuildings)
+        {
+            float angle = Random.value * Mathf.PI * 2;
+
+            float x = buildingSpawnDist * Mathf.Cos(angle);
+            float z = buildingSpawnDist * Mathf.Sin(angle);
+
+            Vector2 pos = Model.HellSpawn + new Vector2(x,z);
+
+            CreateObjectOnTile(Model.Tiles[(int)pos.x, (int)pos.y], prefab);
+        }
+        
         GameManager.Instance.SpawnPlayer(spawnPosition);
     }
 
@@ -54,8 +71,6 @@ public class LevelController : MonoSingleton<LevelController>
         }
 
         Terrain.transform.parent = transform;
-
-        CreateObjectOnTile(Model.HeavenSpawnTile, HeroSpawn);
 
         Debug.Log("generated level");
     }
