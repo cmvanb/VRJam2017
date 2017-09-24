@@ -9,7 +9,7 @@ public class MovementAction : UnitAction
 
     public Vector3 Position = Vector3.zero;
 
-    protected float stoppingDistance = 0;
+    protected float stoppingDistance = 2;
 
 
     public MovementAction(GameObject owner, Vector3 position) : base(owner)
