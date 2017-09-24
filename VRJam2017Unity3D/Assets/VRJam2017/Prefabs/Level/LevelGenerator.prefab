@@ -100,6 +100,9 @@ MonoBehaviour:
   CornerBottomRightPrefab: {fileID: 1426191928786398, guid: 4020d65cd18476649a8947f100f677a6,
     type: 2}
   HeroSpawn: {fileID: 1633321696326478, guid: 903c8d72d1cf9475dbfac3b5d2fc13ce, type: 2}
+  HellStartingBuildings:
+  - {fileID: 1545862498214954, guid: e890d5c91731a4021abb7434db3a48c7, type: 2}
+  - {fileID: 1545862498214954, guid: 54ce96bece9ad4cfa9c962def3d5161f, type: 2}
 --- !u!154 &154951432308707182
 TerrainCollider:
   m_ObjectHideFlags: 1
