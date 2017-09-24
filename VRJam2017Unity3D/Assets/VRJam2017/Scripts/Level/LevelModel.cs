@@ -12,12 +12,24 @@ public class LevelModel
     public int MaxHoleSize = 9;
     public float HoleProbability = 0.01f;
 
+    public LevelTile[,] HellContiguousTiles;
+
+    public LevelTile[,] HeavenContiguousTiles;
+
+    public Vector2 HellSpawn;
+
+    public Vector2 HeavenSpawn;
+
     public LevelModel(int width, int length)
     {
         Width = width;
         Length = length;
 
         Tiles = new LevelTile[width, length];
+
+        HellContiguousTiles = new LevelTile[width, length];
+
+        HeavenContiguousTiles = new LevelTile[width, length];
 
         // Populate tiles.
         for (int z = 0; z < length; ++z)
@@ -48,7 +60,17 @@ public class LevelModel
         }
 
         // Punch hole for starting location.
-        PunchHole(new Vector2(width / 2, length / 2), SpawnHoleSize);
+        HellSpawn.Set(width/2, length/2);
+
+        PunchHole(HellSpawn, SpawnHoleSize);
+
+        var angle = Random.value*Mathf.PI*2;
+
+        HeavenSpawn.x = (int)(width/2 + Mathf.Cos(angle)*(width - SpawnHoleSize)/2);
+
+        HeavenSpawn.y = (int)(length/2 + Mathf.Sin(angle)*(length - SpawnHoleSize)/2);
+
+        PunchHole(HeavenSpawn, SpawnHoleSize);
 
         // Evaluate tiles for wall types
         for (int z = 0; z < length; ++z)
@@ -58,6 +80,71 @@ public class LevelModel
                 EvaluateTile(x, z);
             }
         }
+
+        FloodFill((int)HellSpawn.x, (int)HellSpawn.y, HellContiguousTiles);
+        FloodFill((int)HeavenSpawn.x, (int)HeavenSpawn.y, HeavenContiguousTiles);
+    }
+
+    public LevelTile HellSpawnTile
+    {
+        get { return Tiles[(int)HellSpawn.x, (int)HellSpawn.y]; }
+    }
+
+    public LevelTile HeavenSpawnTile
+    {
+        get { return Tiles[(int)HeavenSpawn.x, (int)HeavenSpawn.y]; }
+    }
+
+
+    public void UpdateContiguousTilesFrom(int x, int z)
+    {
+        List<LevelTile> surroundingTiles = LevelHelpers.GetSurroundingTiles(this, x, z);
+
+        LevelTile foundHell = surroundingTiles.Find(tile => HellContiguousTiles[tile.X, tile.Z] != null);
+
+        LevelTile foundHeaven = surroundingTiles.Find(tile => HeavenContiguousTiles[tile.X, tile.Z] != null);
+
+        // if we're about to join, just copy everything to save a painful flood fill.
+        if(foundHell != null && foundHeaven != null)
+        {
+            for (int iz = 0; iz < Length; ++iz)
+            {
+                for (int ix = 0; ix < Width; ++ix)
+                {
+                    if(HellContiguousTiles[ix, iz] != null)
+                    {
+                        HeavenContiguousTiles[ix, iz] = HellContiguousTiles[ix, iz];
+                    }
+                    else if(HeavenContiguousTiles[ix, iz] != null)
+                    {
+                        HellContiguousTiles[ix, iz] = HeavenContiguousTiles[ix, iz];
+                    }
+                }
+            }
+        }
+        
+        if(foundHell != null)
+        {
+            FloodFill(x,z, HellContiguousTiles);
+        }
+        
+        if(foundHeaven != null)
+        {
+            FloodFill(x,z, HeavenContiguousTiles);
+        }
+    }
+    
+    void FloodFill(int x, int z, LevelTile[,] tileList)
+    {
+        if(tileList[x,z] == null && Tiles[x, z].Opened)
+        {
+            tileList[x,z] = Tiles[x,z];
+
+            List<LevelTile> surroundingTiles = LevelHelpers.GetSurroundingTiles(this, x, z);
+
+            surroundingTiles.ForEach(tile => FloodFill(tile.X, tile.Z, tileList));
+        }
+        
     }
 
     private int[] WallT = new int[9] {
