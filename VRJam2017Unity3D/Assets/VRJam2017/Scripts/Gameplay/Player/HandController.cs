@@ -22,6 +22,7 @@ public class HandController : MonoBehaviour
     private PlayerSummoner summoner;
     // TODO: pick up minion
 
+    private VRTK_ControllerEvents controllerEvents;
     private DestinationMarkerEventArgs destinationArgs;
     private Vector3 destination;
 
@@ -43,19 +44,24 @@ public class HandController : MonoBehaviour
             destination = args.destinationPosition;
         };
 
-        GetComponent<VRTK_ControllerEvents>().TriggerPressed += OnTriggerPressed;
-        GetComponent<VRTK_ControllerEvents>().TriggerReleased += OnTriggerReleased;
-        GetComponent<VRTK_ControllerEvents>().TouchpadPressed += OnTouchpadPressed;
-        GetComponent<VRTK_ControllerEvents>().TouchpadReleased += OnTouchpadReleased;
+        controllerEvents = GetComponent<VRTK_ControllerEvents>();
+
+        controllerEvents.TriggerPressed += OnTriggerPressed;
+        controllerEvents.TriggerReleased += OnTriggerReleased;
+        controllerEvents.TouchpadPressed += OnTouchpadPressed;
+        controllerEvents.TouchpadReleased += OnTouchpadReleased;
     }
 
-    // public void Update()
-    // {
-    //     if (summoner.IsSummoning)
-    //     {
-
-    //     }
-    // }
+    public void Update()
+    {
+        if (controllerEvents.touchpadPressed
+            && hand == Hands.Left
+            && flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
+        {
+            // Hide pointer if pointing up (flight), show if pointing down (dash).
+            SetPointerActive(!IsPointerPointingUp());
+        }
+    }
 
     private void OnTriggerPressed(object sender, ControllerInteractionEventArgs e)
     {
@@ -139,14 +145,6 @@ public class HandController : MonoBehaviour
     private void OnTouchpadPressed(object sender, ControllerInteractionEventArgs e)
     {
         Debug.Log(hand.ToString() + " touchpad pressed");
-
-        if (hand == Hands.Left)
-        {
-            if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
-            {
-                SetPointerActive(true);
-            }
-        }
     }
 
     private void OnTouchpadReleased(object sender, ControllerInteractionEventArgs e)
@@ -159,10 +157,7 @@ public class HandController : MonoBehaviour
             {
                 SetPointerActive(false);
 
-                // TODO: calculate this based on pointer vector
-                bool isPointerPointingUp = false;
-
-                if (isPointerPointingUp)
+                if (IsPointerPointingUp())
                 {
                     flyer.ToggleFlightMode();
                 }
@@ -172,5 +167,11 @@ public class HandController : MonoBehaviour
                 }
             }
         }
+    }
+
+    private bool IsPointerPointingUp()
+    {
+        // TODO: calculate this based on pointer vector
+        return false;
     }
 }
