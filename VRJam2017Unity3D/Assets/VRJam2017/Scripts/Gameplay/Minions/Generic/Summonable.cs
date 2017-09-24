@@ -10,9 +10,13 @@ public class Summonable : MonoBehaviour
 
     void Summon(GameObject target)
     {
-        if(isInRange(target))
+        if (isInRange(target))
         {
             GetComponent<ActionQueue>().Set(new SummonAction(gameObject, target));
+        }
+        else
+        {
+            Debug.LogWarning("OUT OF RANGE");
         }
     }
 

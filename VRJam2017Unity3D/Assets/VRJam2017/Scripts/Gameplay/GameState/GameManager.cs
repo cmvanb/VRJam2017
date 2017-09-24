@@ -6,7 +6,13 @@ using VRTK;
 public class GameManager : MonoSingleton<GameManager>
 {
     public Vector3 SpawnPosition;
+
+    public float MinionSpawnDistance = 10f;
+    public int StartingMinions = 10;
+
+    [HideInInspector]
     public Transform PlayArea;
+    [HideInInspector]
     public Transform Headset;
 
     public void Start()
@@ -21,7 +27,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         SetPlayerPosition(SpawnPosition);
 
-        SpawnStartingMinions(4);
+        SpawnStartingMinions(StartingMinions);
     }
 
     public void SetPlayerPosition(Vector3 position)
@@ -38,20 +44,22 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void SpawnStartingMinions(int num)
     {
-        float interval = 360f / num;
+        float interval = (2 * Mathf.PI) / num;
 
         for (int i = 0; i < num; ++i)
         {
-            float deg = interval * i;
+            float angle = interval * i;
 
-            float x = Mathf.Cos(deg);
-            float z = Mathf.Sin(deg);
+            float x = MinionSpawnDistance * Mathf.Cos(angle);
+            float z = MinionSpawnDistance * Mathf.Sin(angle);
             float y = LevelHelpers.GetTerrainHeightAtWorldPos(new Vector3(x, 0f, z));
 
-            Vector3 position = new Vector3(x, y, z);
+            Vector3 position = (new Vector3(x, y, z));
 
-            // TODO: implement once minionmanager is pushed
-            //MinionManager.SpawnMinion(position);
+            Debug.LogWarning(position);
+            Debug.LogWarning(position + SpawnPosition);
+
+            MinionManager.Instance.SpawnMinion(position + SpawnPosition);
         }
     }
 }
