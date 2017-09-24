@@ -136,6 +136,11 @@ public class ActionQueue : MonoBehaviour
         GetComponent<NavMeshAgent>().enabled = true;
     }
 
+    public bool IsBusy()
+    {
+        return current != null;
+    }
+
     public bool IsCurrentInteruptable()
     {
         if(current is SummonAction)

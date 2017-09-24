@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Sight : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Sight : MonoBehaviour
 
     void FindNearbyObjects()
     {
-        Visibility[] objects = (Visibility[])FindObjectsOfType(typeof(Visibility));
+        List<Visibility> objects = VisibilityRegister.Instance.AllObjects;
 
         foreach(Visibility visibilityObject in objects)
         {
@@ -33,7 +34,7 @@ public class Sight : MonoBehaviour
         while(true)
         {
             FindNearbyObjects();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(1.0f);
         }
     }
 

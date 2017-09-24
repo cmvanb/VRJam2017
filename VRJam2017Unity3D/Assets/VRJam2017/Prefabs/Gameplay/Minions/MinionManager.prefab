@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4231592725032230}
   - component: {fileID: 114147425098733162}
+  - component: {fileID: 114257271877420792}
   m_Layer: 0
   m_Name: MinionManager
   m_TagString: Untagged
@@ -54,3 +55,14 @@ MonoBehaviour:
   MinionPrefab: {fileID: 1013783193485856, guid: 74d5070bc93604b67a3bbedfb969307b,
     type: 2}
   FactionType: 0
+--- !u!114 &114257271877420792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1832400920019768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b4c87b6b55242ec84a5315dd783e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
