@@ -12,7 +12,7 @@ public class DigAction : MovementAction
     public DigAction(GameObject owner, Vector2 position) 
     : base(owner, LevelHelpers.WorldPosFromTilePos((int)position.x, (int)position.y) + new Vector3(LevelHelpers.TileSize/2, 0, LevelHelpers.TileSize/2))
     {
-        stoppingDistance = owner.GetComponent<Digger>().DigDistance/2;
+        stoppingDistance = LevelHelpers.TileSize/2;
         digPosition = position;
 
         agent = owner.GetComponent<NavMeshAgent>();
