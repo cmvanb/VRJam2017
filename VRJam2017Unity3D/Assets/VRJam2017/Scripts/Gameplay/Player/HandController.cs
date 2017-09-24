@@ -20,8 +20,9 @@ public class HandController : MonoBehaviour
     private PlayerFlyer flyer;
     private PlayerMover mover;
     private PlayerSummoner summoner;
-    // paint dig
-    // pick up minion
+    // TODO: pick up minion
+
+    private Vector3 pointerDestination;
 
     public void Start()
     {
@@ -34,22 +35,25 @@ public class HandController : MonoBehaviour
         mover = PlayerController.GetComponent<PlayerMover>();
         summoner = PlayerController.GetComponent<PlayerSummoner>();
 
-        if (hand == Hands.Left)
-        {
-            pointer.enabled = true;
-            pointerRenderer.enabled = true;
-        }
-        else if (hand == Hands.Right)
-        {
-            pointer.enabled = false;
-            pointerRenderer.enabled = false;
-        }
+        SetPointerActive(false);
+
+        pointer.DestinationMarkerExit += (object marker, DestinationMarkerEventArgs args) => {
+            pointerDestination = args.destinationPosition;
+        };
 
         GetComponent<VRTK_ControllerEvents>().TriggerPressed += OnTriggerPressed;
         GetComponent<VRTK_ControllerEvents>().TriggerReleased += OnTriggerReleased;
         GetComponent<VRTK_ControllerEvents>().TouchpadPressed += OnTouchpadPressed;
         GetComponent<VRTK_ControllerEvents>().TouchpadReleased += OnTouchpadReleased;
     }
+
+    // public void Update()
+    // {
+    //     if (summoner.IsSummoning)
+    //     {
+
+    //     }
+    // }
 
     private void OnTriggerPressed(object sender, ControllerInteractionEventArgs e)
     {
@@ -78,6 +82,8 @@ public class HandController : MonoBehaviour
                 // if minion is within reach, grab that minion
                 // else, summon
 
+                SetPointerActive(true);
+
                 summoner.Summon();
             }
             // TODO: Consider enabling this.
@@ -86,6 +92,12 @@ public class HandController : MonoBehaviour
             //     digger.DigCommand();
             // }
         }
+    }
+
+    private void SetPointerActive(bool active)
+    {
+        pointerRenderer.Toggle(active, active);
+        pointer.Toggle(active);
     }
 
     private void OnTriggerReleased(object sender, ControllerInteractionEventArgs e)
@@ -103,21 +115,20 @@ public class HandController : MonoBehaviour
         {
             if (summoner.IsSummoning)
             {
+                SetPointerActive(false);
                 summoner.StopSummon();
 
                 if (commander.CommandMode == PlayerCommander.CommandModes.MOVE)
                 {
-                    // TODO: Get target from pointer.
-                    Vector3 target = Vector3.zero;
+                    commander.MoveCommand(pointerDestination);
 
-                    commander.MoveCommand(target);
+                    // TODO: Consider spawning 'command feedback', like particles or animation.
                 }
                 else if (commander.CommandMode == PlayerCommander.CommandModes.GUARD)
                 {
-                    // TODO: Get target from pointer.
-                    Vector3 target = Vector3.zero;
+                    commander.GuardCommand(pointerDestination);
 
-                    commander.GuardCommand(target);
+                    // TODO: Consider spawning 'command feedback', like particles or animation.
                 }
             }
         }

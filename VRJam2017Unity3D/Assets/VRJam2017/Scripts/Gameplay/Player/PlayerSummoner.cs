@@ -45,7 +45,15 @@ public class PlayerSummoner : MonoBehaviour
     {
         GameObject minion = MinionManager.Instance.SummonOne(GameManager.Instance.Headset.gameObject);
 
-        SummonedMinions.Add(minion);
+        if (minion != null)
+        {
+            SummonedMinions.Add(minion);
+            Debug.Log(SummonedMinions.Count + " minions summoned");
+        }
+        else
+        {
+            Debug.LogWarning("no more minions nearby");
+        }
     }
 
 }

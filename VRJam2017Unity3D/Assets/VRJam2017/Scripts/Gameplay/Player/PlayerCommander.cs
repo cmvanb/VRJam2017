@@ -26,6 +26,8 @@ public class PlayerCommander : MonoBehaviour
 
         foreach (GameObject minion in summoner.SummonedMinions)
         {
+            minion.GetComponent<ActionQueue>().InsertBeforeCurrent(new MovementAction(minion, target));
+
             // TODO: implement
             // get component
             // if still alive
