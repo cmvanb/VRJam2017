@@ -53,6 +53,8 @@ public class ActionQueue : MonoBehaviour
         {
             current = queue[0];
 
+            Debug.Log("PERFORM: " + current + " | " + gameObject.name);
+
             queue.RemoveAt(0);
 
             SendMessage("Action", current, SendMessageOptions.DontRequireReceiver);

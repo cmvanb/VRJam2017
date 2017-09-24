@@ -9,4 +9,14 @@ public class Visibility : MonoBehaviour
     }
 
     public State CurrentState;
+
+    void Start()
+    {
+        VisibilityRegister.Instance.Register(this);
+    }
+
+    void OnDestroy()
+    {
+        VisibilityRegister.Instance.Deregister(this);
+    }
 }

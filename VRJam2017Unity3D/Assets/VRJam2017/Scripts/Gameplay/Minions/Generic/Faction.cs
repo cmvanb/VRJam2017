@@ -61,7 +61,7 @@ public class Faction : MonoBehaviour
 
     public bool IsCapturable(GameObject other)
     {
-        return other.GetComponent<Faction>().CurrentFaction == FactionType.Neutral;
+        return CurrentFaction != FactionType.Neutral && other.GetComponent<Faction>().CurrentFaction == FactionType.Neutral;
     }
 
     void Convert(FactionType newFaction)
