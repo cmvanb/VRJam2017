@@ -2062,7 +2062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AutoDig: 1
   DigTime: 0.5
-  DigDistance: 2
+  DigDistance: 5
 --- !u!114 &114276033611499206
 MonoBehaviour:
   m_ObjectHideFlags: 1
