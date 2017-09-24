@@ -151,12 +151,12 @@ Prefab:
         type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1477492699}
+      objectReference: {fileID: 1589506324}
     - target: {fileID: 23460335864526136, guid: 808d62bd650f6d6488b596366ea38224,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1425683527}
+      objectReference: {fileID: 856993952}
     - target: {fileID: 114546712861941344, guid: 808d62bd650f6d6488b596366ea38224,
         type: 2}
       propertyPath: modelAliasLeftController
@@ -265,6 +265,39 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e4df29bcc7df16c42918021205a0def2, type: 2}
   m_IsPrefabParent: 0
+--- !u!21 &856993952
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &990568507
 Prefab:
   m_ObjectHideFlags: 0
@@ -316,39 +349,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1950493123534152, guid: e4df29bcc7df16c42918021205a0def2,
     type: 2}
   m_PrefabInternal: {fileID: 655432306}
---- !u!21 &1425683527
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &1427103203
 Prefab:
   m_ObjectHideFlags: 0
@@ -391,7 +391,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a37d616a896d0c34692d245466ab2e98, type: 2}
   m_IsPrefabParent: 0
---- !u!43 &1477492699
+--- !u!43 &1589506324
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -407,7 +407,7 @@ Mesh:
     vertexCount: 8
     localAABB:
       m_Center: {x: 0, y: 0.01, z: 0}
-      m_Extent: {x: 1.6499999, y: 0, z: 1.2000002}
+      m_Extent: {x: 1.6499997, y: 0, z: 1.2000002}
   m_Shapes:
     vertices: []
     shapes: []
@@ -459,7 +459,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 288
-    _typelessdata: ffffbf3f0ad7233c686686bf000000000000803f0000803f0000803f0000000000000000ffffbfbf0ad7233c686686bf000000000000803f0000803f0000803f0000803f00000000ffffbfbf0ad7233c6866863f000000000000803f0000803f0000803f0000000000000000ffffbf3f0ad7233c6866863f000000000000803f0000803f0000803f0000803f000000003233d33f0ad7233c9b9999bf000000000000803f0000803f00000000000000000000803f3233d3bf0ad7233c9b9999bf000000000000803f0000803f000000000000803f0000803f3233d3bf0ad7233c9b99993f000000000000803f0000803f00000000000000000000803f3233d33f0ad7233c9b99993f000000000000803f0000803f000000000000803f0000803f
+    _typelessdata: feffbf3f0ad7233c686686bf000000000000803f0000803f0000803f0000000000000000feffbfbf0ad7233c686686bf000000000000803f0000803f0000803f0000803f00000000feffbfbf0ad7233c6866863f000000000000803f0000803f0000803f0000000000000000feffbf3f0ad7233c6866863f000000000000803f0000803f0000803f0000803f000000003133d33f0ad7233c9b9999bf000000000000803f0000803f00000000000000000000803f3133d3bf0ad7233c9b9999bf000000000000803f0000803f000000000000803f0000803f3133d3bf0ad7233c9b99993f000000000000803f0000803f00000000000000000000803f3133d33f0ad7233c9b99993f000000000000803f0000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -514,7 +514,7 @@ Mesh:
     m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0, y: 0.01, z: 0}
-    m_Extent: {x: 1.6499999, y: 0, z: 1.2000002}
+    m_Extent: {x: 1.6499997, y: 0, z: 1.2000002}
   m_MeshUsageFlags: 0
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 

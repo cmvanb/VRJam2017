@@ -13,7 +13,7 @@ public class HandController : MonoBehaviour
     public GameObject PlayerController;
 
     private VRTK_Pointer pointer;
-    private VRTK_BasePointerRenderer pointerRenderer;
+    private VRTK_BezierPointerRenderer pointerRenderer;
     private PlayerAttacker attacker;
     private PlayerCommander commander;
     private PlayerDigger digger;
@@ -29,7 +29,7 @@ public class HandController : MonoBehaviour
     public void Start()
     {
         pointer = GetComponent<VRTK_Pointer>();
-        pointerRenderer = GetComponent<VRTK_BasePointerRenderer>();
+        pointerRenderer = GetComponent<VRTK_BezierPointerRenderer>();
         attacker = PlayerController.GetComponent<PlayerAttacker>();
         commander = PlayerController.GetComponent<PlayerCommander>();
         digger = PlayerController.GetComponent<PlayerDigger>();
@@ -39,7 +39,7 @@ public class HandController : MonoBehaviour
 
         SetPointerActive(false);
 
-        pointer.DestinationMarkerExit += (object marker, DestinationMarkerEventArgs args) => {
+        pointer.DestinationMarkerHover += (object marker, DestinationMarkerEventArgs args) => {
             destinationArgs = args;
             destination = args.destinationPosition;
         };
@@ -59,7 +59,14 @@ public class HandController : MonoBehaviour
             && flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
         {
             // Hide pointer if pointing up (flight), show if pointing down (dash).
-            SetPointerActive(!IsPointerPointingUp());
+            if (pointer.IsPointerActive() && IsPointerPointingUp())
+            {
+                SetPointerActive(false);
+            }
+            else if (!pointer.IsPointerActive())
+            {
+                SetPointerActive(true);
+            }
         }
     }
 
@@ -171,7 +178,11 @@ public class HandController : MonoBehaviour
 
     private bool IsPointerPointingUp()
     {
-        // TODO: calculate this based on pointer vector
+        if (Vector3.Dot(Vector3.up, transform.forward) > 0.5)
+        {
+            return true;
+        }
+
         return false;
     }
 }
