@@ -9,45 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1633321696326478}
+  m_RootGameObject: {fileID: 1559345400698788}
   m_IsPrefabParent: 1
---- !u!1 &1633321696326478
+--- !u!1 &1559345400698788
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4109240048877614}
-  - component: {fileID: 33972695364207476}
-  - component: {fileID: 23254417944450186}
-  - component: {fileID: 114931183908881034}
+  - component: {fileID: 4397021351583230}
+  - component: {fileID: 33218748758626540}
+  - component: {fileID: 23671558915803862}
+  - component: {fileID: 95864767145445744}
   m_Layer: 0
-  m_Name: HeroSpawnAltar
+  m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4109240048877614
+--- !u!4 &4397021351583230
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1633321696326478}
-  m_LocalRotation: {x: -0.00000009735359, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.27, y: 1.14, z: 509}
+  m_GameObject: {fileID: 1559345400698788}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.09131788, y: 1.0986481, z: 1.1849769}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23254417944450186
+--- !u!23 &23671558915803862
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1633321696326478}
+  m_GameObject: {fileID: 1559345400698788}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -55,7 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9c649cdc4bded8d46bf36342351fdf5a, type: 2}
+  - {fileID: 2100000, guid: 9cdf5e4caed89ab4bb605df79fff119c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74,25 +74,27 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33972695364207476
+--- !u!33 &33218748758626540
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1633321696326478}
-  m_Mesh: {fileID: 4300000, guid: 4af21c6bc33444f43a2907dfef60b926, type: 3}
---- !u!114 &114931183908881034
-MonoBehaviour:
+  m_GameObject: {fileID: 1559345400698788}
+  m_Mesh: {fileID: 4300000, guid: b7dd09f221782754fba007712cd18833, type: 3}
+--- !u!95 &95864767145445744
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1633321696326478}
+  m_GameObject: {fileID: 1559345400698788}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6f991dd8387142e8a73e05b02f22095, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heroes:
-  - {fileID: 1013783193485856, guid: 88d2c4235a1954e8681ce84a133da91e, type: 2}
-  - {fileID: 1013783193485856, guid: b5c4f13b859b0487386bac92fc7ba59a, type: 2}
-  waveSpawnTime: 5
+  m_Avatar: {fileID: 9000000, guid: b7dd09f221782754fba007712cd18833, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1

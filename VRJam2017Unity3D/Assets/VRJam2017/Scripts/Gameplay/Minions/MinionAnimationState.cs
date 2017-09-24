@@ -26,6 +26,11 @@ public class MinionAnimationState : MonoBehaviour
         Play("digging");
     }
 
+    void Dig()
+    {
+        Play("digging");
+    }
+
     void WantsToDie()
     {
         Play("dieing");
