@@ -5,15 +5,23 @@ public class HandController : MonoBehaviour
 {
     public enum Hands
     {
-        Right,
-        Left
+        RIGHT,
+        LEFT
     }
-    public Hands hand = Hands.Right;
+    public Hands hand = Hands.RIGHT;
 
     public GameObject PlayerController;
 
+    public enum PointerTypes
+    {
+        BEZIER,
+        STRAIGHT
+    }
+    private PointerTypes pointerType = PointerTypes.BEZIER;
+
     private VRTK_Pointer pointer;
-    private VRTK_BezierPointerRenderer pointerRenderer;
+    private VRTK_BezierPointerRenderer bezierRenderer;
+    private VRTK_StraightPointerRenderer straightRenderer;
     private PlayerAttacker attacker;
     private PlayerCommander commander;
     private PlayerDigger digger;
@@ -29,7 +37,9 @@ public class HandController : MonoBehaviour
     public void Start()
     {
         pointer = GetComponent<VRTK_Pointer>();
-        pointerRenderer = GetComponent<VRTK_BezierPointerRenderer>();
+        bezierRenderer = GetComponent<VRTK_BezierPointerRenderer>();
+        straightRenderer = GetComponent<VRTK_StraightPointerRenderer>();
+
         attacker = PlayerController.GetComponent<PlayerAttacker>();
         commander = PlayerController.GetComponent<PlayerCommander>();
         digger = PlayerController.GetComponent<PlayerDigger>();
@@ -37,9 +47,9 @@ public class HandController : MonoBehaviour
         mover = PlayerController.GetComponent<PlayerMover>();
         summoner = PlayerController.GetComponent<PlayerSummoner>();
 
-        mover.PointerRenderer = pointerRenderer;
+        mover.PointerRenderer = bezierRenderer;
 
-        SetPointerActive(false);
+        SetPointer(false);
 
         pointer.DestinationMarkerHover += (object marker, DestinationMarkerEventArgs args) => {
             destinationArgs = args;
@@ -58,22 +68,24 @@ public class HandController : MonoBehaviour
     {
         if (mover.IsTeleporting)
         {
-            SetPointerActive(false);
+            SetPointer(false);
             return;
         }
 
-        if (hand == Hands.Left
+        // Hide pointer if pointing up (flight), show if pointing down (dash).
+        if (hand == Hands.LEFT
             && controllerEvents.touchpadPressed)
         {
-            // Hide pointer if pointing up (flight), show if pointing down (dash).
-            if (pointer.IsPointerActive() && IsPointerPointingUp())
-            {
-                SetPointerActive(false);
-            }
-            else if (!pointer.IsPointerActive())
-            {
-                SetPointerActive(true);
-            }
+            HidePointerIfPointingUp();
+        }
+
+        // Paint dig tiles.
+        if (hand == Hands.LEFT
+            && controllerEvents.triggerClicked)
+        {
+            HidePointerIfPointingUp(PointerTypes.STRAIGHT);
+
+            digger.PaintDig(destinationArgs);
         }
     }
 
@@ -87,45 +99,41 @@ public class HandController : MonoBehaviour
             return;
         }
 
-        if (hand == Hands.Left)
+        if (hand == Hands.LEFT)
         {
             if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
+                // Start attacking.
                 attacker.Attack();
             }
             else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
             {
-                // TODO: implement
-                // if pointing at unhighlighted tile, use digger.CancelDigCommand();
-                // otherwise, dig
+                // Start painting dig tiles.
+                SetPointer(true, PointerTypes.STRAIGHT);
 
-                digger.DigCommand();
+                digger.Dig(destinationArgs);
             }
         }
-        else if (hand == Hands.Right)
+        else if (hand == Hands.RIGHT)
         {
             if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
-                // TODO: implement
-                // if minion is within reach, grab that minion
-                // else, summon
+                // TODO: implement this check
+                bool minionInGrabRange = false;
 
-                SetPointerActive(true);
+                if (minionInGrabRange)
+                {
+                    // TODO: implement - grab minion
+                }
+                else
+                {
+                    // Start summoning.
+                    SetPointer(true);
 
-                summoner.Summon();
+                    summoner.Summon();
+                }
             }
-            // TODO: Consider enabling this.
-            // else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
-            // {
-            //     digger.DigCommand();
-            // }
         }
-    }
-
-    private void SetPointerActive(bool active)
-    {
-        pointerRenderer.Toggle(active, active);
-        pointer.Toggle(active);
     }
 
     private void OnTriggerReleased(object sender, ControllerInteractionEventArgs e)
@@ -138,31 +146,38 @@ public class HandController : MonoBehaviour
 
         Debug.Log(hand.ToString() + " trigger released");
 
-        if (hand == Hands.Left)
+        if (hand == Hands.LEFT)
         {
             if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
+                // Stop attacking.
                 attacker.StopAttack();
             }
+            else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
+            {
+                // Stop painting dig tiles.
+                SetPointer(false);
+
+                digger.StopDig();
+            }
         }
-        else if (hand == Hands.Right)
+        else if (hand == Hands.RIGHT)
         {
             if (summoner.IsSummoning)
             {
-                SetPointerActive(false);
+                // Stop summoning.
+                SetPointer(false);
+
                 summoner.StopSummon();
 
+                // Issue command.
                 if (commander.CommandMode == PlayerCommander.CommandModes.MOVE)
                 {
                     commander.MoveCommand(destination);
-
-                    // TODO: Consider spawning 'command feedback', like particles or animation.
                 }
                 else if (commander.CommandMode == PlayerCommander.CommandModes.GUARD)
                 {
                     commander.GuardCommand(destination);
-
-                    // TODO: Consider spawning 'command feedback', like particles or animation.
                 }
             }
         }
@@ -189,9 +204,9 @@ public class HandController : MonoBehaviour
 
         Debug.Log(hand.ToString() + " touchpad released");
 
-        if (hand == Hands.Left)
+        if (hand == Hands.LEFT)
         {
-            SetPointerActive(false);
+            SetPointer(false);
 
             if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
@@ -207,7 +222,7 @@ public class HandController : MonoBehaviour
             else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
             {
                 if (!IsPointerPointingUp()
-                    && PositionIsValidLandingZone(destination))
+                    && flyer.PositionIsValidLandingZone(destination))
                 {
                     flyer.Land(destinationArgs);
                 }
@@ -215,33 +230,37 @@ public class HandController : MonoBehaviour
         }
     }
 
+    private void SetPointer(bool active, PointerTypes pt = PointerTypes.BEZIER)
+    {
+        pointerType = pt;
+
+        pointer.Toggle(active);
+
+        bool bezierActive = active && pt == PointerTypes.BEZIER;
+        bezierRenderer.Toggle(bezierActive, bezierActive);
+
+        bool straightActive = active && pt == PointerTypes.STRAIGHT;
+        straightRenderer.Toggle(straightActive, straightActive);
+
+        pointer.pointerRenderer = pt == PointerTypes.BEZIER ? (VRTK_BasePointerRenderer)bezierRenderer : (VRTK_BasePointerRenderer)straightRenderer;
+    }
+
+    private void HidePointerIfPointingUp(PointerTypes pt = PointerTypes.BEZIER)
+    {
+        // Hide pointer if pointing up (flight), show if pointing down (dash).
+        if (pointer.IsPointerActive() && IsPointerPointingUp())
+        {
+            SetPointer(false, pt);
+        }
+        else if (!pointer.IsPointerActive())
+        {
+            SetPointer(true, pt);
+        }
+    }
+
     private bool IsPointerPointingUp()
     {
         if (Vector3.Dot(Vector3.up, transform.forward) > 0.5)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    private bool PositionIsValidLandingZone(Vector3 destination)
-    {
-        Vector2 tilePos = LevelHelpers.TilePosFromWorldPos(destination);
-
-        LevelModel model = LevelController.Instance.Model;
-
-        int x = (int)tilePos.x;
-        int z = (int)tilePos.y;
-
-        if (!LevelHelpers.TileIsInBounds(model, x, z))
-        {
-            return false;
-        }
-
-        LevelTile tile = model.Tiles[x, z];
-
-        if (tile.Opened)
         {
             return true;
         }

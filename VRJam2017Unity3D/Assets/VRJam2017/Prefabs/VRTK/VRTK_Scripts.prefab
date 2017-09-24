@@ -150,12 +150,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4695855459805680}
   - component: {fileID: 114936166700268502}
-  - component: {fileID: 114239989469315858}
-  - component: {fileID: 114416138058237268}
-  - component: {fileID: 114899014328507176}
   - component: {fileID: 114253295187114142}
   - component: {fileID: 114307910850166352}
   - component: {fileID: 114005910242726910}
+  - component: {fileID: 114542470706792780}
   m_Layer: 0
   m_Name: LeftController
   m_TagString: Untagged
@@ -602,12 +600,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4296868934140038}
   - component: {fileID: 114356416868463702}
-  - component: {fileID: 114374644206880990}
-  - component: {fileID: 114843502414959070}
-  - component: {fileID: 114781533121071194}
   - component: {fileID: 114310252735561674}
   - component: {fileID: 114248787711471144}
   - component: {fileID: 114865897679545780}
+  - component: {fileID: 114459071307043978}
   m_Layer: 0
   m_Name: RightController
   m_TagString: Untagged
@@ -2035,18 +2031,7 @@ MonoBehaviour:
   FlyingHeight: 20
   FlightDuration: 2
   FlyingTeleportDistance: 32
---- !u!114 &114239989469315858
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1254941248741224}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64e104da36bd3b04b90c6ae969ac66dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  customColliderContainer: {fileID: 1518401153370366}
+  FlyingTeleportDuration: 1
 --- !u!114 &114248787711471144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2200,6 +2185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f703466b227165e48a0a7eafc27dbfae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsDigging: 0
 --- !u!114 &114356416868463702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2248,36 +2234,74 @@ MonoBehaviour:
   uiClickPressed: 0
   menuPressed: 0
   controllerVisible: 1
---- !u!114 &114374644206880990
+--- !u!114 &114459071307043978
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1950493123534152}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64e104da36bd3b04b90c6ae969ac66dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fc65878c7102524bb8c2bcfbefff497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customColliderContainer: {fileID: 1196498122174600}
---- !u!114 &114416138058237268
+  playareaCursor: {fileID: 0}
+  directionIndicator: {fileID: 0}
+  customRaycast: {fileID: 0}
+  layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 4
+  pointerOriginSmoothingSettings:
+    smoothsPosition: 0
+    maxAllowedPerFrameDistanceDifference: 0.003
+    smoothsRotation: 0
+    maxAllowedPerFrameAngleDifference: 1.5
+  validCollisionColor: {r: 0, g: 1, b: 0, a: 1}
+  invalidCollisionColor: {r: 1, g: 0, b: 0, a: 1}
+  tracerVisibility: 0
+  cursorVisibility: 0
+  maximumLength: 100
+  scaleFactor: 0.002
+  cursorScaleMultiplier: 25
+  cursorMatchTargetRotation: 0
+  cursorDistanceRescale: 0
+  maximumCursorScale: {x: Infinity, y: Infinity, z: Infinity}
+  customTracer: {fileID: 0}
+  customCursor: {fileID: 0}
+--- !u!114 &114542470706792780
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1254941248741224}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 947b27445602ed640b885db7e667dfc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fc65878c7102524bb8c2bcfbefff497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabButton: 7
-  grabPrecognition: 0
-  throwMultiplier: 1
-  createRigidBodyWhenNotTouching: 0
-  controllerAttachPoint: {fileID: 54372632703421692}
-  controllerEvents: {fileID: 0}
-  interactTouch: {fileID: 0}
+  playareaCursor: {fileID: 0}
+  directionIndicator: {fileID: 0}
+  customRaycast: {fileID: 0}
+  layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 4
+  pointerOriginSmoothingSettings:
+    smoothsPosition: 0
+    maxAllowedPerFrameDistanceDifference: 0.003
+    smoothsRotation: 0
+    maxAllowedPerFrameAngleDifference: 1.5
+  validCollisionColor: {r: 0, g: 1, b: 0, a: 1}
+  invalidCollisionColor: {r: 1, g: 0, b: 0, a: 1}
+  tracerVisibility: 0
+  cursorVisibility: 0
+  maximumLength: 100
+  scaleFactor: 0.002
+  cursorScaleMultiplier: 25
+  cursorMatchTargetRotation: 0
+  cursorDistanceRescale: 0
+  maximumCursorScale: {x: Infinity, y: Infinity, z: Infinity}
+  customTracer: {fileID: 0}
+  customCursor: {fileID: 0}
 --- !u!114 &114603537620649834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2291,40 +2315,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DashTeleport: {fileID: 114992370304856244}
   GroundTeleportDistance: 8
+  GroundTeleportDuration: 0.2
   PointerRenderer: {fileID: 0}
---- !u!114 &114781533121071194
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1950493123534152}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65eb64f0f2fd6d64faddbcf5d7d3bdbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useButton: 3
-  controllerEvents: {fileID: 0}
-  interactTouch: {fileID: 0}
-  interactGrab: {fileID: 0}
---- !u!114 &114843502414959070
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1950493123534152}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 947b27445602ed640b885db7e667dfc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabButton: 7
-  grabPrecognition: 0
-  throwMultiplier: 1
-  createRigidBodyWhenNotTouching: 0
-  controllerAttachPoint: {fileID: 54662668190316620}
-  controllerEvents: {fileID: 0}
-  interactTouch: {fileID: 0}
 --- !u!114 &114865897679545780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2338,21 +2330,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: 0
   PlayerController: {fileID: 1860414011525218}
---- !u!114 &114899014328507176
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1254941248741224}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65eb64f0f2fd6d64faddbcf5d7d3bdbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useButton: 3
-  controllerEvents: {fileID: 0}
-  interactTouch: {fileID: 0}
-  interactGrab: {fileID: 0}
 --- !u!114 &114905196701248462
 MonoBehaviour:
   m_ObjectHideFlags: 1
