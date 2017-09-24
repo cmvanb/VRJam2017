@@ -7,6 +7,7 @@ public class LevelModel
     public int Length;
     public LevelTile[,] Tiles;
 
+    public int SpawnHoleSize = 13;
     public int MinHoleSize = 3;
     public int MaxHoleSize = 9;
     public float HoleProbability = 0.01f;
@@ -45,6 +46,9 @@ public class LevelModel
                 }
             }
         }
+
+        // Punch hole for starting location.
+        PunchHole(new Vector2(width / 2, length / 2), SpawnHoleSize);
 
         // Evaluate tiles for wall types
         for (int z = 0; z < length; ++z)
@@ -164,7 +168,7 @@ public class LevelModel
         {
             for (int x = (int)origin.x - halfSize; x < (int)origin.x + halfSize; ++x)
             {
-                if (!LevelHelpers.TileIsInBounds(x, z))
+                if (!LevelHelpers.TileIsInBounds(this, x, z))
                 {
                     continue;
                 }
