@@ -539,6 +539,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1860414011525218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4905189452731652}
+  - component: {fileID: 114236808138563912}
+  - component: {fileID: 114286535809766022}
+  - component: {fileID: 114045866716324112}
+  - component: {fileID: 114212114934425372}
+  - component: {fileID: 114603537620649834}
+  - component: {fileID: 114905196701248462}
+  m_Layer: 0
+  m_Name: PlayerController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1897490386332210
 GameObject:
   m_ObjectHideFlags: 1
@@ -884,6 +905,7 @@ Transform:
   - {fileID: 4918663723160042}
   - {fileID: 4695855459805680}
   - {fileID: 4296868934140038}
+  - {fileID: 4905189452731652}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1087,6 +1109,19 @@ Transform:
   m_Father: {fileID: 4296868934140038}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!4 &4905189452731652
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860414011525218}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4664075752028766}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4918663723160042
 Transform:
   m_ObjectHideFlags: 1
@@ -1921,6 +1956,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: 1
+  PlayerController: {fileID: 1860414011525218}
+--- !u!114 &114045866716324112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860414011525218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d48b091096a884f948d6c3cb990592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CommandMode: 0
 --- !u!114 &114078404029826824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1936,6 +1984,28 @@ MonoBehaviour:
   checkType: 1
   identifiers:
   - ExcludeTeleport
+--- !u!114 &114212114934425372
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860414011525218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30b1936ba1e672468defcb25ac838e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114236808138563912
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860414011525218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d67cbd7376d8d469ac4cfe69b2c5ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114239989469315858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1954,7 +2024,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1950493123534152}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd904f4ca6767424eaf8e050bc174741, type: 3}
   m_Name: 
@@ -2000,11 +2070,11 @@ MonoBehaviour:
   enableTeleport: 1
   targetListPolicy: {fileID: 0}
   pointerRenderer: {fileID: 114307910850166352}
-  activationButton: 10
+  activationButton: 0
   holdButtonToActivate: 1
   activateOnEnable: 0
   activationDelay: 0
-  selectionButton: 10
+  selectionButton: 0
   selectOnPress: 0
   selectionDelay: 0
   selectAfterHoverDuration: 0
@@ -2013,6 +2083,18 @@ MonoBehaviour:
   controller: {fileID: 0}
   interactUse: {fileID: 0}
   customOrigin: {fileID: 0}
+--- !u!114 &114286535809766022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860414011525218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee812a28531db3544b994c85fc5fd99b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsAttacking: 0
 --- !u!114 &114307910850166352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2057,7 +2139,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1950493123534152}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ec704cceb26f6f49b6c900fc83d8d18, type: 3}
   m_Name: 
@@ -2065,11 +2147,11 @@ MonoBehaviour:
   enableTeleport: 1
   targetListPolicy: {fileID: 0}
   pointerRenderer: {fileID: 114248787711471144}
-  activationButton: 10
+  activationButton: 0
   holdButtonToActivate: 1
   activateOnEnable: 0
   activationDelay: 0
-  selectionButton: 10
+  selectionButton: 0
   selectOnPress: 0
   selectionDelay: 0
   selectAfterHoverDuration: 0
@@ -2156,6 +2238,17 @@ MonoBehaviour:
   controllerAttachPoint: {fileID: 54372632703421692}
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
+--- !u!114 &114603537620649834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860414011525218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803d4e07632f4894099fb5d9d6b77a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114781533121071194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2201,6 +2294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: 0
+  PlayerController: {fileID: 1860414011525218}
 --- !u!114 &114899014328507176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2216,6 +2310,20 @@ MonoBehaviour:
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
   interactGrab: {fileID: 0}
+--- !u!114 &114905196701248462
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860414011525218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de23fe62301c35149afdac3b96588c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SummonInterval: 0.5
+  SummonedMinions: []
+  IsSummoning: 0
 --- !u!114 &114936166700268502
 MonoBehaviour:
   m_ObjectHideFlags: 1

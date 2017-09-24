@@ -27,8 +27,8 @@ public class LevelController : MonoSingleton<LevelController>
     {
         TerrainData terrainData = Terrain.terrainData;
 
-        int width = (int)terrainData.size.x;
-        int length = (int)terrainData.size.z;
+        int width = (int)(terrainData.size.x / LevelHelpers.TileSize);
+        int length = (int)(terrainData.size.z / LevelHelpers.TileSize);
 
         Model = new LevelModel(width, length);
 
@@ -54,7 +54,7 @@ public class LevelController : MonoSingleton<LevelController>
 
     public void Dig(int x, int z)
     {
-        if (!LevelHelpers.TileIsInBounds(x, z))
+        if (!LevelHelpers.TileIsInBounds(Model, x, z))
         {
             return;
         }

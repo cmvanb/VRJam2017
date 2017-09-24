@@ -65,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1398128017532180}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4384415645148762}
@@ -99,9 +99,6 @@ MonoBehaviour:
     type: 2}
   CornerBottomRightPrefab: {fileID: 1426191928786398, guid: 4020d65cd18476649a8947f100f677a6,
     type: 2}
-  FloorPrefab: {fileID: 1050465714698460, guid: e7fadc4d0403acc46b988f243fb3a5f9,
-    type: 2}
-  LevelObject: {fileID: 0}
 --- !u!154 &154951432308707182
 TerrainCollider:
   m_ObjectHideFlags: 1

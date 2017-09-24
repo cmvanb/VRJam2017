@@ -8,27 +8,38 @@ public class HandController : MonoBehaviour
         Right,
         Left
     }
-
     public Hands hand = Hands.Right;
+
+    public GameObject PlayerController;
 
     private VRTK_Pointer pointer;
     private VRTK_BasePointerRenderer pointerRenderer;
+    private PlayerAttacker attacker;
+    private PlayerCommander commander;
+    private PlayerDigger digger;
+    private PlayerFlyer flyer;
+    private PlayerMover mover;
+    private PlayerSummoner summoner;
+    // TODO: pick up minion
+
+    private Vector3 pointerDestination;
 
     public void Start()
     {
         pointer = GetComponent<VRTK_Pointer>();
         pointerRenderer = GetComponent<VRTK_BasePointerRenderer>();
+        attacker = PlayerController.GetComponent<PlayerAttacker>();
+        commander = PlayerController.GetComponent<PlayerCommander>();
+        digger = PlayerController.GetComponent<PlayerDigger>();
+        flyer = PlayerController.GetComponent<PlayerFlyer>();
+        mover = PlayerController.GetComponent<PlayerMover>();
+        summoner = PlayerController.GetComponent<PlayerSummoner>();
 
-        if (hand == Hands.Left)
-        {
-            pointer.enabled = true;
-            pointerRenderer.enabled = true;
-        }
-        else if (hand == Hands.Right)
-        {
-            pointer.enabled = false;
-            pointerRenderer.enabled = false;
-        }
+        SetPointerActive(false);
+
+        pointer.DestinationMarkerExit += (object marker, DestinationMarkerEventArgs args) => {
+            pointerDestination = args.destinationPosition;
+        };
 
         GetComponent<VRTK_ControllerEvents>().TriggerPressed += OnTriggerPressed;
         GetComponent<VRTK_ControllerEvents>().TriggerReleased += OnTriggerReleased;
@@ -36,70 +47,88 @@ public class HandController : MonoBehaviour
         GetComponent<VRTK_ControllerEvents>().TouchpadReleased += OnTouchpadReleased;
     }
 
+    // public void Update()
+    // {
+    //     if (summoner.IsSummoning)
+    //     {
+
+    //     }
+    // }
+
     private void OnTriggerPressed(object sender, ControllerInteractionEventArgs e)
     {
         Debug.Log(hand.ToString() + " trigger pressed");
 
-        PlayerController player = PlayerController.Instance;
-
         if (hand == Hands.Left)
         {
-            if (player.FlightState == PlayerController.FlightStates.GROUNDED)
+            if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
-                player.Attack();
+                attacker.Attack();
             }
-            else if (player.FlightState == PlayerController.FlightStates.FLYING)
+            else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
             {
-                player.PaintDig();
+                // TODO: implement
+                // if pointing at unhighlighted tile, use digger.CancelDigCommand();
+                // otherwise, dig
+
+                digger.DigCommand();
             }
         }
         else if (hand == Hands.Right)
         {
-            if (player.FlightState == PlayerController.FlightStates.GROUNDED)
+            if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
                 // TODO: implement
                 // if minion is within reach, grab that minion
                 // else, summon
 
-                player.Summon();
+                SetPointerActive(true);
+
+                summoner.Summon();
             }
             // TODO: Consider enabling this.
-            // else if (player.FlightState == PlayerController.FlightStates.FLYING)
+            // else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
             // {
-            //     player.PaintDig();
+            //     digger.DigCommand();
             // }
         }
+    }
+
+    private void SetPointerActive(bool active)
+    {
+        pointerRenderer.Toggle(active, active);
+        pointer.Toggle(active);
     }
 
     private void OnTriggerReleased(object sender, ControllerInteractionEventArgs e)
     {
         Debug.Log(hand.ToString() + " trigger released");
 
-        PlayerController player = PlayerController.Instance;
-
         if (hand == Hands.Left)
         {
-            if (player.FlightState == PlayerController.FlightStates.GROUNDED)
+            if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
-                player.StopAttack();
+                attacker.StopAttack();
             }
         }
         else if (hand == Hands.Right)
         {
-            if (player.IsSummoning)
+            if (summoner.IsSummoning)
             {
-                player.StopSummon();
+                SetPointerActive(false);
+                summoner.StopSummon();
 
-                if (player.CommandMode == PlayerController.CommandModes.MOVE)
+                if (commander.CommandMode == PlayerCommander.CommandModes.MOVE)
                 {
-                    // TODO: Get target from pointer.
-                    Vector3 target = Vector3.zero;
+                    commander.MoveCommand(pointerDestination);
 
-                    player.MoveCommand(target);
+                    // TODO: Consider spawning 'command feedback', like particles or animation.
                 }
-                else if (player.CommandMode == PlayerController.CommandModes.GUARD)
+                else if (commander.CommandMode == PlayerCommander.CommandModes.GUARD)
                 {
-                    player.GuardCommand();
+                    commander.GuardCommand(pointerDestination);
+
+                    // TODO: Consider spawning 'command feedback', like particles or animation.
                 }
             }
         }

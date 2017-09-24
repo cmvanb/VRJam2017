@@ -1,0 +1,227 @@
+fileFormatVersion: 2
+guid: 44c322f1f8e95fe48970eb363dcbc974
+timeCreated: 1506246594
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: derrick
+    100002: DerrickRig
+    100004: DerrickRigAnkleBone001
+    100006: DerrickRigAnkleBone001 1
+    100008: DerrickRigChest
+    100010: DerrickRigCordKnot
+    100012: DerrickRigEarL
+    100014: DerrickRigEarR
+    100016: DerrickRigEyeL
+    100018: DerrickRigEyeR
+    100020: DerrickRigHairTuft
+    100022: DerrickRigHead
+    100024: DerrickRigJaw
+    100026: DerrickRigLArmCollarbone
+    100028: DerrickRigLArmIKTarget
+    100030: DerrickRigLArmIndex1
+    100032: DerrickRigLArmIndex2
+    100034: DerrickRigLArmIndex3
+    100036: DerrickRigLArmLowerArm
+    100038: DerrickRigLArmMiddle1
+    100040: DerrickRigLArmMiddle2
+    100042: DerrickRigLArmMiddle3
+    100044: DerrickRigLArmPalm
+    100046: DerrickRigLArmPinky1
+    100048: DerrickRigLArmPinky2
+    100050: DerrickRigLArmPinky3
+    100052: DerrickRigLArmThumb1
+    100054: DerrickRigLArmThumb2
+    100056: DerrickRigLArmThumb3
+    100058: DerrickRigLArmUpperArm
+    100060: DerrickRigLLeg1
+    100062: DerrickRigLLeg2
+    100064: DerrickRigLLegAnkle
+    100066: DerrickRigLLegDigit11
+    100068: DerrickRigLLegDigit12
+    100070: DerrickRigLLegPlatform
+    100072: DerrickRigNeck
+    100074: DerrickRigNose
+    100076: DerrickRigPalmSwordBone
+    100078: DerrickRigPelvis
+    100080: DerrickRigPouch
+    100082: DerrickRigRArmCollarbone
+    100084: DerrickRigRArmIKTarget
+    100086: DerrickRigRArmIndex1
+    100088: DerrickRigRArmIndex2
+    100090: DerrickRigRArmIndex3
+    100092: DerrickRigRArmLowerArm
+    100094: DerrickRigRArmMiddle1
+    100096: DerrickRigRArmMiddle2
+    100098: DerrickRigRArmMiddle3
+    100100: DerrickRigRArmPalm
+    100102: DerrickRigRArmPinky1
+    100104: DerrickRigRArmPinky2
+    100106: DerrickRigRArmPinky3
+    100108: DerrickRigRArmThumb1
+    100110: DerrickRigRArmThumb2
+    100112: DerrickRigRArmThumb3
+    100114: DerrickRigRArmUpperArm
+    100116: DerrickRigRLeg1
+    100118: DerrickRigRLeg2
+    100120: DerrickRigRLegAnkle
+    100122: DerrickRigRLegDigit11
+    100124: DerrickRigRLegDigit12
+    100126: DerrickRigRLegPlatform
+    100128: DerrickRigSpine1
+    100130: DerrickRigSpine2
+    100132: DerrickRigSwordBone
+    100134: //RootNode
+    100136: sword
+    400000: derrick
+    400002: DerrickRig
+    400004: DerrickRigAnkleBone001
+    400006: DerrickRigAnkleBone001 1
+    400008: DerrickRigChest
+    400010: DerrickRigCordKnot
+    400012: DerrickRigEarL
+    400014: DerrickRigEarR
+    400016: DerrickRigEyeL
+    400018: DerrickRigEyeR
+    400020: DerrickRigHairTuft
+    400022: DerrickRigHead
+    400024: DerrickRigJaw
+    400026: DerrickRigLArmCollarbone
+    400028: DerrickRigLArmIKTarget
+    400030: DerrickRigLArmIndex1
+    400032: DerrickRigLArmIndex2
+    400034: DerrickRigLArmIndex3
+    400036: DerrickRigLArmLowerArm
+    400038: DerrickRigLArmMiddle1
+    400040: DerrickRigLArmMiddle2
+    400042: DerrickRigLArmMiddle3
+    400044: DerrickRigLArmPalm
+    400046: DerrickRigLArmPinky1
+    400048: DerrickRigLArmPinky2
+    400050: DerrickRigLArmPinky3
+    400052: DerrickRigLArmThumb1
+    400054: DerrickRigLArmThumb2
+    400056: DerrickRigLArmThumb3
+    400058: DerrickRigLArmUpperArm
+    400060: DerrickRigLLeg1
+    400062: DerrickRigLLeg2
+    400064: DerrickRigLLegAnkle
+    400066: DerrickRigLLegDigit11
+    400068: DerrickRigLLegDigit12
+    400070: DerrickRigLLegPlatform
+    400072: DerrickRigNeck
+    400074: DerrickRigNose
+    400076: DerrickRigPalmSwordBone
+    400078: DerrickRigPelvis
+    400080: DerrickRigPouch
+    400082: DerrickRigRArmCollarbone
+    400084: DerrickRigRArmIKTarget
+    400086: DerrickRigRArmIndex1
+    400088: DerrickRigRArmIndex2
+    400090: DerrickRigRArmIndex3
+    400092: DerrickRigRArmLowerArm
+    400094: DerrickRigRArmMiddle1
+    400096: DerrickRigRArmMiddle2
+    400098: DerrickRigRArmMiddle3
+    400100: DerrickRigRArmPalm
+    400102: DerrickRigRArmPinky1
+    400104: DerrickRigRArmPinky2
+    400106: DerrickRigRArmPinky3
+    400108: DerrickRigRArmThumb1
+    400110: DerrickRigRArmThumb2
+    400112: DerrickRigRArmThumb3
+    400114: DerrickRigRArmUpperArm
+    400116: DerrickRigRLeg1
+    400118: DerrickRigRLeg2
+    400120: DerrickRigRLegAnkle
+    400122: DerrickRigRLegDigit11
+    400124: DerrickRigRLegDigit12
+    400126: DerrickRigRLegPlatform
+    400128: DerrickRigSpine1
+    400130: DerrickRigSpine2
+    400132: DerrickRigSwordBone
+    400134: //RootNode
+    400136: sword
+    2300000: sword
+    3300000: sword
+    4300000: derrick
+    4300002: sword
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: derrick
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 2
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

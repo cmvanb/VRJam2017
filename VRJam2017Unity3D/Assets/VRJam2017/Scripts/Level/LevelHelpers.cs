@@ -6,20 +6,16 @@ public static class LevelHelpers
     public static float TerrainSize = 1024f;
     public static float TileSize = 4f;
 
-    public static int NumTiles
-    {
-        get
-        {
-            return (int)(TerrainSize / TileSize);
-        }
-    }
-
     public static Vector3 WorldPosFromTilePos(int x, int z)
     {
         // TODO: GET Y FROM TERRAIN HEIGHT
-        float y = 0f;
+        Vector3 result = new Vector3(x * TileSize, 0f, z * TileSize);
 
-        return new Vector3(x * TileSize, y, z * TileSize);
+        float y = GetTerrainHeightAtWorldPos(result);
+
+        result = new Vector3(result.x, y, result.z);
+
+        return result;
     }
 
     public static Vector2 TilePosFromWorldPos(Vector3 position)
@@ -27,9 +23,9 @@ public static class LevelHelpers
         return new Vector2(position.x / TileSize, position.z / TileSize);
     }
 
-    public static bool TileIsInBounds(int x, int z)
+    public static bool TileIsInBounds(LevelModel model, int x, int z)
     {
-        return x >=0 && x < NumTiles && z >=0 && z < NumTiles;
+        return x >=0 && x < model.Width && z >=0 && z < model.Length;
     }
 
     public static float GetTerrainHeightAtWorldPos(Vector3 worldPosition)
@@ -45,7 +41,7 @@ public static class LevelHelpers
         {
             for (int x = (int)xPosition - 1; x <= (int)xPosition + 1; ++x)
             {
-                if (!LevelHelpers.TileIsInBounds(x, z))
+                if (!LevelHelpers.TileIsInBounds(model, x, z))
                 {
                     continue;
                 }
