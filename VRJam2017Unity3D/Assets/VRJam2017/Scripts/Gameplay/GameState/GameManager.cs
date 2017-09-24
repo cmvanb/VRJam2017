@@ -32,10 +32,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void SetPlayerPosition(Vector3 position)
     {
-        // NOTE: HACK - COULDNT FIGURE OUT HOW TO CALCULATE EXACT PLAYER HEIGHT IN VRTK
-        float hackOffset = 1.15f;
-
-        float playerHeightOffset = hackOffset;
+        // HACK - APPEARS TO BE UNNECESSARY NOW FOR [INSERT DARK MAGIC REASONS HERE].
+        float playerHeightOffset = 0f;
 
         float terrainHeight = LevelHelpers.GetTerrainHeightAtWorldPos(SpawnPosition);
 
@@ -54,12 +52,9 @@ public class GameManager : MonoSingleton<GameManager>
             float z = MinionSpawnDistance * Mathf.Sin(angle);
             float y = LevelHelpers.GetTerrainHeightAtWorldPos(new Vector3(x, 0f, z));
 
-            Vector3 position = (new Vector3(x, y, z));
+            Vector3 position = (new Vector3(x + SpawnPosition.x, y, z + SpawnPosition.z));
 
-            Debug.LogWarning(position);
-            Debug.LogWarning(position + SpawnPosition);
-
-            MinionManager.Instance.SpawnMinion(position + SpawnPosition);
+            MinionManager.Instance.SpawnMinion(position);
         }
     }
 }

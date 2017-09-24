@@ -8,16 +8,29 @@ public class HandController : MonoBehaviour
         Right,
         Left
     }
-
     public Hands hand = Hands.Right;
+
+    public GameObject PlayerController;
 
     private VRTK_Pointer pointer;
     private VRTK_BasePointerRenderer pointerRenderer;
+    private PlayerAttacker attacker;
+    private PlayerCommander commander;
+    private PlayerFlyer flyer;
+    private PlayerMover mover;
+    private PlayerSummoner summoner;
+    // paint dig
+    // pick up minion
 
     public void Start()
     {
         pointer = GetComponent<VRTK_Pointer>();
         pointerRenderer = GetComponent<VRTK_BasePointerRenderer>();
+        attacker = PlayerController.GetComponent<PlayerAttacker>();
+        commander = PlayerController.GetComponent<PlayerCommander>();
+        flyer = PlayerController.GetComponent<PlayerFlyer>();
+        mover = PlayerController.GetComponent<PlayerMover>();
+        summoner = PlayerController.GetComponent<PlayerSummoner>();
 
         if (hand == Hands.Left)
         {
@@ -40,31 +53,30 @@ public class HandController : MonoBehaviour
     {
         Debug.Log(hand.ToString() + " trigger pressed");
 
-        PlayerController player = PlayerController.Instance;
-
         if (hand == Hands.Left)
         {
-            if (player.FlightState == PlayerController.FlightStates.GROUNDED)
+            if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
-                player.Attack();
+                attacker.Attack();
             }
-            else if (player.FlightState == PlayerController.FlightStates.FLYING)
+            else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
             {
-                player.PaintDig();
+                // TODO: implement
+                //player.PaintDig();
             }
         }
         else if (hand == Hands.Right)
         {
-            if (player.FlightState == PlayerController.FlightStates.GROUNDED)
+            if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
                 // TODO: implement
                 // if minion is within reach, grab that minion
                 // else, summon
 
-                player.Summon();
+                summoner.Summon();
             }
             // TODO: Consider enabling this.
-            // else if (player.FlightState == PlayerController.FlightStates.FLYING)
+            // else if (player.FlightState == PlayerFlyer.FlightStates.FLYING)
             // {
             //     player.PaintDig();
             // }
@@ -75,31 +87,32 @@ public class HandController : MonoBehaviour
     {
         Debug.Log(hand.ToString() + " trigger released");
 
-        PlayerController player = PlayerController.Instance;
-
         if (hand == Hands.Left)
         {
-            if (player.FlightState == PlayerController.FlightStates.GROUNDED)
+            if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
-                player.StopAttack();
+                attacker.StopAttack();
             }
         }
         else if (hand == Hands.Right)
         {
-            if (player.IsSummoning)
+            if (summoner.IsSummoning)
             {
-                player.StopSummon();
+                summoner.StopSummon();
 
-                if (player.CommandMode == PlayerController.CommandModes.MOVE)
+                if (commander.CommandMode == PlayerCommander.CommandModes.MOVE)
                 {
                     // TODO: Get target from pointer.
                     Vector3 target = Vector3.zero;
 
-                    player.MoveCommand(target);
+                    commander.MoveCommand(target);
                 }
-                else if (player.CommandMode == PlayerController.CommandModes.GUARD)
+                else if (commander.CommandMode == PlayerCommander.CommandModes.GUARD)
                 {
-                    player.GuardCommand();
+                    // TODO: Get target from pointer.
+                    Vector3 target = Vector3.zero;
+
+                    commander.GuardCommand(target);
                 }
             }
         }
