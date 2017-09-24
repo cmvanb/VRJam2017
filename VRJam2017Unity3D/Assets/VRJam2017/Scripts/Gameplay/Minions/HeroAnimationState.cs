@@ -45,7 +45,7 @@ public class HeroAnimationState : MonoBehaviour
     {
         AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
 
-        if(!info.IsName(name))
+        if(!info.IsName(name) || name == "walk")
         {
             animator.Play(name);
         }
