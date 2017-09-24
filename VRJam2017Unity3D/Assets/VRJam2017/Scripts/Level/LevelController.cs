@@ -26,6 +26,8 @@ public class LevelController : MonoSingleton<LevelController>
 
     public GameObject[] HellStartingBuildings;
 
+    [Range(0,1)]
+    public float GoblinVillageSpawnChance = 0.1f;
 
     public void Start()
     {
@@ -51,15 +53,13 @@ public class LevelController : MonoSingleton<LevelController>
 
         foreach(Vector3 roomPosition in Model.Rooms)
         {
-            if (false)
+            if (Random.value > 1 - GoblinVillageSpawnChance)
             {
                 GameObject prefab = GoblinVillages[(int)(Random.value*GoblinVillages.Length)];
 
                 CreateObjectOnTile(Model.Tiles[(int)roomPosition.x, (int)roomPosition.y], prefab);
             }
         }
-
-        CreateObjectOnTile(Model.Tiles[(int)Model.HellSpawn.x, (int)Model.HellSpawn.y], GoblinVillages[0]);
          
         
         GameManager.Instance.SpawnPlayer(spawnPosition);
