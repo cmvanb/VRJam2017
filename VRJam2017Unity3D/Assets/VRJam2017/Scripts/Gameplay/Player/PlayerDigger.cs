@@ -19,7 +19,7 @@ public class PlayerDigger : MonoBehaviour
     public void Dig(DestinationMarkerEventArgs args)
     {
         // TODO: improve by using raycast to dig marker height
-        Vector3 target = new Vector3(args.target.position.x, DigMarkerWorldPositionY, args.target.position.z);
+        Vector3 target = new Vector3(args.destinationPosition.x, DigMarkerWorldPositionY, args.destinationPosition.z);
 
         Debug.LogWarning("START DIG");
         LevelTile tile = LevelHelpers.GetTileAtWorldPos(LevelController.Instance.Model, target);
@@ -48,7 +48,7 @@ public class PlayerDigger : MonoBehaviour
         }
 
         // TODO: improve by using raycast to dig marker height
-        Vector3 target = new Vector3(args.target.position.x, DigMarkerWorldPositionY, args.target.position.z);
+        Vector3 target = new Vector3(args.destinationPosition.x, DigMarkerWorldPositionY, args.destinationPosition.z);
 
         LevelTile tile = LevelHelpers.GetTileAtWorldPos(LevelController.Instance.Model, target);
 
