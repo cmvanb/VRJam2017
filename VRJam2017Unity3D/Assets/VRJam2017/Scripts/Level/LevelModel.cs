@@ -8,7 +8,7 @@ public class LevelModel
     public LevelTile[,] Tiles;
 
     public int SpawnHoleSize = 13;
-    public int MinHoleSize = 5;
+    public int MinHoleSize = 6;
     public int MaxHoleSize = 9;
     public float HoleProbability = 0.01f;
 
