@@ -67,4 +67,29 @@ public static class LevelHelpers
 
         return tiles;
     }
+
+    public static bool IsTileInHell(LevelModel model, int x, int z)
+    {
+        return model.HellContiguousTiles[x,z] != null;
+    }
+
+    public static bool IsTileInHeaven(LevelModel model, int x, int z)
+    {
+        return model.HeavenContiguousTiles[x,z] != null;
+    }
+
+    public static bool IsTileAdjacentToHell(LevelModel model, int x, int z)
+    {
+        List<LevelTile> neighbours = GetSurroundingTiles(model, x, z);
+
+        foreach (LevelTile n in neighbours)
+        {
+            if (IsTileInHell(model, n.X, n.Z))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

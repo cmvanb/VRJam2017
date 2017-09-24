@@ -29,7 +29,7 @@ public class MinionManager : MonoSingleton<MinionManager>
 	{
 		minions.Add(minion);
 
-		Debug.Log("Minion registered: " + minion.name);
+		//Debug.Log("Minion registered: " + minion.name);
 	}
 
 	public void Deregister(GameObject minion)
@@ -83,7 +83,7 @@ public class MinionManager : MonoSingleton<MinionManager>
 			digList.ForEach(tile => {
 				// Do we have surrounding tiles in Hell?
 				List<LevelTile> surrounding = LevelHelpers.GetSurroundingTiles(LevelController.Instance.Model, tile.X, tile.Z);
-				LevelTile found = surrounding.Find(obj => (obj.Opened && LevelController.Instance.IsTileInHell(obj.X, obj.Z)));
+				LevelTile found = surrounding.Find(obj => (obj.Opened && LevelHelpers.IsTileInHell(LevelController.Instance.Model, obj.X, obj.Z)));
 
 				// If so, dig them with some minions
 				if(found != null)

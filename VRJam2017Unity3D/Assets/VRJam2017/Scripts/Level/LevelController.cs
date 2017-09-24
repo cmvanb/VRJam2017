@@ -95,16 +95,6 @@ public class LevelController : MonoSingleton<LevelController>
         Debug.Log("generated level");
     }
 
-    public bool IsTileInHell(int x, int z)
-    {
-        return Model.HellContiguousTiles[x,z] != null;
-    }
-
-    public bool IsTileInHeaven(int x, int z)
-    {
-        return Model.HeavenContiguousTiles[x,z] != null;
-    }
-
     public void Dig(int x, int z)
     {
         if (!LevelHelpers.TileIsInBounds(Model, x, z))

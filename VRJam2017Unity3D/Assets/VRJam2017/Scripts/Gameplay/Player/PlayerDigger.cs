@@ -71,12 +71,7 @@ public class PlayerDigger : MonoBehaviour
     private bool TileIsDiggable(LevelTile tile)
     {
         // TODO: tile is not opened AND (tile is adjacent to room OR tile is adjacent to highlighted tile)
-        return !tile.Opened && (TileIsAdjacentToRoom(tile));
-    }
-
-    private bool TileIsAdjacentToRoom(LevelTile tile)
-    {
-        return true;
+        return !tile.Opened;
     }
 
     public void UpdateDigList()

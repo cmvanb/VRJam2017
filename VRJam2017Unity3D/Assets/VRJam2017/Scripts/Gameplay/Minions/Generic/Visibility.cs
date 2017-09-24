@@ -17,6 +17,9 @@ public class Visibility : MonoBehaviour
 
     void OnDestroy()
     {
-        VisibilityRegister.Instance.Deregister(this);
+        if (VisibilityRegister.Instance)
+        {
+            VisibilityRegister.Instance.Deregister(this);
+        }
     }
 }
