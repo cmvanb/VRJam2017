@@ -38,7 +38,7 @@ public class HeroAnimationState : MonoBehaviour
 
     void WantsToDie()
     {
-        Play("die");
+        Play("dieing");
     }
 
     void Play(string name)
