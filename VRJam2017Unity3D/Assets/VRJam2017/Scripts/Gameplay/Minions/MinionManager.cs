@@ -54,6 +54,11 @@ public class MinionManager : MonoSingleton<MinionManager>
 		digList.Add(tile);
 	}
 
+	public void RemoveDigTile(LevelTile tile)
+	{
+		digList.Remove(tile);
+	}
+
 	void Update()
 	{
 		if(Input.GetMouseButtonDown(1))
