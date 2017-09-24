@@ -52,4 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnPosition: {x: 512, y: 0, z: 512}
+  MinionSpawnDistance: 10
+  StartingMinions: 10
   PlayArea: {fileID: 0}
+  Headset: {fileID: 0}
