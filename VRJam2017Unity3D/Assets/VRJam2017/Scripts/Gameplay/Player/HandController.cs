@@ -22,7 +22,8 @@ public class HandController : MonoBehaviour
     private PlayerSummoner summoner;
     // TODO: pick up minion
 
-    private Vector3 pointerDestination;
+    private DestinationMarkerEventArgs destinationArgs;
+    private Vector3 destination;
 
     public void Start()
     {
@@ -38,7 +39,8 @@ public class HandController : MonoBehaviour
         SetPointerActive(false);
 
         pointer.DestinationMarkerExit += (object marker, DestinationMarkerEventArgs args) => {
-            pointerDestination = args.destinationPosition;
+            destinationArgs = args;
+            destination = args.destinationPosition;
         };
 
         GetComponent<VRTK_ControllerEvents>().TriggerPressed += OnTriggerPressed;
@@ -120,13 +122,13 @@ public class HandController : MonoBehaviour
 
                 if (commander.CommandMode == PlayerCommander.CommandModes.MOVE)
                 {
-                    commander.MoveCommand(pointerDestination);
+                    commander.MoveCommand(destination);
 
                     // TODO: Consider spawning 'command feedback', like particles or animation.
                 }
                 else if (commander.CommandMode == PlayerCommander.CommandModes.GUARD)
                 {
-                    commander.GuardCommand(pointerDestination);
+                    commander.GuardCommand(destination);
 
                     // TODO: Consider spawning 'command feedback', like particles or animation.
                 }
@@ -137,10 +139,38 @@ public class HandController : MonoBehaviour
     private void OnTouchpadPressed(object sender, ControllerInteractionEventArgs e)
     {
         Debug.Log(hand.ToString() + " touchpad pressed");
+
+        if (hand == Hands.Left)
+        {
+            if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
+            {
+                SetPointerActive(true);
+            }
+        }
     }
 
     private void OnTouchpadReleased(object sender, ControllerInteractionEventArgs e)
     {
         Debug.Log(hand.ToString() + " touchpad released");
+
+        if (hand == Hands.Left)
+        {
+            if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
+            {
+                SetPointerActive(false);
+
+                // TODO: calculate this based on pointer vector
+                bool isPointerPointingUp = false;
+
+                if (isPointerPointingUp)
+                {
+                    flyer.ToggleFlightMode();
+                }
+                else
+                {
+                    mover.Dash(destinationArgs);
+                }
+            }
+        }
     }
 }

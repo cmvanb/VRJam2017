@@ -24,21 +24,26 @@ public class PlayerCommander : MonoBehaviour
     {
         Debug.LogWarning("MOVE COMMAND");
 
+        // TODO: summoned minions can contain duplicates...
         foreach (GameObject minion in summoner.SummonedMinions)
         {
-            minion.GetComponent<ActionQueue>().InsertBeforeCurrent(new MovementAction(minion, target));
+            if (minion == null)
+            {
+                continue;
+            }
 
-            // TODO: implement
-            // get component
-            // if still alive
-            // if minion's current action is summon, pop that action
+            ActionQueue q = minion.GetComponent<ActionQueue>();
+
+            // if minion's current action is summon, cancel that action
+            q.CancelSummon();
+
             // tell minion to move to target position
+            q.InsertBeforeCurrent(new MovementAction(minion, target));
         }
 
         summoner.SummonedMinions.Clear();
 
         //minion.GetComponent<ActionQueue>().IsCurrentInteruptable();
-        //minion.GetComponent<ActionQueue>().CancelSummon();
     }
 
     // GUARD
