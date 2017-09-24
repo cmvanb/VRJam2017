@@ -23,6 +23,10 @@ public class LevelController : MonoSingleton<LevelController>
     public void Start()
     {
         Generate();
+
+        Vector3 spawnPosition = LevelHelpers.WorldPosFromTilePos((int)Model.HellSpawn.x, (int)Model.HellSpawn.y);
+
+        GameManager.Instance.SpawnPlayer(spawnPosition);
     }
 
     public void Generate()
