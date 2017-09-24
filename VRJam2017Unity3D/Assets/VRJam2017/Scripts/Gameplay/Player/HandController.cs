@@ -5,15 +5,23 @@ public class HandController : MonoBehaviour
 {
     public enum Hands
     {
-        Right,
-        Left
+        RIGHT,
+        LEFT
     }
-    public Hands hand = Hands.Right;
+    public Hands hand = Hands.RIGHT;
 
     public GameObject PlayerController;
 
+    public enum PointerTypes
+    {
+        BEZIER,
+        STRAIGHT
+    }
+    private PointerTypes pointerType = PointerTypes.BEZIER;
+
     private VRTK_Pointer pointer;
-    private VRTK_BezierPointerRenderer pointerRenderer;
+    private VRTK_BezierPointerRenderer bezierRenderer;
+    private VRTK_StraightPointerRenderer straightRenderer;
     private PlayerAttacker attacker;
     private PlayerCommander commander;
     private PlayerDigger digger;
@@ -29,7 +37,9 @@ public class HandController : MonoBehaviour
     public void Start()
     {
         pointer = GetComponent<VRTK_Pointer>();
-        pointerRenderer = GetComponent<VRTK_BezierPointerRenderer>();
+        bezierRenderer = GetComponent<VRTK_BezierPointerRenderer>();
+        straightRenderer = GetComponent<VRTK_StraightPointerRenderer>();
+
         attacker = PlayerController.GetComponent<PlayerAttacker>();
         commander = PlayerController.GetComponent<PlayerCommander>();
         digger = PlayerController.GetComponent<PlayerDigger>();
@@ -37,9 +47,9 @@ public class HandController : MonoBehaviour
         mover = PlayerController.GetComponent<PlayerMover>();
         summoner = PlayerController.GetComponent<PlayerSummoner>();
 
-        mover.PointerRenderer = pointerRenderer;
+        mover.PointerRenderer = bezierRenderer;
 
-        SetPointerActive(false);
+        SetPointer(false);
 
         pointer.DestinationMarkerHover += (object marker, DestinationMarkerEventArgs args) => {
             destinationArgs = args;
@@ -58,24 +68,24 @@ public class HandController : MonoBehaviour
     {
         if (mover.IsTeleporting)
         {
-            SetPointerActive(false);
+            SetPointer(false);
             return;
         }
 
         // Hide pointer if pointing up (flight), show if pointing down (dash).
-        if (hand == Hands.Left
+        if (hand == Hands.LEFT
             && controllerEvents.touchpadPressed)
         {
             HidePointerIfPointingUp();
         }
 
         // Paint dig tiles.
-        if (hand == Hands.Left
+        if (hand == Hands.LEFT
             && controllerEvents.triggerClicked)
         {
-            HidePointerIfPointingUp();
+            HidePointerIfPointingUp(PointerTypes.STRAIGHT);
 
-            digger.PaintDig(destination);
+            digger.PaintDig(destinationArgs);
         }
     }
 
@@ -89,7 +99,7 @@ public class HandController : MonoBehaviour
             return;
         }
 
-        if (hand == Hands.Left)
+        if (hand == Hands.LEFT)
         {
             if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
@@ -99,12 +109,12 @@ public class HandController : MonoBehaviour
             else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
             {
                 // Start painting dig tiles.
-                SetPointerActive(true);
+                SetPointer(true, PointerTypes.STRAIGHT);
 
-                digger.Dig(destination);
+                digger.Dig(destinationArgs);
             }
         }
-        else if (hand == Hands.Right)
+        else if (hand == Hands.RIGHT)
         {
             if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
@@ -118,7 +128,7 @@ public class HandController : MonoBehaviour
                 else
                 {
                     // Start summoning.
-                    SetPointerActive(true);
+                    SetPointer(true);
 
                     summoner.Summon();
                 }
@@ -136,7 +146,7 @@ public class HandController : MonoBehaviour
 
         Debug.Log(hand.ToString() + " trigger released");
 
-        if (hand == Hands.Left)
+        if (hand == Hands.LEFT)
         {
             if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
@@ -146,17 +156,17 @@ public class HandController : MonoBehaviour
             else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
             {
                 // Stop painting dig tiles.
-                SetPointerActive(false);
+                SetPointer(false);
 
                 digger.StopDig();
             }
         }
-        else if (hand == Hands.Right)
+        else if (hand == Hands.RIGHT)
         {
             if (summoner.IsSummoning)
             {
                 // Stop summoning.
-                SetPointerActive(false);
+                SetPointer(false);
 
                 summoner.StopSummon();
 
@@ -194,9 +204,9 @@ public class HandController : MonoBehaviour
 
         Debug.Log(hand.ToString() + " touchpad released");
 
-        if (hand == Hands.Left)
+        if (hand == Hands.LEFT)
         {
-            SetPointerActive(false);
+            SetPointer(false);
 
             if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
@@ -220,22 +230,31 @@ public class HandController : MonoBehaviour
         }
     }
 
-    private void SetPointerActive(bool active)
+    private void SetPointer(bool active, PointerTypes pt = PointerTypes.BEZIER)
     {
-        pointerRenderer.Toggle(active, active);
+        pointerType = pt;
+
         pointer.Toggle(active);
+
+        bool bezierActive = active && pt == PointerTypes.BEZIER;
+        bezierRenderer.Toggle(bezierActive, bezierActive);
+
+        bool straightActive = active && pt == PointerTypes.STRAIGHT;
+        straightRenderer.Toggle(straightActive, straightActive);
+
+        pointer.pointerRenderer = pt == PointerTypes.BEZIER ? (VRTK_BasePointerRenderer)bezierRenderer : (VRTK_BasePointerRenderer)straightRenderer;
     }
 
-    private void HidePointerIfPointingUp()
+    private void HidePointerIfPointingUp(PointerTypes pt = PointerTypes.BEZIER)
     {
         // Hide pointer if pointing up (flight), show if pointing down (dash).
         if (pointer.IsPointerActive() && IsPointerPointingUp())
         {
-            SetPointerActive(false);
+            SetPointer(false, pt);
         }
         else if (!pointer.IsPointerActive())
         {
-            SetPointerActive(true);
+            SetPointer(true, pt);
         }
     }
 
