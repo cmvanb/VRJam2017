@@ -96,6 +96,7 @@ public class LevelModel
 
         if (tile.Opened)
         {
+            tile.WallTop = tile.WallBottom = tile.WallLeft = tile.WallRight = false;
             return;
         }
 
@@ -150,7 +151,7 @@ public class LevelModel
             {
                 return false;
             }
-            else if (evaluationTable[i] == 1)
+            else if (evaluationTable[i] == openedTable[i])
             {
                 atLeastOneMatch = true;
             }
