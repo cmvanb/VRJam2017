@@ -63,8 +63,8 @@ public class HeroSpawn : MonoBehaviour
 
             path = quat * path;
 
-            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            go.transform.position = transform.position + path;
+            //var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            //go.transform.position = transform.position + path;
 
             foreach(GameObject hero in currentHeroes)
             {
