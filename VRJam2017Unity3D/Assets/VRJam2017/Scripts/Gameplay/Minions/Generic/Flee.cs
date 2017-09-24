@@ -29,6 +29,8 @@ public class Flee : MonoBehaviour
 
         if(isScary && queue.IsCurrentInteruptable())
         {
+            Debug.Log("Me: " + GetComponent<Faction>().CurrentFaction + " Them: " + visibleObject.GetComponent<Faction>().CurrentFaction);
+
             currentlyFleeing = visibleObject;
             
             queue.InsertBeforeCurrent(new FleeAction(gameObject, currentlyFleeing));

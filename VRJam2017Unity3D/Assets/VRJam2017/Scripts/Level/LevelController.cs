@@ -9,6 +9,8 @@ public class LevelController : MonoSingleton<LevelController>
 
     public LevelModel Model;
 
+    public Transform WallParent;
+
     public GameObject WallTopPrefab;
     public GameObject WallRightPrefab;
     public GameObject WallBottomPrefab;
@@ -20,10 +22,16 @@ public class LevelController : MonoSingleton<LevelController>
 
     public GameObject HeroSpawn;
 
+    public GameObject[] GoblinVillages;
+
     public GameObject[] HellStartingBuildings;
+
+    [Range(0,1)]
+    public float GoblinVillageSpawnChance = 0.1f;
 
     public void Start()
     {
+
         Generate();
 
         Vector3 spawnPosition = LevelHelpers.WorldPosFromTilePos((int)Model.HellSpawn.x, (int)Model.HellSpawn.y);
@@ -42,6 +50,17 @@ public class LevelController : MonoSingleton<LevelController>
 
             CreateObjectOnTile(Model.Tiles[(int)pos.x, (int)pos.y], prefab);
         }
+
+        foreach(Vector3 roomPosition in Model.Rooms)
+        {
+            if (Random.value > 1 - GoblinVillageSpawnChance)
+            {
+                GameObject prefab = GoblinVillages[(int)(Random.value*GoblinVillages.Length)];
+
+                CreateObjectOnTile(Model.Tiles[(int)roomPosition.x, (int)roomPosition.y], prefab);
+            }
+        }
+         
         
         GameManager.Instance.SpawnPlayer(spawnPosition);
     }
@@ -132,7 +151,7 @@ public class LevelController : MonoSingleton<LevelController>
             // }
             // else
             // {
-                GameObject w = CreateObjectOnTile(tile, WallTopPrefab);
+                GameObject w = CreateObjectOnTile(tile, WallTopPrefab, WallParent);
                 w.name = tile.ToString() + " Wall Top";
                 tile.Walls.Add(w);
             // }
@@ -154,7 +173,7 @@ public class LevelController : MonoSingleton<LevelController>
             // }
             // else
             // {
-                GameObject w = CreateObjectOnTile(tile, WallBottomPrefab);
+                GameObject w = CreateObjectOnTile(tile, WallBottomPrefab, WallParent);
                 w.name = tile.ToString() + " Wall Bottom";
                 tile.Walls.Add(w);
             // }
@@ -162,24 +181,24 @@ public class LevelController : MonoSingleton<LevelController>
 
         if (tile.WallRight)// && !tile.WallTop && !tile.WallBottom)
         {
-            GameObject w = CreateObjectOnTile(tile, WallRightPrefab);
+            GameObject w = CreateObjectOnTile(tile, WallRightPrefab, WallParent);
             w.name = tile.ToString() + " Wall Right";
             tile.Walls.Add(w);
         }
 
         if (tile.WallLeft)// && !tile.WallTop && !tile.WallBottom)
         {
-            GameObject w = CreateObjectOnTile(tile, WallLeftPrefab);
+            GameObject w = CreateObjectOnTile(tile, WallLeftPrefab, WallParent);
             w.name = tile.ToString() + " Wall Left";
             tile.Walls.Add(w);
         }
     }
 
-    private GameObject CreateObjectOnTile(LevelTile tile, GameObject prefab)
+    private GameObject CreateObjectOnTile(LevelTile tile, GameObject prefab, Transform parent = null)
     {
         GameObject created = GameObject.Instantiate(prefab);
         created.transform.position = LevelHelpers.WorldPosFromTilePos(tile.X, tile.Z);
-        created.transform.parent = transform;
+        created.transform.parent = (parent == null) ? transform : parent;
 
         return created;
     }

@@ -8,7 +8,7 @@ public class LevelModel
     public LevelTile[,] Tiles;
 
     public int SpawnHoleSize = 13;
-    public int MinHoleSize = 3;
+    public int MinHoleSize = 5;
     public int MaxHoleSize = 9;
     public float HoleProbability = 0.01f;
 
@@ -20,10 +20,14 @@ public class LevelModel
 
     public Vector2 HeavenSpawn;
 
+    public List<Vector3> Rooms;
+
     public LevelModel(int width, int length)
     {
         Width = width;
         Length = length;
+
+        Rooms = new List<Vector3>();
 
         Tiles = new LevelTile[width, length];
 
@@ -54,7 +58,11 @@ public class LevelModel
                 {
                     int holeSize = Random.Range(MinHoleSize, MaxHoleSize);
 
-                    PunchHole(new Vector2(x, z), holeSize);
+                    Vector2 roomCenter = new Vector3(x, z, holeSize);
+
+                    PunchHole(roomCenter, holeSize);
+
+                    Rooms.Add(roomCenter);
                 }
             }
         }
