@@ -92,4 +92,19 @@ public static class LevelHelpers
 
         return false;
     }
+
+    public static bool IsTileAdjacentToDigMarkedTile(LevelModel model, int x, int z)
+    {
+        List<LevelTile> neighbours = GetSurroundingTiles(model, x, z);
+
+        foreach (LevelTile n in neighbours)
+        {
+            if (n.MarkedForDigging)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
