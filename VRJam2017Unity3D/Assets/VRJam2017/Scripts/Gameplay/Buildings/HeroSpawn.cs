@@ -43,12 +43,37 @@ public class HeroSpawn : MonoBehaviour
             GameObject spawned = Instantiate(hero, transform.position, transform.rotation);
 
             currentHeroes.Add(spawned);
+        }
+        
+        int pathPoints = 10;        
 
-            Vector3 pos = new Vector3(0,0,0);
-		
-            UnitAction action = new TerrainAction(spawned, pos);
+        Transform target = GameManager.Instance.Headset;
 
-            spawned.GetComponent<ActionQueue>().Add(action);
+        Vector3 pos = target == null ? new Vector3(500,0,500) : target.position;
+
+        for(int i=1; i<=pathPoints; i++)
+        {
+            Vector3 path = pos - transform.position;
+
+            path *= (float)i/pathPoints;
+
+            float angleRange = 90;
+
+            Quaternion quat = Quaternion.Euler(0, (i == pathPoints) ? 0 :  (angleRange/2 - Random.value * angleRange), 0);
+
+            path = quat * path;
+
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            go.transform.position = transform.position + path;
+
+            foreach(GameObject hero in currentHeroes)
+            {
+                UnitAction action = new TerrainAction(hero, transform.position + path);
+
+                hero.GetComponent<ActionQueue>().Add(action);
+            }
+
+            
         }
     }
 

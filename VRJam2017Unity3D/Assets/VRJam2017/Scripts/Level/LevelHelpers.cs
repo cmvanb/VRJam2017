@@ -41,9 +41,9 @@ public static class LevelHelpers
     {
         List<LevelTile> tiles = new List<LevelTile>();
 
-        for (int z = (int)zPosition - 1; z < (int)zPosition + 1; ++z)
+        for (int z = (int)zPosition - 1; z <= (int)zPosition + 1; ++z)
         {
-            for (int x = (int)xPosition - 1; x < (int)xPosition + 1; ++x)
+            for (int x = (int)xPosition - 1; x <= (int)xPosition + 1; ++x)
             {
                 if (!LevelHelpers.TileIsInBounds(x, z))
                 {

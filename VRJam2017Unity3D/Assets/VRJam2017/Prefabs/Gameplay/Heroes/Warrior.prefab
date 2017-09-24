@@ -33,10 +33,10 @@ GameObject:
   - component: {fileID: 114404116935766644}
   - component: {fileID: 114537054711701774}
   - component: {fileID: 114120161113219638}
-  - component: {fileID: 114708879371998548}
-  - component: {fileID: 114950693636783410}
+  - component: {fileID: 114687992449281514}
+  - component: {fileID: 114417188427970210}
   m_Layer: 0
-  m_Name: Healer
+  m_Name: Warrior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0089fed11aaa92e478754a737acf3b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
-  maxHealth: 30
+  health: 100
+  maxHealth: 100
 --- !u!114 &114120161113219638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185f409d893404416a582c4639877555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 0.64183277, g: 0.9411765, b: 0.16608995, a: 1}
+  defaultColor: {r: 0.33823532, g: 0.69878304, b: 1, a: 1}
 --- !u!114 &114120539716722946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -130,10 +130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86e3147a14e0a28498f19c123c59ac7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackType: 1
-  AttackRange: 0
-  AttackPower: 0
-  FireRate: 0
+  AttackType: 0
+  AttackRange: 2
+  AttackPower: 5
+  FireRate: 0.3
 --- !u!114 &114161624351431970
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,6 +169,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentFaction: 1
+--- !u!114 &114417188427970210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1013783193485856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8743c2a5cc69348a8a1a5c54d1d53801, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DigTime: 0.5
 --- !u!114 &114537054711701774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dead: 0
---- !u!114 &114708879371998548
+--- !u!114 &114687992449281514
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -203,12 +215,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1013783193485856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c7efd205a462984aaad3b63dcd33d2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 13b317509157949d4b2781fc4a56f0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealRange: 7
-  HealPower: 5
-  HealRate: 1
 --- !u!114 &114901802646275582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308b35a0b66784cae99453736c813431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Healer
+  Name: Warrior
   CostMinerals: 0
   CostGas: 0
   CostSupplies: 0
@@ -240,17 +249,6 @@ MonoBehaviour:
   Icon: {fileID: 0}
   Placement: 0
   Prerequisites: []
---- !u!114 &114950693636783410
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1013783193485856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13b317509157949d4b2781fc4a56f0c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114984984771134266
 MonoBehaviour:
   m_ObjectHideFlags: 1

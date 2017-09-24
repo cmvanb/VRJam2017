@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1633321696326478}
   m_LocalRotation: {x: -0.00000009735359, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.42}
+  m_LocalPosition: {x: 9.27, y: 1.14, z: 509}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -95,3 +95,4 @@ MonoBehaviour:
   heroes:
   - {fileID: 1013783193485856, guid: 88d2c4235a1954e8681ce84a133da91e, type: 2}
   - {fileID: 1013783193485856, guid: b5c4f13b859b0487386bac92fc7ba59a, type: 2}
+  waveSpawnTime: 5
