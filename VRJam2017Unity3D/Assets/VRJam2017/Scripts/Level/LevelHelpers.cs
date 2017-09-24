@@ -23,6 +23,21 @@ public static class LevelHelpers
         return new Vector2(position.x / TileSize, position.z / TileSize);
     }
 
+    public static LevelTile GetTileAtWorldPos(LevelModel model, Vector3 position)
+    {
+        Vector2 tilePos = TilePosFromWorldPos(position);
+
+        int x = (int)tilePos.x;
+        int z = (int)tilePos.y;
+        
+        if (TileIsInBounds(model, x, z))
+        {
+            return model.Tiles[x, z];
+        }
+
+        return null;
+    }
+
     public static bool TileIsInBounds(LevelModel model, int x, int z)
     {
         return x >=0 && x < model.Width && z >=0 && z < model.Length;

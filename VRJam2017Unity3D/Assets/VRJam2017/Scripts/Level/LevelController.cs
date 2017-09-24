@@ -17,6 +17,7 @@ public class LevelController : MonoSingleton<LevelController>
     public GameObject CornerTopRightPrefab;
     public GameObject CornerBottomLeftPrefab;
     public GameObject CornerBottomRightPrefab;
+    public GameObject DigMarkerPrefab;
 
     public GameObject HeroSpawn;
 
@@ -66,7 +67,7 @@ public class LevelController : MonoSingleton<LevelController>
                     continue;
                 }
 
-                UpdateWallsForTile(tile);
+                UpdateObjectsForTile(tile);
             }
         }
 
@@ -90,19 +91,44 @@ public class LevelController : MonoSingleton<LevelController>
         }
 
         tile.Opened = true;
+        UpdateTileDigMarker(tile);
 
         List<LevelTile> surroundingTiles = LevelHelpers.GetSurroundingTiles(Model, x, z);
 
         foreach (LevelTile t in surroundingTiles)
         {
             Model.EvaluateTile(t.X, t.Z);
-            UpdateWallsForTile(t);
+            UpdateObjectsForTile(t);
         }
 
         Model.UpdateContiguousTilesFrom(x, z);
     }
 
-    private void UpdateWallsForTile(LevelTile tile)
+    public void UpdateTileDigMarker(LevelTile tile)
+    {
+        // If there is a marker already...
+        if (tile.DigMarker != null)
+        {
+            // and the tile isn't marked for digging, or it's opened now - then remove it
+            if (!tile.MarkedForDigging || tile.Opened)
+            {
+                GameObject.Destroy(tile.DigMarker);
+            }
+        }
+        // If there is no marker yet...
+        else
+        {
+            // and the tile is marked for digging - the add it
+            if (tile.MarkedForDigging)
+            {
+                tile.DigMarker = GameObject.Instantiate(DigMarkerPrefab);
+                tile.DigMarker.transform.position = LevelHelpers.WorldPosFromTilePos(tile.X, tile.Z);
+                tile.DigMarker.transform.parent = transform;
+            }
+        }
+    }
+
+    private void UpdateObjectsForTile(LevelTile tile)
     {
         foreach (GameObject wall in tile.Walls)
         {

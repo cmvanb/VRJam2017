@@ -44,11 +44,14 @@ public class PlayerCommander : MonoBehaviour
         summoner.SummonedMinions.Clear();
 
         //minion.GetComponent<ActionQueue>().IsCurrentInteruptable();
+
+        // TODO: Consider spawning 'command feedback', like particles or animation.
     }
 
     // GUARD
     public void GuardCommand(Vector3 target)
     {
         Debug.LogWarning("GUARD COMMAND");
+        // TODO: Consider spawning 'command feedback', like particles or animation.
     }
 }

@@ -62,18 +62,20 @@ public class HandController : MonoBehaviour
             return;
         }
 
+        // Hide pointer if pointing up (flight), show if pointing down (dash).
         if (hand == Hands.Left
             && controllerEvents.touchpadPressed)
         {
-            // Hide pointer if pointing up (flight), show if pointing down (dash).
-            if (pointer.IsPointerActive() && IsPointerPointingUp())
-            {
-                SetPointerActive(false);
-            }
-            else if (!pointer.IsPointerActive())
-            {
-                SetPointerActive(true);
-            }
+            HidePointerIfPointingUp();
+        }
+
+        // Paint dig tiles.
+        if (hand == Hands.Left
+            && controllerEvents.triggerClicked)
+        {
+            HidePointerIfPointingUp();
+
+            digger.PaintDig(destination);
         }
     }
 
@@ -91,41 +93,37 @@ public class HandController : MonoBehaviour
         {
             if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
+                // Start attacking.
                 attacker.Attack();
             }
             else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
             {
-                // TODO: implement
-                // if pointing at unhighlighted tile, use digger.CancelDigCommand();
-                // otherwise, dig
+                // Start painting dig tiles.
+                SetPointerActive(true);
 
-                digger.DigCommand();
+                digger.Dig(destination);
             }
         }
         else if (hand == Hands.Right)
         {
             if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
-                // TODO: implement
-                // if minion is within reach, grab that minion
-                // else, summon
+                // TODO: implement this check
+                bool minionInGrabRange = false;
 
-                SetPointerActive(true);
+                if (minionInGrabRange)
+                {
+                    // TODO: implement - grab minion
+                }
+                else
+                {
+                    // Start summoning.
+                    SetPointerActive(true);
 
-                summoner.Summon();
+                    summoner.Summon();
+                }
             }
-            // TODO: Consider enabling this.
-            // else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
-            // {
-            //     digger.DigCommand();
-            // }
         }
-    }
-
-    private void SetPointerActive(bool active)
-    {
-        pointerRenderer.Toggle(active, active);
-        pointer.Toggle(active);
     }
 
     private void OnTriggerReleased(object sender, ControllerInteractionEventArgs e)
@@ -142,27 +140,34 @@ public class HandController : MonoBehaviour
         {
             if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
+                // Stop attacking.
                 attacker.StopAttack();
+            }
+            else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
+            {
+                // Stop painting dig tiles.
+                SetPointerActive(false);
+
+                digger.StopDig();
             }
         }
         else if (hand == Hands.Right)
         {
             if (summoner.IsSummoning)
             {
+                // Stop summoning.
                 SetPointerActive(false);
+
                 summoner.StopSummon();
 
+                // Issue command.
                 if (commander.CommandMode == PlayerCommander.CommandModes.MOVE)
                 {
                     commander.MoveCommand(destination);
-
-                    // TODO: Consider spawning 'command feedback', like particles or animation.
                 }
                 else if (commander.CommandMode == PlayerCommander.CommandModes.GUARD)
                 {
                     commander.GuardCommand(destination);
-
-                    // TODO: Consider spawning 'command feedback', like particles or animation.
                 }
             }
         }
@@ -207,7 +212,7 @@ public class HandController : MonoBehaviour
             else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
             {
                 if (!IsPointerPointingUp()
-                    && PositionIsValidLandingZone(destination))
+                    && flyer.PositionIsValidLandingZone(destination))
                 {
                     flyer.Land(destinationArgs);
                 }
@@ -215,33 +220,28 @@ public class HandController : MonoBehaviour
         }
     }
 
+    private void SetPointerActive(bool active)
+    {
+        pointerRenderer.Toggle(active, active);
+        pointer.Toggle(active);
+    }
+
+    private void HidePointerIfPointingUp()
+    {
+        // Hide pointer if pointing up (flight), show if pointing down (dash).
+        if (pointer.IsPointerActive() && IsPointerPointingUp())
+        {
+            SetPointerActive(false);
+        }
+        else if (!pointer.IsPointerActive())
+        {
+            SetPointerActive(true);
+        }
+    }
+
     private bool IsPointerPointingUp()
     {
         if (Vector3.Dot(Vector3.up, transform.forward) > 0.5)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    private bool PositionIsValidLandingZone(Vector3 destination)
-    {
-        Vector2 tilePos = LevelHelpers.TilePosFromWorldPos(destination);
-
-        LevelModel model = LevelController.Instance.Model;
-
-        int x = (int)tilePos.x;
-        int z = (int)tilePos.y;
-
-        if (!LevelHelpers.TileIsInBounds(model, x, z))
-        {
-            return false;
-        }
-
-        LevelTile tile = model.Tiles[x, z];
-
-        if (tile.Opened)
         {
             return true;
         }

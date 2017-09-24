@@ -94,4 +94,28 @@ public class PlayerFlyer : MonoBehaviour
 
         mover.SetTeleportDistance(mover.GroundTeleportDistance);
     }
+
+    public bool PositionIsValidLandingZone(Vector3 destination)
+    {
+        Vector2 tilePos = LevelHelpers.TilePosFromWorldPos(destination);
+
+        LevelModel model = LevelController.Instance.Model;
+
+        int x = (int)tilePos.x;
+        int z = (int)tilePos.y;
+
+        if (!LevelHelpers.TileIsInBounds(model, x, z))
+        {
+            return false;
+        }
+
+        LevelTile tile = model.Tiles[x, z];
+
+        if (tile.Opened)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
