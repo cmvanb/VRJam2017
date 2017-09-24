@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 4119755265012602}
   - component: {fileID: 114121463085526604}
   - component: {fileID: 114283162141583874}
+  - component: {fileID: 208853109504224050}
   m_Layer: 0
   m_Name: Sacrificer
   m_TagString: Untagged
@@ -353,3 +354,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa07d6aaa4a24cb087994fd747728e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!208 &208853109504224050
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1545862498214954}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

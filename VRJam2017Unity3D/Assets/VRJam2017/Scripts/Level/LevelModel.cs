@@ -106,7 +106,7 @@ public class LevelModel
 
     public void UpdateContiguousTilesFrom(int x, int z)
     {
-        List<LevelTile> surroundingTiles = LevelHelpers.GetSurroundingTiles(this, x, z);
+        List<LevelTile> surroundingTiles = LevelHelpers.GetAdjacentTiles(this, x, z);
 
         LevelTile foundHell = surroundingTiles.Find(tile => HellContiguousTiles[tile.X, tile.Z] != null);
 
@@ -148,7 +148,7 @@ public class LevelModel
         {
             tileList[x,z] = Tiles[x,z];
 
-            List<LevelTile> surroundingTiles = LevelHelpers.GetSurroundingTiles(this, x, z);
+            List<LevelTile> surroundingTiles = LevelHelpers.GetAdjacentTiles(this, x, z);
 
             surroundingTiles.ForEach(tile => FloodFill(tile.X, tile.Z, tileList));
         }

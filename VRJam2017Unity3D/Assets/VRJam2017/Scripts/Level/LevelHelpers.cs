@@ -48,6 +48,33 @@ public static class LevelHelpers
         return LevelController.Instance.Terrain.SampleHeight(worldPosition);
     }
 
+    public static List<LevelTile> GetAdjacentTiles(LevelModel model, int xPosition, int zPosition)
+    {
+        List<LevelTile> tiles = new List<LevelTile>();
+
+        for (int x = (int)xPosition - 1; x <= (int)xPosition + 1; ++x)
+        {
+            if (!LevelHelpers.TileIsInBounds(model, x, zPosition))
+            {
+                continue;
+            }
+
+            tiles.Add(model.Tiles[x, zPosition]);
+        }
+
+        for (int z = (int)zPosition - 1; z <= (int)zPosition + 1; ++z)
+        {
+            if (!LevelHelpers.TileIsInBounds(model, xPosition, z))
+            {
+                continue;
+            }
+
+            tiles.Add(model.Tiles[xPosition, z]);
+        }
+
+        return tiles;
+    }
+
     public static List<LevelTile> GetSurroundingTiles(LevelModel model, int xPosition, int zPosition)
     {
         List<LevelTile> tiles = new List<LevelTile>();

@@ -2141,6 +2141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5ee3704b2316d4cb37a4dcb23349ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skinMaterials: []
+  eyeMaterials: []
   CurrentFaction: 1
 --- !u!114 &114417188427970210
 MonoBehaviour:
@@ -2153,8 +2155,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8743c2a5cc69348a8a1a5c54d1d53801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AutoDig: 1
   DigTime: 0.5
-  DigDistance: 2
+  DigDistance: 4
 --- !u!114 &114537054711701774
 MonoBehaviour:
   m_ObjectHideFlags: 1

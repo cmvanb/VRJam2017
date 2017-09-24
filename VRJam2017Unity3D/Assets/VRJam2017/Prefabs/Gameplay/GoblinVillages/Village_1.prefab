@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 135853660134960080}
   m_Layer: 0
   m_Name: collider (2)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 135530749375618428}
   m_Layer: 0
   m_Name: collider (4)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 135589504774519038}
   m_Layer: 0
   m_Name: collider (11)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 135391467663866288}
   m_Layer: 0
   m_Name: collider (9)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 135899730005615832}
   m_Layer: 0
   m_Name: collider (5)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 135919474959109076}
   m_Layer: 0
   m_Name: collider (6)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 135005766624928288}
   m_Layer: 0
   m_Name: collider (3)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -471,7 +471,7 @@ GameObject:
   - component: {fileID: 135334876541764088}
   m_Layer: 0
   m_Name: collider (4)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 135634837109563282}
   m_Layer: 0
   m_Name: collider (12)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 114688333191632020}
   m_Layer: 0
   m_Name: Village_1
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -604,7 +604,7 @@ GameObject:
   - component: {fileID: 135509673501056002}
   m_Layer: 0
   m_Name: collider
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -690,7 +690,7 @@ GameObject:
   - component: {fileID: 135488041807258516}
   m_Layer: 0
   m_Name: collider
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 135895344165577622}
   m_Layer: 0
   m_Name: collider (10)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -739,7 +739,7 @@ GameObject:
   - component: {fileID: 135609952205294002}
   m_Layer: 0
   m_Name: collider (6)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -907,7 +907,7 @@ GameObject:
   - component: {fileID: 135098554264939532}
   m_Layer: 0
   m_Name: collider (8)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1058,7 +1058,7 @@ GameObject:
   - component: {fileID: 135951497857773862}
   m_Layer: 0
   m_Name: collider (1)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1126,7 +1126,7 @@ GameObject:
   - component: {fileID: 135342301220810960}
   m_Layer: 0
   m_Name: collider
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1191,7 +1191,7 @@ GameObject:
   - component: {fileID: 135341318091605110}
   m_Layer: 0
   m_Name: collider (7)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1239,7 +1239,7 @@ GameObject:
   - component: {fileID: 135626620312531534}
   m_Layer: 0
   m_Name: collider (1)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1286,7 +1286,7 @@ GameObject:
   - component: {fileID: 135091001647360868}
   m_Layer: 0
   m_Name: collider (5)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1371,7 +1371,7 @@ GameObject:
   - component: {fileID: 135337370662702812}
   m_Layer: 0
   m_Name: collider (3)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -4388,7 +4388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a8dff130f0424058a45e7a24c3a33fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goblin: {fileID: 1013783193485856, guid: 74d5070bc93604b67a3bbedfb969307b, type: 2}
+  goblin: {fileID: 1013783193485856, guid: a80625f0ab20249d7aad3f8b645810fd, type: 2}
 --- !u!135 &135005766624928288
 SphereCollider:
   m_ObjectHideFlags: 1
