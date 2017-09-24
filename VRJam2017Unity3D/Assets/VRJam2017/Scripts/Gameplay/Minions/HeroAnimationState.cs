@@ -21,6 +21,11 @@ public class HeroAnimationState : MonoBehaviour
         Play("idle");
     }
 
+    void Heal(float amount)
+    {
+        Play("healing");
+    }
+
     void Attack()
     {
         Play("swingsword");
