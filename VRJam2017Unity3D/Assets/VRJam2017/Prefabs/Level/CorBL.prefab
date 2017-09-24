@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4514869866854778}
   m_Layer: 0
   m_Name: CorBL
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,9 +36,10 @@ GameObject:
   - component: {fileID: 4284007831051242}
   - component: {fileID: 33679461164467432}
   - component: {fileID: 23968751620516538}
+  - component: {fileID: 65447227370609336}
   m_Layer: 0
   m_Name: Wall_Corner_01
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -109,3 +110,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1908490635075850}
   m_Mesh: {fileID: 4300000, guid: b46f5584114a8714fa1b63faf961d210, type: 3}
+--- !u!65 &65447227370609336
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1908490635075850}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.5457, y: 4.0454955, z: 4.324331}
+  m_Center: {x: -2.272849, y: 2.0177104, z: 1.8425429}

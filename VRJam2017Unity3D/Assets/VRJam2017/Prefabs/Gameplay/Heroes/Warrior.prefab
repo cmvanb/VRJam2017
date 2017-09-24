@@ -2086,7 +2086,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1013783193485856}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 185f409d893404416a582c4639877555, type: 3}
   m_Name: 
@@ -2154,6 +2154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DigTime: 0.5
+  DigDistance: 2
 --- !u!114 &114537054711701774
 MonoBehaviour:
   m_ObjectHideFlags: 1
