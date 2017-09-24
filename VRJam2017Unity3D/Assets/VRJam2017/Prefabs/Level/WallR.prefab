@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4454917939034692}
   - component: {fileID: 33431761611202600}
   - component: {fileID: 23569330125377614}
+  - component: {fileID: 65981414319214728}
   m_Layer: 0
   m_Name: Wall_01 (2)
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -38,7 +39,7 @@ GameObject:
   - component: {fileID: 4428759708139016}
   m_Layer: 0
   m_Name: WallR
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,3 +110,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1466866379433380}
   m_Mesh: {fileID: 4300000, guid: 1ca725cc8f039fc47ba09c3dfb4d8d86, type: 3}
+--- !u!65 &65981414319214728
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1466866379433380}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.94106615, y: 4.0105968, z: 4.0000043}
+  m_Center: {x: -0.20240147, y: 2.000262, z: 2.0000007}

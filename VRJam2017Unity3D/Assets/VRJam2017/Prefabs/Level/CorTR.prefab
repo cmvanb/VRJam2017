@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4701453421736652}
   - component: {fileID: 33605147287496102}
   - component: {fileID: 23843776061569888}
+  - component: {fileID: 65390696802559028}
   m_Layer: 0
   m_Name: Wall_Corner_01
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -38,7 +39,7 @@ GameObject:
   - component: {fileID: 4363651905903454}
   m_Layer: 0
   m_Name: CorTR
-  m_TagString: Untagged
+  m_TagString: ExcludeTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,3 +110,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1181627580729712}
   m_Mesh: {fileID: 4300000, guid: b46f5584114a8714fa1b63faf961d210, type: 3}
+--- !u!65 &65390696802559028
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1181627580729712}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.5457, y: 4.0454955, z: 4.324331}
+  m_Center: {x: -2.272849, y: 2.0177104, z: 1.8425429}
