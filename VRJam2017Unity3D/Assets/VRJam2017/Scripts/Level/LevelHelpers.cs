@@ -9,9 +9,13 @@ public static class LevelHelpers
     public static Vector3 WorldPosFromTilePos(int x, int z)
     {
         // TODO: GET Y FROM TERRAIN HEIGHT
-        float y = 0f;
+        Vector3 result = new Vector3(x * TileSize, 0f, z * TileSize);
 
-        return new Vector3(x * TileSize, y, z * TileSize);
+        float y = GetTerrainHeightAtWorldPos(result);
+
+        result = new Vector3(result.x, y, result.z);
+
+        return result;
     }
 
     public static Vector2 TilePosFromWorldPos(Vector3 position)
