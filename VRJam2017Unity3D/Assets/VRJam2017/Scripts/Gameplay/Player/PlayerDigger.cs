@@ -57,14 +57,15 @@ public class PlayerDigger : MonoBehaviour
             if (paintMode == PaintModes.ERASE)
             {
                 tile.MarkedForDigging = false;
+                MinionManager.Instance.RemoveDigTile(tile);
             }
             else if (paintMode == PaintModes.PAINT)
             {
                 tile.MarkedForDigging = true;
+                MinionManager.Instance.AddDigTile(tile);
             }
 
             LevelController.Instance.UpdateTileDigMarker(tile);
-            UpdateDigList();
         }
     }
 
@@ -74,10 +75,5 @@ public class PlayerDigger : MonoBehaviour
         return !tile.Opened
             && (LevelHelpers.IsTileAdjacentToDigMarkedTile(LevelController.Instance.Model, tile.X, tile.Z)
                 || LevelHelpers.IsTileAdjacentToHell(LevelController.Instance.Model, tile.X, tile.Z));
-    }
-
-    public void UpdateDigList()
-    {
-        // TODO: implement
     }
 }
