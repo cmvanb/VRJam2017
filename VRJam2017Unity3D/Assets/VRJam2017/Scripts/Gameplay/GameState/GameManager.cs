@@ -5,8 +5,6 @@ using VRTK;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    public Vector3 SpawnPosition;
-
     public float MinionSpawnDistance = 10f;
     public int StartingMinions = 10;
 
@@ -19,15 +17,13 @@ public class GameManager : MonoSingleton<GameManager>
     {
         PlayArea = VRTK_DeviceFinder.PlayAreaTransform();
         Headset = VRTK_DeviceFinder.DeviceTransform(VRTK_DeviceFinder.Devices.Headset);
-
-        SpawnPlayer();
     }
 
-    public void SpawnPlayer()
+    public void SpawnPlayer(Vector3 spawnPosition)
     {
-        SetPlayerPosition(SpawnPosition);
+        SetPlayerPosition(spawnPosition);
 
-        SpawnStartingMinions(StartingMinions);
+        SpawnStartingMinions(StartingMinions, spawnPosition);
     }
 
     public void SetPlayerPosition(Vector3 position)
@@ -35,12 +31,12 @@ public class GameManager : MonoSingleton<GameManager>
         // HACK - APPEARS TO BE UNNECESSARY NOW FOR [INSERT DARK MAGIC REASONS HERE].
         float playerHeightOffset = 0f;
 
-        float terrainHeight = LevelHelpers.GetTerrainHeightAtWorldPos(SpawnPosition);
+        float terrainHeight = LevelHelpers.GetTerrainHeightAtWorldPos(position);
 
         PlayArea.position = new Vector3(position.x, terrainHeight + playerHeightOffset, position.z);
     }
 
-    public void SpawnStartingMinions(int num)
+    public void SpawnStartingMinions(int num, Vector3 centerPosition)
     {
         float interval = (2 * Mathf.PI) / num;
 
@@ -52,7 +48,7 @@ public class GameManager : MonoSingleton<GameManager>
             float z = MinionSpawnDistance * Mathf.Sin(angle);
             float y = LevelHelpers.GetTerrainHeightAtWorldPos(new Vector3(x, 0f, z));
 
-            Vector3 position = (new Vector3(x + SpawnPosition.x, y, z + SpawnPosition.z));
+            Vector3 position = (new Vector3(x + centerPosition.x, y, z + centerPosition.z));
 
             MinionManager.Instance.SpawnMinion(position);
         }
