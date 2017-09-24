@@ -61,7 +61,7 @@ public class MinionManager : MonoSingleton<MinionManager>
 
 	void Update()
 	{
-		if(Input.GetMouseButtonDown(1))
+		if(Input.GetMouseButton(1))
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
@@ -71,7 +71,7 @@ public class MinionManager : MonoSingleton<MinionManager>
 
 				LevelTile tile = LevelController.Instance.Model.Tiles[(int)tilePos.x, (int)tilePos.y];
 
-				if(tile != null)
+				if(tile != null && !digList.Contains(tile))
 				{
 					AddDigTile(tile);
 				}
@@ -97,7 +97,10 @@ public class MinionManager : MonoSingleton<MinionManager>
 					{
 						GameObject minion = GetNearestNonBusyMinion(tile);
 
-						minion.GetComponent<ActionQueue>().InsertBeforeCurrent(new DigAction(minion, new Vector2(tile.X, tile.Z)));
+						if(minion)
+						{
+							minion.GetComponent<ActionQueue>().InsertBeforeCurrent(new DigAction(minion, new Vector2(tile.X, tile.Z)));
+						}
 					}
 				}
 			});

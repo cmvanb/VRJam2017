@@ -2244,7 +2244,7 @@ MonoBehaviour:
   eyeMaterials:
   - {fileID: 23665381680546698}
   - {fileID: 23343512446354736}
-  CurrentFaction: 0
+  CurrentFaction: 2
 --- !u!114 &114502739251708064
 MonoBehaviour:
   m_ObjectHideFlags: 1

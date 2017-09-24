@@ -36,6 +36,11 @@ public class MinionAnimationState : MonoBehaviour
         Play("dieing");
     }
 
+    void DoneDigging()
+    {
+        Play(GetIdle());
+    }
+
     string GetIdle()
     {
         return Random.value > 0.5 ? "idle" : "idle2";

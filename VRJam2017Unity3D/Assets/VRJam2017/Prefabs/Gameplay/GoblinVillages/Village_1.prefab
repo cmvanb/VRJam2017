@@ -4388,7 +4388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a8dff130f0424058a45e7a24c3a33fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goblin: {fileID: 1013783193485856, guid: 74d5070bc93604b67a3bbedfb969307b, type: 2}
+  goblin: {fileID: 1013783193485856, guid: a80625f0ab20249d7aad3f8b645810fd, type: 2}
 --- !u!135 &135005766624928288
 SphereCollider:
   m_ObjectHideFlags: 1
