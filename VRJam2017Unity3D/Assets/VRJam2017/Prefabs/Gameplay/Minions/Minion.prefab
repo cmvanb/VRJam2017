@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 114834133602584352}
   - component: {fileID: 114188913269752980}
   - component: {fileID: 114003356375551618}
+  - component: {fileID: 65543147102757882}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Untagged
@@ -2122,6 +2123,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1554080434764116}
   m_Mesh: {fileID: 4300002, guid: 463868ea97c4cdf468935ea6b9d489ce, type: 3}
+--- !u!65 &65543147102757882
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1013783193485856}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: -0.36, z: 0}
 --- !u!95 &95471460730591694
 Animator:
   serializedVersion: 3

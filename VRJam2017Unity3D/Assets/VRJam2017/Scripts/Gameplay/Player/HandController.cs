@@ -25,6 +25,7 @@ public class HandController : MonoBehaviour
     private PlayerAttacker attacker;
     private PlayerCommander commander;
     private PlayerDigger digger;
+    private PlayerGrabber grabber;
     private PlayerFlyer flyer;
     private PlayerMover mover;
     private PlayerSummoner summoner;
@@ -44,6 +45,7 @@ public class HandController : MonoBehaviour
         commander = PlayerController.GetComponent<PlayerCommander>();
         digger = PlayerController.GetComponent<PlayerDigger>();
         flyer = PlayerController.GetComponent<PlayerFlyer>();
+        grabber = PlayerController.GetComponent<PlayerGrabber>();
         mover = PlayerController.GetComponent<PlayerMover>();
         summoner = PlayerController.GetComponent<PlayerSummoner>();
 
@@ -118,14 +120,10 @@ public class HandController : MonoBehaviour
         {
             if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
-                // TODO: implement this check
-                bool minionInGrabRange = false;
+                grabber.Grab();
 
-                if (minionInGrabRange)
-                {
-                    // TODO: implement - grab minion
-                }
-                else
+                // If grabbing failed, we're allowed to summon.
+                if (!grabber.IsGrabbing)
                 {
                     // Start summoning.
                     SetPointer(true);
@@ -179,6 +177,11 @@ public class HandController : MonoBehaviour
                 {
                     commander.GuardCommand(destination);
                 }
+            }
+
+            if (grabber.IsGrabbing)
+            {
+                grabber.Drop();
             }
         }
     }

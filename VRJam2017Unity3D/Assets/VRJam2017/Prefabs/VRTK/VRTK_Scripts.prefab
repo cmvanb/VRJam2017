@@ -552,6 +552,7 @@ GameObject:
   - component: {fileID: 114212114934425372}
   - component: {fileID: 114603537620649834}
   - component: {fileID: 114905196701248462}
+  - component: {fileID: 114981735733246684}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -2185,6 +2186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f703466b227165e48a0a7eafc27dbfae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DigMarkerWorldPositionY: 4.25
   IsDigging: 0
 --- !u!114 &114356416868463702
 MonoBehaviour:
@@ -2392,6 +2394,19 @@ MonoBehaviour:
   uiClickPressed: 0
   menuPressed: 0
   controllerVisible: 1
+--- !u!114 &114981735733246684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860414011525218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06d176a767fc63d4cb939e07421917df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RightHand: {fileID: 4296868934140038}
+  GrabRange: 1
 --- !u!114 &114992370304856244
 MonoBehaviour:
   m_ObjectHideFlags: 1
