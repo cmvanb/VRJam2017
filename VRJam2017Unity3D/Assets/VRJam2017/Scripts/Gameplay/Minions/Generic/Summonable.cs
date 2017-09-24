@@ -6,8 +6,6 @@ public class Summonable : MonoBehaviour
     [SerializeField]
     float range;
 
-    public bool BeingSummoned;
-
     void Summon(GameObject target)
     {
         if (isInRange(target))

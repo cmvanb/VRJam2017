@@ -3,13 +3,17 @@ using System.Collections;
 
 public class Digger : MonoBehaviour
 {
+    public bool AutoDig = true;
     public float DigTime = 2;
 
     public float DigDistance = 2;
     
     void Start()
     {
-        StartCoroutine(CheckDig());
+        if(AutoDig)
+        {
+            StartCoroutine(CheckDig());
+        }
     }
 
     IEnumerator CheckDig()
