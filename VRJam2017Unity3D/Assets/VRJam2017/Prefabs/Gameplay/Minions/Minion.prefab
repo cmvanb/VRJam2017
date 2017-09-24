@@ -2238,6 +2238,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5ee3704b2316d4cb37a4dcb23349ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skinMaterials:
+  - {fileID: 137468021888850610}
+  - {fileID: 23190223148331482}
+  eyeMaterials:
+  - {fileID: 23665381680546698}
+  - {fileID: 23343512446354736}
   CurrentFaction: 0
 --- !u!114 &114502739251708064
 MonoBehaviour:
