@@ -50,7 +50,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1508197311072142}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -99,6 +99,7 @@ MonoBehaviour:
     type: 2}
   CornerBottomRightPrefab: {fileID: 1426191928786398, guid: 4020d65cd18476649a8947f100f677a6,
     type: 2}
+  HeroSpawn: {fileID: 1633321696326478, guid: 903c8d72d1cf9475dbfac3b5d2fc13ce, type: 2}
 --- !u!154 &154951432308707182
 TerrainCollider:
   m_ObjectHideFlags: 1
