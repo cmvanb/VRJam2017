@@ -1,9 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using VRTK;
 
 public class PlayerFlyer : MonoBehaviour
 {
+    public float FlyingHeight = 20f;
+    public float FlightDuration = 1f;
+    public float FlyingTeleportDistance = 32f;
+    public float FlyingTeleportDuration = 1f;
+
     // FLIGHT MODE
     public event FlightStateChangedHandler FlightStateChanged;
     public delegate void FlightStateChangedHandler(object sender, FlightStates newState);
@@ -34,17 +41,57 @@ public class PlayerFlyer : MonoBehaviour
         }
     }
 
-    public void ToggleFlightMode()
+    private PlayerMover mover;
+
+    public void Start()
     {
-        if (flightState == FlightStates.FLYING)
+        mover = GetComponent<PlayerMover>();
+    }
+
+    public void Fly()
+    {
+        if (flightState != FlightStates.GROUNDED)
         {
-            flightState = FlightStates.GROUNDED;
-        }
-        else if (flightState == FlightStates.GROUNDED)
-        {
-            flightState = FlightStates.FLYING;
+            return;
         }
 
-        Debug.LogWarning("TOGGLE: " + FlightState.ToString());
+        Debug.LogWarning("FLY");
+
+        flightState = FlightStates.FLYING;
+
+        Transform playArea = GameManager.Instance.PlayArea;
+
+        Vector3 flyingPosition = playArea.position + new Vector3(0f, FlyingHeight, 0f);
+
+        playArea.DOMove(flyingPosition, FlightDuration).SetEase(Ease.InOutQuad);
+
+        mover.SetTeleportDistance(FlyingTeleportDistance);
+    }
+
+    public void Land(DestinationMarkerEventArgs dashArgs)
+    {
+        if (flightState != FlightStates.FLYING)
+        {
+            return;
+        }
+
+        if (dashArgs.target == null)
+        {
+            Debug.LogError("dashArgs target is null, can't dash");
+        }
+
+        Transform playArea = GameManager.Instance.PlayArea;
+
+        playArea.DOKill();
+
+        Debug.LogWarning("LAND");
+
+        flightState = FlightStates.GROUNDED;
+
+        playArea.DOMove(dashArgs.destinationPosition, FlightDuration).SetEase(Ease.InOutQuad);
+
+        //mover.Dash(dashArgs, FlyingTeleportDuration);
+
+        mover.SetTeleportDistance(mover.GroundTeleportDistance);
     }
 }
