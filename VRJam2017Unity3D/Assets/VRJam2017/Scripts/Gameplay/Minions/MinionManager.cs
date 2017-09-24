@@ -87,7 +87,7 @@ public class MinionManager : MonoSingleton<MinionManager>
 
 			digList.ForEach(tile => {
 				// Do we have surrounding tiles in Hell?
-				List<LevelTile> surrounding = LevelHelpers.GetSurroundingTiles(LevelController.Instance.Model, tile.X, tile.Z);
+				List<LevelTile> surrounding = LevelHelpers.GetAdjacentTiles(LevelController.Instance.Model, tile.X, tile.Z);
 				LevelTile found = surrounding.Find(obj => (obj.Opened && LevelHelpers.IsTileInHell(LevelController.Instance.Model, obj.X, obj.Z)));
 
 				// If so, dig them with some minions
