@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 4905189452731652}
   - component: {fileID: 114286535809766022}
   - component: {fileID: 114045866716324112}
+  - component: {fileID: 114311822838145944}
   - component: {fileID: 114212114934425372}
   - component: {fileID: 114603537620649834}
   - component: {fileID: 114905196701248462}
@@ -2031,6 +2032,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30b1936ba1e672468defcb25ac838e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FlyingHeight: 20
+  FlightDuration: 2
+  FlyingTeleportDistance: 32
 --- !u!114 &114239989469315858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2185,6 +2189,17 @@ MonoBehaviour:
   controller: {fileID: 0}
   interactUse: {fileID: 0}
   customOrigin: {fileID: 0}
+--- !u!114 &114311822838145944
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860414011525218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f703466b227165e48a0a7eafc27dbfae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114356416868463702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2275,6 +2290,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DashTeleport: {fileID: 114992370304856244}
+  GroundTeleportDistance: 8
+  PointerRenderer: {fileID: 0}
 --- !u!114 &114781533121071194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2420,7 +2437,7 @@ MonoBehaviour:
   layersToIgnore:
     serializedVersion: 2
     m_Bits: 4
-  normalLerpTime: 0.1
+  normalLerpTime: 0.2
   minSpeedMps: 50
   capsuleTopOffset: 0.2
   capsuleBottomOffset: 0.5

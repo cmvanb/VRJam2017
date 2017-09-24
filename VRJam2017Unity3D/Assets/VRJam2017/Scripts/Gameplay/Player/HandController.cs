@@ -37,6 +37,8 @@ public class HandController : MonoBehaviour
         mover = PlayerController.GetComponent<PlayerMover>();
         summoner = PlayerController.GetComponent<PlayerSummoner>();
 
+        mover.PointerRenderer = pointerRenderer;
+
         SetPointerActive(false);
 
         pointer.DestinationMarkerHover += (object marker, DestinationMarkerEventArgs args) => {
@@ -54,9 +56,14 @@ public class HandController : MonoBehaviour
 
     public void Update()
     {
-        if (controllerEvents.touchpadPressed
-            && hand == Hands.Left
-            && flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
+        if (mover.IsTeleporting)
+        {
+            SetPointerActive(false);
+            return;
+        }
+
+        if (hand == Hands.Left
+            && controllerEvents.touchpadPressed)
         {
             // Hide pointer if pointing up (flight), show if pointing down (dash).
             if (pointer.IsPointerActive() && IsPointerPointingUp())
@@ -73,6 +80,12 @@ public class HandController : MonoBehaviour
     private void OnTriggerPressed(object sender, ControllerInteractionEventArgs e)
     {
         Debug.Log(hand.ToString() + " trigger pressed");
+
+        // Can't do stuff while teleporting.
+        if (mover.IsTeleporting)
+        {
+            return;
+        }
 
         if (hand == Hands.Left)
         {
@@ -117,6 +130,12 @@ public class HandController : MonoBehaviour
 
     private void OnTriggerReleased(object sender, ControllerInteractionEventArgs e)
     {
+        // Can't do stuff while teleporting.
+        if (mover.IsTeleporting)
+        {
+            return;
+        }
+
         Debug.Log(hand.ToString() + " trigger released");
 
         if (hand == Hands.Left)
@@ -151,26 +170,46 @@ public class HandController : MonoBehaviour
 
     private void OnTouchpadPressed(object sender, ControllerInteractionEventArgs e)
     {
+        // Can't do stuff while teleporting.
+        if (mover.IsTeleporting)
+        {
+            return;
+        }
+
         Debug.Log(hand.ToString() + " touchpad pressed");
     }
 
     private void OnTouchpadReleased(object sender, ControllerInteractionEventArgs e)
     {
+        // Can't do stuff while teleporting.
+        if (mover.IsTeleporting)
+        {
+            return;
+        }
+
         Debug.Log(hand.ToString() + " touchpad released");
 
         if (hand == Hands.Left)
         {
+            SetPointerActive(false);
+
             if (flyer.FlightState == PlayerFlyer.FlightStates.GROUNDED)
             {
-                SetPointerActive(false);
-
                 if (IsPointerPointingUp())
                 {
-                    flyer.ToggleFlightMode();
+                    flyer.Fly();
                 }
                 else
                 {
-                    mover.Dash(destinationArgs);
+                    mover.Dash(destinationArgs, mover.GroundTeleportDuration);
+                }
+            }
+            else if (flyer.FlightState == PlayerFlyer.FlightStates.FLYING)
+            {
+                if (!IsPointerPointingUp()
+                    && PositionIsValidLandingZone(destination))
+                {
+                    flyer.Land(destinationArgs);
                 }
             }
         }
@@ -179,6 +218,30 @@ public class HandController : MonoBehaviour
     private bool IsPointerPointingUp()
     {
         if (Vector3.Dot(Vector3.up, transform.forward) > 0.5)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool PositionIsValidLandingZone(Vector3 destination)
+    {
+        Vector2 tilePos = LevelHelpers.TilePosFromWorldPos(destination);
+
+        LevelModel model = LevelController.Instance.Model;
+
+        int x = (int)tilePos.x;
+        int z = (int)tilePos.y;
+
+        if (!LevelHelpers.TileIsInBounds(model, x, z))
+        {
+            return false;
+        }
+
+        LevelTile tile = model.Tiles[x, z];
+
+        if (tile.Opened)
         {
             return true;
         }
