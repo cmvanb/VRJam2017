@@ -55,7 +55,7 @@ public class PlayerFlyer : MonoBehaviour
             return;
         }
 
-        Debug.LogWarning("FLY");
+        // Debug.LogWarning("FLY");
 
         flightState = FlightStates.FLYING;
 
@@ -84,7 +84,7 @@ public class PlayerFlyer : MonoBehaviour
 
         playArea.DOKill();
 
-        Debug.LogWarning("LAND");
+        // Debug.LogWarning("LAND");
 
         flightState = FlightStates.GROUNDED;
 

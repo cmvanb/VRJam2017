@@ -21,7 +21,7 @@ public class PlayerDigger : MonoBehaviour
         // TODO: improve by using raycast to dig marker height
         Vector3 target = new Vector3(args.destinationPosition.x, DigMarkerWorldPositionY, args.destinationPosition.z);
 
-        Debug.LogWarning("START DIG");
+        // Debug.LogWarning("START DIG");
 
         IsDigging = true;
 
@@ -37,7 +37,7 @@ public class PlayerDigger : MonoBehaviour
 
     public void StopDig()
     {
-        Debug.LogWarning("STOP DIG");
+        // Debug.LogWarning("STOP DIG");
         IsDigging = false;
     }
 

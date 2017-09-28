@@ -32,14 +32,12 @@ public class LevelController : MonoSingleton<LevelController>
 
     public void Start()
     {
-
         Generate();
-
-        Vector3 spawnPosition = LevelHelpers.WorldPosFromTilePos((int)Model.HellSpawn.x, (int)Model.HellSpawn.y);
 
         CreateObjectOnTile(Model.HeavenSpawnTile, HeroSpawn);
 
         float buildingSpawnDist = 4;
+
         foreach(GameObject prefab in HellStartingBuildings)
         {
             float angle = Random.value * Mathf.PI * 2;
@@ -61,9 +59,8 @@ public class LevelController : MonoSingleton<LevelController>
                 CreateObjectOnTile(Model.Tiles[(int)roomPosition.x, (int)roomPosition.y], prefab);
             }
         }
-         
-        
-        GameManager.Instance.SpawnPlayer(spawnPosition);
+
+        GameManager.Instance.SpawnPlayer();
     }
 
     public void Generate()

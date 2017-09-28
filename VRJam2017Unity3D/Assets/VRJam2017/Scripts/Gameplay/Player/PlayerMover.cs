@@ -16,7 +16,7 @@ public class PlayerMover : MonoBehaviour
 
     public void Dash(DestinationMarkerEventArgs dashArgs, float duration)
     {
-        Debug.LogWarning("DASH to " + dashArgs.destinationPosition);
+        // Debug.LogWarning("DASH to " + dashArgs.destinationPosition);
 
         IsTeleporting = true;
 

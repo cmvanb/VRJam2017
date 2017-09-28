@@ -93,7 +93,7 @@ public class HandController : MonoBehaviour
 
     private void OnTriggerPressed(object sender, ControllerInteractionEventArgs e)
     {
-        Debug.Log(hand.ToString() + " trigger pressed");
+        // Debug.Log(hand.ToString() + " trigger pressed");
 
         // Can't do stuff while teleporting.
         if (mover.IsTeleporting)
@@ -142,7 +142,7 @@ public class HandController : MonoBehaviour
             return;
         }
 
-        Debug.Log(hand.ToString() + " trigger released");
+        // Debug.Log(hand.ToString() + " trigger released");
 
         if (hand == Hands.LEFT)
         {
@@ -194,7 +194,7 @@ public class HandController : MonoBehaviour
             return;
         }
 
-        Debug.Log(hand.ToString() + " touchpad pressed");
+        // Debug.Log(hand.ToString() + " touchpad pressed");
     }
 
     private void OnTouchpadReleased(object sender, ControllerInteractionEventArgs e)
@@ -205,7 +205,7 @@ public class HandController : MonoBehaviour
             return;
         }
 
-        Debug.Log(hand.ToString() + " touchpad released");
+        // Debug.Log(hand.ToString() + " touchpad released");
 
         if (hand == Hands.LEFT)
         {

@@ -67,7 +67,9 @@ public class MovementAction : UnitAction
 
     public override void Stop()
     {
-        if(agent.isOnNavMesh && !agent.isStopped)
+        if (agent 
+            && agent.isOnNavMesh 
+            && !agent.isStopped)
         {
             agent.ResetPath();
 

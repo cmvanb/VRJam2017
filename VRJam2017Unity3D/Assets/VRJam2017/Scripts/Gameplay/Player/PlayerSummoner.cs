@@ -14,7 +14,7 @@ public class PlayerSummoner : MonoBehaviour
 
     public void Summon()
     {
-        Debug.LogWarning("SUMMON");
+        // Debug.LogWarning("SUMMON");
         IsSummoning = true;
 
         StartCoroutine(DelayedSummon());
