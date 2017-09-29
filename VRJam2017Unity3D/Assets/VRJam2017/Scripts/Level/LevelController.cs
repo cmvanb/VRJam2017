@@ -27,51 +27,31 @@ public class LevelController : MonoSingleton<LevelController>
 
     public GameObject[] HellStartingBuildings;
 
+    public Material CeilingMaskMaterial;
+
     [Range(0,1)]
     public float GoblinVillageSpawnChance = 0.1f;
+
+    private Texture2D ceilingMaskTexture = null;
 
     public void Start()
     {
         Generate();
-
-        CreateObjectOnTile(Model.HeavenSpawnTile, HeroSpawn);
-
-        float buildingSpawnDist = 4;
-
-        foreach(GameObject prefab in HellStartingBuildings)
-        {
-            float angle = Random.value * Mathf.PI * 2;
-
-            float x = buildingSpawnDist * Mathf.Cos(angle);
-            float z = buildingSpawnDist * Mathf.Sin(angle);
-
-            Vector2 pos = Model.HellSpawn + new Vector2(x,z);
-
-            CreateObjectOnTile(Model.Tiles[(int)pos.x, (int)pos.y], prefab);
-        }
-
-        foreach(Vector3 roomPosition in Model.Rooms)
-        {
-            if (Random.value > 1 - GoblinVillageSpawnChance)
-            {
-                GameObject prefab = GoblinVillages[(int)(Random.value*GoblinVillages.Length)];
-
-                CreateObjectOnTile(Model.Tiles[(int)roomPosition.x, (int)roomPosition.y], prefab);
-            }
-        }
 
         GameManager.Instance.SpawnPlayer();
     }
 
     public void Generate()
     {
+        // Build level model.
         TerrainData terrainData = Terrain.terrainData;
 
-        int width = (int)(terrainData.size.x / LevelHelpers.TileSize);
-        int length = (int)(terrainData.size.z / LevelHelpers.TileSize);
+        int width = LevelHelpers.TileCountX;
+        int length = LevelHelpers.TileCountZ;
 
         Model = new LevelModel(width, length);
 
+        // Update the objects for each tile.
         for (int z = 0; z < length; ++z)
         {
             for (int x = 0; x < width; ++x)
@@ -87,9 +67,37 @@ public class LevelController : MonoSingleton<LevelController>
             }
         }
 
-        Terrain.transform.parent = transform;
+        // Create the heaven base.
+        CreateObjectOnTile(Model.HeavenSpawnTile, HeroSpawn);
 
-        Debug.Log("generated level");
+        // Create the hell base.
+        float buildingSpawnDist = 4;
+
+        foreach(GameObject prefab in HellStartingBuildings)
+        {
+            float angle = Random.value * Mathf.PI * 2;
+
+            float x = buildingSpawnDist * Mathf.Cos(angle);
+            float z = buildingSpawnDist * Mathf.Sin(angle);
+
+            Vector2 pos = Model.HellSpawn + new Vector2(x,z);
+
+            CreateObjectOnTile(Model.Tiles[(int)pos.x, (int)pos.y], prefab);
+        }
+
+        // Create the goblin villages.
+        foreach(Vector3 roomPosition in Model.Rooms)
+        {
+            if (Random.value > 1 - GoblinVillageSpawnChance)
+            {
+                GameObject prefab = GoblinVillages[(int)(Random.value*GoblinVillages.Length)];
+
+                CreateObjectOnTile(Model.Tiles[(int)roomPosition.x, (int)roomPosition.y], prefab);
+            }
+        }
+
+        // Create the ceiling mask.
+        CreateCeilingMask();
     }
 
     public void Dig(int x, int z)
@@ -118,6 +126,7 @@ public class LevelController : MonoSingleton<LevelController>
         }
 
         Model.UpdateContiguousTilesFrom(x, z);
+        UpdateCeilingMask();
     }
 
     public void UpdateTileDigMarker(LevelTile tile)
@@ -224,5 +233,45 @@ public class LevelController : MonoSingleton<LevelController>
         created.transform.parent = (parent == null) ? transform : parent;
 
         return created;
+    }
+
+    private void CreateCeilingMask()
+    {
+        ceilingMaskTexture = new Texture2D(LevelHelpers.TileCountX, LevelHelpers.TileCountZ);
+
+        ceilingMaskTexture.filterMode = FilterMode.Point;
+
+        UpdateCeilingMask();
+
+        GameObject ceilingMask = GameObject.CreatePrimitive(PrimitiveType.Quad);
+        ceilingMask.name = "CeilingMask";
+        ceilingMask.transform.parent = transform;
+        ceilingMask.transform.position = new Vector3(LevelHelpers.TerrainSizeX / 2f, LevelHelpers.CeilingHeight, LevelHelpers.TerrainSizeZ / 2f);
+        ceilingMask.transform.eulerAngles = new Vector3(90f, 0f, 0f);
+        ceilingMask.transform.localScale = new Vector3(LevelHelpers.TerrainSizeX, LevelHelpers.TerrainSizeZ);
+
+        MeshRenderer renderer = ceilingMask.GetComponent<MeshRenderer>();
+        renderer.material = CeilingMaskMaterial;
+        renderer.material.mainTexture = ceilingMaskTexture;
+    }
+
+    private void UpdateCeilingMask()
+    {
+        for (int z = 0; z < LevelHelpers.TileCountZ; ++z)
+        {
+            for (int x = 0; x < LevelHelpers.TileCountX; ++x)
+            {
+                if (Model.HellContiguousTiles[x, z] != null)
+                {
+                    ceilingMaskTexture.SetPixel(x, z, Color.clear);
+                }
+                else
+                {
+                    ceilingMaskTexture.SetPixel(x, z, Color.black);
+                }
+            }
+        }
+
+        ceilingMaskTexture.Apply();
     }
 }

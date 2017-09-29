@@ -3,12 +3,44 @@ using UnityEngine;
 
 public static class LevelHelpers
 {
-    public static float TerrainSize = 1024f;
+    public static float TerrainSizeX
+    {
+        get
+        {
+            return LevelController.Instance.Terrain.terrainData.size.x;
+        }
+    }
+
+    public static float TerrainSizeZ
+    {
+        get
+        {
+            return LevelController.Instance.Terrain.terrainData.size.z;
+        }
+    }
+
     public static float TileSize = 4f;
+
+    public static int TileCountX
+    {
+        get
+        {
+            return (int)(TerrainSizeX / TileSize);
+        }
+    }
+
+    public static int TileCountZ
+    {
+        get
+        {
+            return (int)(TerrainSizeZ / TileSize);
+        }
+    }
+
+    public static float CeilingHeight = 4f;
 
     public static Vector3 WorldPosFromTilePos(int x, int z)
     {
-        // TODO: GET Y FROM TERRAIN HEIGHT
         Vector3 result = new Vector3(x * TileSize, 0f, z * TileSize);
 
         float y = GetTerrainHeightAtWorldPos(result);

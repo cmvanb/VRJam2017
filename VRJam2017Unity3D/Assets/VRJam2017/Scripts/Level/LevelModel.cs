@@ -67,16 +67,17 @@ public class LevelModel
             }
         }
 
-        // Punch hole for starting location.
-        HellSpawn.Set(width/2, length/2);
+        // Punch hole for hell base / player spawn.
+        HellSpawn.Set(width / 2, length / 2);
 
         PunchHole(HellSpawn, SpawnHoleSize);
 
-        var angle = Random.value*Mathf.PI*2;
+        // Punch hole for heaven base / hero spawn.
+        var angle = Random.value * Mathf.PI * 2;
 
-        HeavenSpawn.x = (int)(width/2 + Mathf.Cos(angle)*(width - SpawnHoleSize)/2);
+        HeavenSpawn.x = (int)(width / 2 + Mathf.Cos(angle) * (width - SpawnHoleSize) / 2);
 
-        HeavenSpawn.y = (int)(length/2 + Mathf.Sin(angle)*(length - SpawnHoleSize)/2);
+        HeavenSpawn.y = (int)(length / 2 + Mathf.Sin(angle) * (length - SpawnHoleSize) / 2);
 
         PunchHole(HeavenSpawn, SpawnHoleSize);
 
@@ -103,7 +104,6 @@ public class LevelModel
         get { return Tiles[(int)HeavenSpawn.x, (int)HeavenSpawn.y]; }
     }
 
-
     public void UpdateContiguousTilesFrom(int x, int z)
     {
         List<LevelTile> surroundingTiles = LevelHelpers.GetAdjacentTiles(this, x, z);
@@ -113,46 +113,47 @@ public class LevelModel
         LevelTile foundHeaven = surroundingTiles.Find(tile => HeavenContiguousTiles[tile.X, tile.Z] != null);
 
         // if we're about to join, just copy everything to save a painful flood fill.
-        if(foundHell != null && foundHeaven != null)
+        if (foundHell != null 
+            && foundHeaven != null)
         {
             for (int iz = 0; iz < Length; ++iz)
             {
                 for (int ix = 0; ix < Width; ++ix)
                 {
-                    if(HellContiguousTiles[ix, iz] != null)
+                    if (HellContiguousTiles[ix, iz] != null)
                     {
                         HeavenContiguousTiles[ix, iz] = HellContiguousTiles[ix, iz];
                     }
-                    else if(HeavenContiguousTiles[ix, iz] != null)
+                    else if (HeavenContiguousTiles[ix, iz] != null)
                     {
                         HellContiguousTiles[ix, iz] = HeavenContiguousTiles[ix, iz];
                     }
                 }
             }
         }
-        
-        if(foundHell != null)
+
+        if (foundHell != null)
         {
-            FloodFill(x,z, HellContiguousTiles);
+            FloodFill(x, z, HellContiguousTiles);
         }
-        
-        if(foundHeaven != null)
+
+        if (foundHeaven != null)
         {
-            FloodFill(x,z, HeavenContiguousTiles);
+            FloodFill(x, z, HeavenContiguousTiles);
         }
     }
-    
-    void FloodFill(int x, int z, LevelTile[,] tileList)
+
+    private void FloodFill(int x, int z, LevelTile[,] tileList)
     {
-        if(tileList[x,z] == null && Tiles[x, z].Opened)
+        if (tileList[x, z] == null 
+            && Tiles[x, z].Opened)
         {
-            tileList[x,z] = Tiles[x,z];
+            tileList[x, z] = Tiles[x, z];
 
             List<LevelTile> surroundingTiles = LevelHelpers.GetAdjacentTiles(this, x, z);
 
             surroundingTiles.ForEach(tile => FloodFill(tile.X, tile.Z, tileList));
         }
-        
     }
 
     // private int[] WallT = new int[9] {
@@ -198,13 +199,13 @@ public class LevelModel
         // If the tile position is out of bounds, value is 2 (ignore tile).
         // If tile is inside bounds, opened = 1, closed = 0
         //int tileTL = (x > 0 && z > 0)                  ? (Tiles[x - 1, z - 1].Opened ? 1 : 0) : 2;
-        int tileTT = z > 0                             ? (Tiles[x, z - 1].Opened     ? 1 : 0) : 2;
+        int tileTT = z > 0 ? (Tiles[x, z - 1].Opened ? 1 : 0) : 2;
         // int tileTR = (x < Width - 1 && z > 0)          ? (Tiles[x + 1, z - 1].Opened ? 1 : 0) : 2;
-        int tileRR = x < Width - 1                     ? (Tiles[x + 1, z].Opened     ? 1 : 0) : 2;
+        int tileRR = x < Width - 1 ? (Tiles[x + 1, z].Opened ? 1 : 0) : 2;
         // int tileBR = (x < Width - 1 && z < Length - 1) ? (Tiles[x + 1, z + 1].Opened ? 1 : 0) : 2;
-        int tileBB = z < Length - 1                    ? (Tiles[x, z + 1].Opened     ? 1 : 0) : 2;
+        int tileBB = z < Length - 1 ? (Tiles[x, z + 1].Opened ? 1 : 0) : 2;
         // int tileBL = (x > 0 && z < Length - 1)         ? (Tiles[x - 1, z + 1].Opened ? 1 : 0) : 2;
-        int tileLL = x > 0                             ? (Tiles[x - 1, z].Opened     ? 1 : 0) : 2;
+        int tileLL = x > 0 ? (Tiles[x - 1, z].Opened ? 1 : 0) : 2;
 
         if (tileTT == 1)
         {
