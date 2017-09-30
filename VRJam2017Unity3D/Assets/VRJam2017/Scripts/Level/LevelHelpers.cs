@@ -37,7 +37,9 @@ public static class LevelHelpers
         }
     }
 
-    public static float CeilingHeight = 4f;
+    public static float WallPositionY = 3f;
+    public static float CeilingMaskPositionY = 7.01f;
+    public static float TileDigMarkerPositionY = 7.05f;
 
     public static Vector3 WorldPosFromTilePos(int x, int z)
     {
@@ -48,6 +50,11 @@ public static class LevelHelpers
         result = new Vector3(result.x, y, result.z);
 
         return result;
+    }
+
+    public static Vector3 WorldPosFromTilePosSetY(int x, int z, float worldY)
+    {
+        return new Vector3(x * TileSize, worldY, z * TileSize);
     }
 
     public static Vector2 TilePosFromWorldPos(Vector3 position)

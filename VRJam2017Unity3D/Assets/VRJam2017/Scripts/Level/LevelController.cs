@@ -147,7 +147,10 @@ public class LevelController : MonoSingleton<LevelController>
             if (tile.MarkedForDigging)
             {
                 tile.DigMarker = GameObject.Instantiate(DigMarkerPrefab);
-                tile.DigMarker.transform.position = LevelHelpers.WorldPosFromTilePos(tile.X, tile.Z);
+                tile.DigMarker.transform.position = LevelHelpers.WorldPosFromTilePosSetY(
+                    tile.X, 
+                    tile.Z, 
+                    LevelHelpers.TileDigMarkerPositionY);
                 tile.DigMarker.transform.parent = transform;
             }
         }
@@ -169,67 +172,42 @@ public class LevelController : MonoSingleton<LevelController>
     {
         if (tile.WallTop)
         {
-            // if (tile.WallLeft)
-            // {
-            //     GameObject w = CreateObjectOnTile(tile, CornerTopLeftPrefab);
-            //     w.name = tile.ToString() + " Corner Top Left";
-            //     tile.Walls.Add(w);
-            // }
-            // else if (tile.WallRight)
-            // {
-            //     GameObject w = CreateObjectOnTile(tile, CornerTopRightPrefab);
-            //     w.name = tile.ToString() + " Corner Top Right";
-            //     tile.Walls.Add(w);
-            // }
-            // else
-            // {
-                GameObject w = CreateObjectOnTile(tile, WallTopPrefab, WallParent);
-                w.name = tile.ToString() + " Wall Top";
-                tile.Walls.Add(w);
-            // }
+            GameObject w = CreateObjectOnTile(tile, WallTopPrefab, WallParent, true);
+            w.name = tile.ToString() + " Wall Top";
+            tile.Walls.Add(w);
         }
 
         if (tile.WallBottom)
         {
-            // if (tile.WallLeft)
-            // {
-            //     GameObject w = CreateObjectOnTile(tile, CornerBottomLeftPrefab);
-            //     w.name = tile.ToString() + " Corner Bottom Left";
-            //     tile.Walls.Add(w);
-            // }
-            // else if (tile.WallRight)
-            // {
-            //     GameObject w = CreateObjectOnTile(tile, CornerBottomRightPrefab);
-            //     w.name = tile.ToString() + " Corner Bottom Right";
-            //     tile.Walls.Add(w);
-            // }
-            // else
-            // {
-                GameObject w = CreateObjectOnTile(tile, WallBottomPrefab, WallParent);
-                w.name = tile.ToString() + " Wall Bottom";
-                tile.Walls.Add(w);
-            // }
+            GameObject w = CreateObjectOnTile(tile, WallBottomPrefab, WallParent, true);
+            w.name = tile.ToString() + " Wall Bottom";
+            tile.Walls.Add(w);
         }
 
-        if (tile.WallRight)// && !tile.WallTop && !tile.WallBottom)
+        if (tile.WallRight)
         {
-            GameObject w = CreateObjectOnTile(tile, WallRightPrefab, WallParent);
+            GameObject w = CreateObjectOnTile(tile, WallRightPrefab, WallParent, true);
             w.name = tile.ToString() + " Wall Right";
             tile.Walls.Add(w);
         }
 
-        if (tile.WallLeft)// && !tile.WallTop && !tile.WallBottom)
+        if (tile.WallLeft)
         {
-            GameObject w = CreateObjectOnTile(tile, WallLeftPrefab, WallParent);
+            GameObject w = CreateObjectOnTile(tile, WallLeftPrefab, WallParent, true);
             w.name = tile.ToString() + " Wall Left";
             tile.Walls.Add(w);
         }
     }
 
-    private GameObject CreateObjectOnTile(LevelTile tile, GameObject prefab, Transform parent = null)
+    private GameObject CreateObjectOnTile(LevelTile tile, GameObject prefab, Transform parent = null, bool isWall = false)
     {
         GameObject created = GameObject.Instantiate(prefab);
-        created.transform.position = LevelHelpers.WorldPosFromTilePos(tile.X, tile.Z);
+
+        Vector3 worldPosition = isWall ? 
+            LevelHelpers.WorldPosFromTilePosSetY(tile.X, tile.Z, LevelHelpers.WallPositionY) 
+            : LevelHelpers.WorldPosFromTilePos(tile.X, tile.Z);
+
+        created.transform.position = worldPosition;
         created.transform.parent = (parent == null) ? transform : parent;
 
         return created;
@@ -246,7 +224,7 @@ public class LevelController : MonoSingleton<LevelController>
         GameObject ceilingMask = GameObject.CreatePrimitive(PrimitiveType.Quad);
         ceilingMask.name = "CeilingMask";
         ceilingMask.transform.parent = transform;
-        ceilingMask.transform.position = new Vector3(LevelHelpers.TerrainSizeX / 2f, LevelHelpers.CeilingHeight, LevelHelpers.TerrainSizeZ / 2f);
+        ceilingMask.transform.position = new Vector3(LevelHelpers.TerrainSizeX / 2f, LevelHelpers.CeilingMaskPositionY, LevelHelpers.TerrainSizeZ / 2f);
         ceilingMask.transform.eulerAngles = new Vector3(90f, 0f, 0f);
         ceilingMask.transform.localScale = new Vector3(LevelHelpers.TerrainSizeX, LevelHelpers.TerrainSizeZ);
 

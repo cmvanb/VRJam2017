@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4643929530662978}
   - component: {fileID: 114010439307945726}
   m_Layer: 0
-  m_Name: DISABLE_VR
+  m_Name: DisableVR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
