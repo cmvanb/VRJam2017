@@ -2405,7 +2405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d176a767fc63d4cb939e07421917df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RightHand: {fileID: 4296868934140038}
+  RightHand: {fileID: 4796715416279512}
   GrabRange: 1
 --- !u!114 &114992370304856244
 MonoBehaviour:

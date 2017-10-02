@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 114188913269752980}
   - component: {fileID: 114003356375551618}
   - component: {fileID: 65543147102757882}
+  - component: {fileID: 114868225598667166}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Untagged
@@ -2341,6 +2342,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 50
+--- !u!114 &114868225598667166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1013783193485856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a7b043e6b916547bb3b9b8bf4b985f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupDuration: 0.25
+  pickupXAngleOffset: -28
+  pickupPositionOffset: {x: 0, y: 0.05, z: 0}
 --- !u!114 &114901802646275582
 MonoBehaviour:
   m_ObjectHideFlags: 1

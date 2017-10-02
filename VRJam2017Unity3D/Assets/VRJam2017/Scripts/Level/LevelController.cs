@@ -15,10 +15,6 @@ public class LevelController : MonoSingleton<LevelController>
     public GameObject WallRightPrefab;
     public GameObject WallBottomPrefab;
     public GameObject WallLeftPrefab;
-    public GameObject CornerTopLeftPrefab;
-    public GameObject CornerTopRightPrefab;
-    public GameObject CornerBottomLeftPrefab;
-    public GameObject CornerBottomRightPrefab;
     public GameObject DigMarkerPrefab;
 
     public GameObject HeroSpawn;

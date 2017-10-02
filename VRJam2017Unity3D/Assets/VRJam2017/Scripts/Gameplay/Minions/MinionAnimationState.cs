@@ -4,53 +4,59 @@ public class MinionAnimationState : MonoBehaviour
 {
     Animator animator;
 
-    void Start()
+    public void Start()
     {
         animator = GetComponentInChildren<Animator>();
         
         Play(GetIdle());
     }
 
-    void StartMoving()
+    public void StartMoving()
     {
         Play("walk");
     }
 
-    void StopMoving()
+    public void StopMoving()
     {
         Play(GetIdle());
     }
 
-    void Attack()
+    public void Attack()
     {
         Play("digging");
     }
 
-    void Dig()
+    public void Dig()
     {
         Play("digging");
     }
 
-    void WantsToDie()
+    public void WantsToDie()
     {
         Play("dieing");
     }
 
-    void DoneDigging()
+    public void DoneDigging()
     {
         Play(GetIdle());
     }
 
-    string GetIdle()
+    public void Flail()
+    {
+        // NOTE: Spelling error.
+        Play("flayling");
+    }
+
+    public string GetIdle()
     {
         return Random.value > 0.5 ? "idle" : "idle2";
     }
 
-    void Play(string name)
+    public void Play(string name)
     {
         AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
 
-        if(!info.IsName(name) || name == "walk")
+        if (!info.IsName(name) || name == "walk")
         {
             animator.Play(name);
         }

@@ -25,8 +25,7 @@ public class PlayerGrabber : MonoBehaviour
 
         if (minionInGrabRange != null)
         {
-            minionInGrabRange.SendMessage("Capture");
-            minionInGrabRange.transform.parent = RightHand;
+            minionInGrabRange.SendMessage("Pickup", RightHand, SendMessageOptions.DontRequireReceiver);
 
             grabbedMinion = minionInGrabRange;
         }
@@ -36,8 +35,7 @@ public class PlayerGrabber : MonoBehaviour
     {
         if (grabbedMinion != null)
         {
-            grabbedMinion.SendMessage("Release");
-            grabbedMinion.transform.parent = null;
+            grabbedMinion.SendMessage("Drop", SendMessageOptions.DontRequireReceiver);
 
             grabbedMinion = null;
         }
