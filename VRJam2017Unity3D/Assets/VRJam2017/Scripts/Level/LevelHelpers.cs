@@ -3,12 +3,46 @@ using UnityEngine;
 
 public static class LevelHelpers
 {
-    public static float TerrainSize = 1024f;
+    public static float TerrainSizeX
+    {
+        get
+        {
+            return LevelController.Instance.Terrain.terrainData.size.x;
+        }
+    }
+
+    public static float TerrainSizeZ
+    {
+        get
+        {
+            return LevelController.Instance.Terrain.terrainData.size.z;
+        }
+    }
+
     public static float TileSize = 4f;
+
+    public static int TileCountX
+    {
+        get
+        {
+            return (int)(TerrainSizeX / TileSize);
+        }
+    }
+
+    public static int TileCountZ
+    {
+        get
+        {
+            return (int)(TerrainSizeZ / TileSize);
+        }
+    }
+
+    public static float WallPositionY = 3f;
+    public static float CeilingMaskPositionY = 7.01f;
+    public static float TileDigMarkerPositionY = 7.05f;
 
     public static Vector3 WorldPosFromTilePos(int x, int z)
     {
-        // TODO: GET Y FROM TERRAIN HEIGHT
         Vector3 result = new Vector3(x * TileSize, 0f, z * TileSize);
 
         float y = GetTerrainHeightAtWorldPos(result);
@@ -16,6 +50,11 @@ public static class LevelHelpers
         result = new Vector3(result.x, y, result.z);
 
         return result;
+    }
+
+    public static Vector3 WorldPosFromTilePosSetY(int x, int z, float worldY)
+    {
+        return new Vector3(x * TileSize, worldY, z * TileSize);
     }
 
     public static Vector2 TilePosFromWorldPos(Vector3 position)
@@ -46,6 +85,33 @@ public static class LevelHelpers
     public static float GetTerrainHeightAtWorldPos(Vector3 worldPosition)
     {
         return LevelController.Instance.Terrain.SampleHeight(worldPosition);
+    }
+
+    public static List<LevelTile> GetAdjacentTiles(LevelModel model, int xPosition, int zPosition)
+    {
+        List<LevelTile> tiles = new List<LevelTile>();
+
+        for (int x = (int)xPosition - 1; x <= (int)xPosition + 1; ++x)
+        {
+            if (!LevelHelpers.TileIsInBounds(model, x, zPosition))
+            {
+                continue;
+            }
+
+            tiles.Add(model.Tiles[x, zPosition]);
+        }
+
+        for (int z = (int)zPosition - 1; z <= (int)zPosition + 1; ++z)
+        {
+            if (!LevelHelpers.TileIsInBounds(model, xPosition, z))
+            {
+                continue;
+            }
+
+            tiles.Add(model.Tiles[xPosition, z]);
+        }
+
+        return tiles;
     }
 
     public static List<LevelTile> GetSurroundingTiles(LevelModel model, int xPosition, int zPosition)

@@ -19,6 +19,26 @@ public class GameManager : MonoSingleton<GameManager>
         Headset = VRTK_DeviceFinder.DeviceTransform(VRTK_DeviceFinder.Devices.Headset);
     }
 
+    public void Update()
+    {
+        // CHEAT - FOR SOME REASON PLAY AREA SPAWNS IN CORNER IN WINDOWS BUILD
+        // TODO: Fix that bug.
+        if (Input.GetKeyUp(KeyCode.H))
+        {
+            // Teleports 'home'.
+            SpawnPlayer();
+        }
+    }
+
+    public void SpawnPlayer()
+    {
+        LevelModel model = LevelController.Instance.Model;
+
+        Vector3 spawnPosition = LevelHelpers.WorldPosFromTilePos((int)model.HellSpawn.x, (int)model.HellSpawn.y);
+
+        SpawnPlayer(spawnPosition);
+    }
+
     public void SpawnPlayer(Vector3 spawnPosition)
     {
         SetPlayerPosition(spawnPosition);

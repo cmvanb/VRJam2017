@@ -10,14 +10,14 @@ public class PlayerAttacker : MonoBehaviour
 
     public void Attack()
     {
-        Debug.LogWarning("ATTACK");
+        // Debug.LogWarning("ATTACK");
 
         IsAttacking = true;
     }
 
     public void StopAttack()
     {
-        Debug.LogWarning("STOP ATTACK");
+        // Debug.LogWarning("STOP ATTACK");
 
         IsAttacking = false;
     }

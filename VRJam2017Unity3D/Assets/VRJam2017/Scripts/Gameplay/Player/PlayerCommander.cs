@@ -22,7 +22,7 @@ public class PlayerCommander : MonoBehaviour
     // MOVE
     public void MoveCommand(Vector3 target)
     {
-        Debug.LogWarning("MOVE COMMAND");
+        // Debug.LogWarning("MOVE COMMAND");
 
         // TODO: summoned minions can contain duplicates...
         foreach (GameObject minion in summoner.SummonedMinions)
@@ -51,7 +51,7 @@ public class PlayerCommander : MonoBehaviour
     // GUARD
     public void GuardCommand(Vector3 target)
     {
-        Debug.LogWarning("GUARD COMMAND");
+        // Debug.LogWarning("GUARD COMMAND");
         // TODO: Consider spawning 'command feedback', like particles or animation.
     }
 }

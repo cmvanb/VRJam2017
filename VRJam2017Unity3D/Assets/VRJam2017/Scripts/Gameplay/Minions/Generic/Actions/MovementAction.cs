@@ -9,7 +9,7 @@ public class MovementAction : UnitAction
 
     public Vector3 Position = Vector3.zero;
 
-    protected float stoppingDistance = 2;
+    protected float stoppingDistance = 2.5f;
 
 
     public MovementAction(GameObject owner, Vector3 position) : base(owner)
@@ -67,7 +67,9 @@ public class MovementAction : UnitAction
 
     public override void Stop()
     {
-        if(agent.isOnNavMesh && !agent.isStopped)
+        if (agent 
+            && agent.isOnNavMesh 
+            && !agent.isStopped)
         {
             agent.ResetPath();
 

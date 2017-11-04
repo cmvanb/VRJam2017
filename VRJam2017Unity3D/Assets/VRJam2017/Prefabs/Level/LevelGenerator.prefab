@@ -137,6 +137,8 @@ MonoBehaviour:
   HellStartingBuildings:
   - {fileID: 1545862498214954, guid: e890d5c91731a4021abb7434db3a48c7, type: 2}
   - {fileID: 1545862498214954, guid: 54ce96bece9ad4cfa9c962def3d5161f, type: 2}
+  CeilingMaskMaterial: {fileID: 2100000, guid: 6251a96985eee12498acb676d54b5c2b, type: 2}
+  GoblinVillageSpawnChance: 0.1
 --- !u!154 &154951432308707182
 TerrainCollider:
   m_ObjectHideFlags: 1

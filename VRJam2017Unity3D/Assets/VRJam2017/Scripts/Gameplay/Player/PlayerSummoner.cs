@@ -14,7 +14,7 @@ public class PlayerSummoner : MonoBehaviour
 
     public void Summon()
     {
-        Debug.LogWarning("SUMMON");
+        // Debug.LogWarning("SUMMON");
         IsSummoning = true;
 
         StartCoroutine(DelayedSummon());
@@ -36,8 +36,6 @@ public class PlayerSummoner : MonoBehaviour
     {
         StopAllCoroutines();
 
-        Debug.LogWarning("STOP SUMMON");
-
         IsSummoning = false;
     }
 
@@ -48,12 +46,6 @@ public class PlayerSummoner : MonoBehaviour
         if (minion != null)
         {
             SummonedMinions.Add(minion);
-            Debug.Log(SummonedMinions.Count + " minions summoned");
-        }
-        else
-        {
-            Debug.LogWarning("no more minions nearby");
         }
     }
-
 }
